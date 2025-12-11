@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import CircularGallery from "../components/CircularGallery/CircularGallery";
 import DomeGallery from "../components/DomeGallery/DomeGallery";
 import Header from "../components/layout/Header";
