@@ -3,34 +3,35 @@ import { Star, Book, Users, Award } from "lucide-react";
 
 const footerLinks = [
   {
-    title: "Nội Dung",
+    title: "Nội Dung Chính",
     links: [
-      { name: "Tổng Quan Lịch Sử", href: "/tong-quan" },
-      {
-        name: "Kháng Chiến Chống Pháp",
-        href: "/chi-tiet/khang-chien-chong-phap",
-      },
-      { name: "Kháng Chiến Chống Mỹ", href: "/chi-tiet/khang-chien-chong-my" },
+      { name: "Trang Chủ", href: "/" },
+      { name: "Phân Tích Đổi Mới", href: "/#reform-analysis" },
+      { name: "Thành Tựu 1986-1996", href: "/#achievements" },
     ],
   },
   {
     title: "Tài Nguyên",
     links: [
-      { name: "Thư Viện Hình Ảnh", href: "/thu-vien" },
+      { name: "Thư Viện Hình Ảnh 3D", href: "/thu-vien" },
       { name: "Ý Nghĩa Lịch Sử", href: "/y-nghia" },
-      { name: "Kiểm Tra Kiến Thức", href: "/quiz" },
+      { name: "Quiz Kiến Thức", href: "/quiz" },
     ],
   },
   {
-    title: "Hỗ Trợ",
-    links: [{ name: "AI Chatbot", href: "/ai-ho-tro" }],
+    title: "Tương Tác",
+    links: [
+      { name: "Mini Game", href: "/minigame" },
+      { name: "AI Chatbot Hỗ Trợ", href: "/ai-ho-tro" },
+      { name: "Case Study", href: "/case-study" },
+    ],
   },
 ];
 
 const features = [
-  { icon: Book, label: "Kiến Thức" },
-  { icon: Users, label: "Cộng Đồng" },
-  { icon: Award, label: "Lịch Sử" },
+  { icon: Book, label: "Đổi Mới" },
+  { icon: Users, label: "Dân Tộc" },
+  { icon: Award, label: "Thành Tựu" },
 ];
 
 export default function Footer() {
@@ -93,17 +94,17 @@ export default function Footer() {
               </div>
               <div>
                 <span className="font-bold text-lg text-[#FFD700]">
-                  Lịch Sử Đảng
+                  Đổi Mới 1986-1996
                 </span>
                 <span className="text-white text-xs block tracking-widest">
-                  1945 — 1975
+                  LỊCH SỬ ĐẢNG CSVN
                 </span>
               </div>
             </Link>
             <p className="text-white/80 text-sm leading-relaxed mb-4">
-              Trang web cung cấp kiến thức trọng tâm về quá trình Đảng lãnh đạo
-              hai cuộc kháng chiến, hoàn thành giải phóng dân tộc, thống nhất
-              đất nước.
+              Khám phá hành trình 10 năm đổi mới toàn diện của Đảng, đưa đất
+              nước ra khỏi khủng hoảng kinh tế - xã hội, hướng tới công nghiệp
+              hóa, hiện đại hóa và hội nhập quốc tế.
             </p>
             <div className="flex gap-4">
               {features.map((feature) => (
@@ -152,12 +153,13 @@ export default function Footer() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-white/70 text-sm text-center md:text-left">
-              © 2025 Lịch Sử Đảng Lãnh Đạo Cách Mạng Việt Nam. Dự án học tập.
+              © 2025 Đổi Mới Toàn Diện 1986-1996 - Lịch Sử Đảng CSVN. Dự án học
+              tập.
             </p>
             <div className="flex items-center gap-2">
               <span className="text-white/70 text-xs">Được xây dựng với</span>
               <span className="text-[#FFD700]">❤</span>
-              <span className="text-white/70 text-xs">bằng Next.js</span>
+              <span className="text-white/70 text-xs">bằng React & GSAP</span>
             </div>
           </div>
         </div>

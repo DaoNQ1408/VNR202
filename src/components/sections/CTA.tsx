@@ -1,34 +1,21 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 const CTA: React.FC = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-red-600 via-yellow-600 to-red-700 relative overflow-hidden">
-      {/* Background Decorations */}
+    <section
+      className="py-20 relative overflow-hidden"
+      style={{ backgroundColor: "var(--vietnam-red)" }}
+    >
+      {/* Vintage Border Decorations */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full filter blur-3xl"
-          animate={{
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
+        <div
+          className="absolute top-4 left-4 right-4 bottom-4 border-2"
+          style={{ borderColor: "var(--vietnam-gold)" }}
         />
-        <motion.div
-          className="absolute bottom-0 right-1/4 w-96 h-96 bg-white/10 rounded-full filter blur-3xl"
-          animate={{
-            x: [0, -50, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
+        <div
+          className="absolute top-8 left-8 right-8 bottom-8 border"
+          style={{ borderColor: "var(--vietnam-gold)", opacity: 0.5 }}
         />
       </div>
 
@@ -48,12 +35,18 @@ const CTA: React.FC = () => {
             🇻🇳
           </motion.div>
 
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Tiếp Nối Tinh Thần Đổi Mới!
+          <h2
+            className="text-4xl md:text-6xl font-bold mb-6"
+            style={{ color: "var(--vietnam-white)" }}
+          >
+            Học Tập & Phát Huy Tinh Thần Đổi Mới!
           </h2>
-          <p className="text-xl text-yellow-100 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Từ bài học lịch sử đến thực tiễn hiện đại - Dám nghĩ, dám làm, dám chịu trách nhiệm
-            để xây dựng Việt Nam ngày càng giàu mạnh!
+          <p
+            className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed"
+            style={{ color: "var(--vietnam-white)" }}
+          >
+            Từ bài học lịch sử 1986-1996 đến hành động ngày nay - Dám nghĩ, dám
+            làm để xây dựng Việt Nam giàu mạnh, văn minh, hạnh phúc!
           </p>
 
           <motion.div
@@ -66,52 +59,66 @@ const CTA: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white text-red-600 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all"
+              className="px-8 py-4 font-bold text-lg shadow-xl hover:shadow-2xl transition-all border-2"
+              style={{
+                backgroundColor: "var(--vietnam-white)",
+                color: "var(--vietnam-red)",
+                borderColor: "var(--vietnam-gold)",
+              }}
             >
               📚 Xem Tài Liệu Đầy Đủ
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-bold text-lg hover:bg-white/10 transition-all"
+              className="px-8 py-4 border-2 font-bold text-lg transition-all"
+              style={{
+                backgroundColor: "transparent",
+                borderColor: "var(--vietnam-white)",
+                color: "var(--vietnam-white)",
+              }}
             >
               🎯 Làm Quiz Lại
             </motion.button>
           </motion.div>
 
           <motion.p
-            className="text-yellow-200 text-sm"
+            className="text-sm"
+            style={{ color: "var(--vietnam-white)" }}
             animate={{ opacity: [0.7, 1, 0.7] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            ⭐ Sản phẩm được tạo với tinh thần học tập nghiêm túc và sử dụng AI có trách nhiệm
+            ⭐ Sản phẩm được tạo với tinh thần học tập nghiêm túc và sử dụng AI
+            có trách nhiệm
           </motion.p>
         </motion.div>
 
         {/* Floating Icons */}
         <div className="mt-16 relative h-32">
-          {['🏆', '📚', '🎓', '⭐', '🚀', '💡', '✨', '🇻🇳'].map((icon, index) => (
-            <motion.div
-              key={index}
-              className="absolute text-5xl"
-              style={{
-                left: `${(index * 12.5)}%`,
-                top: '50%',
-              }}
-              animate={{
-                y: [-20, 20, -20],
-                rotate: [0, 10, -10, 0],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: index * 0.2,
-                ease: 'easeInOut',
-              }}
-            >
-              {icon}
-            </motion.div>
-          ))}
+          {["🏆", "📚", "🎓", "⭐", "🚀", "💡", "✨", "🇻🇳"].map(
+            (icon, index) => (
+              <motion.div
+                key={index}
+                className="absolute text-5xl"
+                style={{
+                  left: `${index * 12.5}%`,
+                  top: "50%",
+                }}
+                animate={{
+                  y: [-20, 20, -20],
+                  rotate: [0, 10, -10, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: index * 0.2,
+                  ease: "easeInOut",
+                }}
+              >
+                {icon}
+              </motion.div>
+            )
+          )}
         </div>
       </div>
     </section>
