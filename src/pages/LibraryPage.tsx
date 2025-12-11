@@ -15,7 +15,6 @@ export default function LibraryPage() {
 
   // Historical images from DomeGallery with additional ones
   const domeImages = [
-
     {
       src: "https://media.vietnamplus.vn/images/ed1918d4cf848798286fdbd286ae25b49193a1c5d1fb33e969ef22f27d52ae3d4fa848ce7d2b15dcfa2646bd42731b69a74f6b1bfe70b3203772c7979020cefa/ttxvn-nguyen-ai-quoc.jpg",
       alt: "Nguyễn Ái Quốc với nhân dân Moskva (Nga) trên đồi Chim Sẻ, trong thời gian tham dự Đại hội lần thứ V Quốc tế cộng sản (17-6/8-7-1924). Ảnh: Tư liệu/TTXVN - Thể hiện tinh thần quốc tế vô sản.",
@@ -47,10 +46,9 @@ export default function LibraryPage() {
     {
       src: "https://file3.qdnd.vn/data/images/0/2022/07/20/tranhuyen/01botruongngoaigiaonguyenmanhcam.jpg?dpi=150&quality=100&w=870",
       alt: "Việt Nam gia nhập ASEAN năm 1995 – Thành tựu quan trọng của tiến trình đổi mới, mở rộng quan hệ đối ngoại và hội nhập khu vực.",
-    }
+    },
 
     // ========================================================================
-
   ];
 
   // Transform for CircularGallery (text hidden to avoid overlap)
@@ -71,20 +69,22 @@ export default function LibraryPage() {
         </span>
         <div className="flex gap-2 bg-[rgba(139,26,26,0.9)] p-1 rounded-full border-2 border-[#FFD700]/40 shadow-[0_0_20px_rgba(255,215,0,0.2)] backdrop-blur-md">
           <button
-            className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-full transition-all duration-300 ${mode === "dome"
-              ? "bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#8B1A1A] shadow-[0_4px_12px_rgba(255,215,0,0.5)]"
-              : "bg-transparent text-[#FFD700] hover:bg-[rgba(255,215,0,0.1)]"
-              }`}
+            className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-full transition-all duration-300 ${
+              mode === "dome"
+                ? "bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#8B1A1A] shadow-[0_4px_12px_rgba(255,215,0,0.5)]"
+                : "bg-transparent text-[#FFD700] hover:bg-[rgba(255,215,0,0.1)]"
+            }`}
             onClick={() => setMode("dome")}
           >
             <FaCube className="text-sm" />
             <span>Tròn</span>
           </button>
           <button
-            className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-full transition-all duration-300 ${mode === "circular"
-              ? "bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#8B1A1A] shadow-[0_4px_12px_rgba(255,215,0,0.5)]"
-              : "bg-transparent text-[#FFD700] hover:bg-[rgba(255,215,0,0.1)]"
-              }`}
+            className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-full transition-all duration-300 ${
+              mode === "circular"
+                ? "bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#8B1A1A] shadow-[0_4px_12px_rgba(255,215,0,0.5)]"
+                : "bg-transparent text-[#FFD700] hover:bg-[rgba(255,215,0,0.1)]"
+            }`}
             onClick={() => setMode("circular")}
           >
             <FaImages className="text-sm" />
