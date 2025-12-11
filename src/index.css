@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotateY(0deg) rotateZ(0deg);
+  }
+  25% {
+    transform: translateY(-12px) rotateY(8deg) rotateZ(3deg);
+  }
+  50% {
+    transform: translateY(-5px) rotateY(0deg) rotateZ(0deg);
+  }
+  75% {
+    transform: translateY(-12px) rotateY(-8deg) rotateZ(-3deg);
+  }
+}
+
 :root {
   /* Vietnam Flag & Banner Color Palette (baochinhphu.vn inspired) */
   --vietnam-red: #ac0705;

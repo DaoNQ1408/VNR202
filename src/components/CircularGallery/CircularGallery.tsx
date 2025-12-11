@@ -315,6 +315,10 @@ class Media {
         img.naturalHeight,
       ];
     };
+    img.onerror = () => {
+      console.error('Failed to load image:', this.image);
+      // Optionally set a placeholder or keep as is
+    };
   }
 
   createMesh() {
