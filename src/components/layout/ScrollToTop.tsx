@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const ScrollToTop: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,15 +19,15 @@ const ScrollToTop: React.FC = () => {
       }
     };
 
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility);
 
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
