@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CircularGallery from "../components/CircularGallery/CircularGallery";
 import DomeGallery from "../components/DomeGallery/DomeGallery";
 import Header from "../components/layout/Header";
@@ -7,6 +7,11 @@ import { FaImages, FaCube } from "react-icons/fa";
 
 export default function LibraryPage() {
   const [mode, setMode] = useState<"dome" | "circular">("dome");
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const ethnicImages = [
     {

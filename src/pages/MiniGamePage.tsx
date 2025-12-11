@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -30,34 +30,34 @@ const InstructionsModal: React.FC<{
             {
               icon: "⏰",
               title: "Thời gian",
-              desc: "Bạn có 30 giây để chọn món đồ",
+              desc: "Bạn có 90 giây để chọn món đồ",
             },
             {
               icon: "✅",
               title: "Món thiết yếu",
-              desc: "Gạo, Nước mắm, Vải, Xà phòng (+10 điểm)",
+              desc: "Gạo, Thịt, Cá, Rau củ, Vải, Xà phòng... (+10 điểm)",
             },
             {
               icon: "❌",
               title: "Món không thiết yếu",
-              desc: "Bánh kẹo, Đồ chơi, Sách vở, Điện thoại (-5 điểm)",
+              desc: "Bánh kẹo, Đồ chơi, Tivi, Máy ảnh, Trang sức... (-5 điểm)",
             },
             {
               icon: "🎯",
               title: "Mục tiêu",
-              desc: "Chọn đủ 4 món thiết yếu để đạt điểm cao nhất!",
+              desc: "Chọn 15 món từ 50 item, ưu tiên món thiết yếu để đạt điểm cao nhất!",
             },
           ],
           tips: [
             "Trong thời kỳ khủng hoảng, người dân chỉ quan tâm nhu yếu phẩm",
             "Tem phiếu bị giới hạn, hãy chọn thông minh!",
-            "Càng chọn đúng, điểm số càng cao",
+            "Càng chọn đúng món thiết yếu, điểm số càng cao",
           ],
         }
       : {
           title: "⚡ Nhà Hoạch Định Chiến Lược",
           subtitle: "Đại Hội VI (1986)",
-          objective: "Phân loại 24 item vào 3 giỏ ưu tiên trong 120 giây!",
+          objective: "Phân loại 50 item vào 3 giỏ ưu tiên trong 120 giây!",
           rules: [
             {
               icon: "🗂️",
@@ -208,7 +208,7 @@ const InstructionsModal: React.FC<{
 
 // Game 1: Survival Game - Siêu thị Tem Phiếu
 const SurvivalGame: React.FC = () => {
-  const [timeLeft, setTimeLeft] = useState(30);
+  const [timeLeft, setTimeLeft] = useState(90);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
@@ -223,14 +223,59 @@ const SurvivalGame: React.FC = () => {
   });
 
   const items = [
+    // Lương thực thiết yếu (25 items essential)
     { name: "Gạo", isEssential: true, image: "🍚" },
     { name: "Nước mắm", isEssential: true, image: "🧂" },
+    { name: "Muối", isEssential: true, image: "🧂" },
+    { name: "Dầu ăn", isEssential: true, image: "🫗" },
+    { name: "Đường", isEssential: true, image: "🍬" },
+    { name: "Thịt heo", isEssential: true, image: "🥩" },
+    { name: "Thịt gà", isEssential: true, image: "🍗" },
+    { name: "Thịt bò", isEssential: true, image: "🥩" },
+    { name: "Cá", isEssential: true, image: "🐟" },
+    { name: "Tôm", isEssential: true, image: "🦐" },
+    { name: "Trứng", isEssential: true, image: "🥚" },
+    { name: "Rau củ", isEssential: true, image: "🥬" },
+    { name: "Khoai tây", isEssential: true, image: "🥔" },
     { name: "Vải", isEssential: true, image: "🧵" },
     { name: "Xà phòng", isEssential: true, image: "🧼" },
-    { name: "Bánh kẹo", isEssential: false, image: "🍬" },
+    { name: "Bột giặt", isEssential: true, image: "🧴" },
+    { name: "Kem đánh răng", isEssential: true, image: "🪥" },
+    { name: "Giấy vệ sinh", isEssential: true, image: "🧻" },
+    { name: "Thuốc men cơ bản", isEssential: true, image: "💊" },
+    { name: "Băng y tế", isEssential: true, image: "🩹" },
+    { name: "Quần áo cơ bản", isEssential: true, image: "👕" },
+    { name: "Giày dép", isEssential: true, image: "👟" },
+    { name: "Nước sạch", isEssential: true, image: "💧" },
+    { name: "Than củi", isEssential: true, image: "🪵" },
+    { name: "Dầu hỏa", isEssential: true, image: "🛢️" },
+
+    // Hàng xa xỉ/không thiết yếu (25 items non-essential)
+    { name: "Bánh kẹo", isEssential: false, image: "🍭" },
+    { name: "Nước ngọt", isEssential: false, image: "🥤" },
+    { name: "Bia rượu", isEssential: false, image: "🍺" },
+    { name: "Rượu mạnh", isEssential: false, image: "🍷" },
+    { name: "Thuốc lá", isEssential: false, image: "🚬" },
     { name: "Đồ chơi", isEssential: false, image: "🧸" },
     { name: "Sách vở", isEssential: false, image: "📚" },
     { name: "Điện thoại", isEssential: false, image: "📞" },
+    { name: "Tivi", isEssential: false, image: "📺" },
+    { name: "Đài radio", isEssential: false, image: "📻" },
+    { name: "Máy ảnh", isEssential: false, image: "📷" },
+    { name: "Đồng hồ đeo tay", isEssential: false, image: "⌚" },
+    { name: "Trang sức", isEssential: false, image: "💍" },
+    { name: "Nước hoa", isEssential: false, image: "🧴" },
+    { name: "Son môi", isEssential: false, image: "💄" },
+    { name: "Kính mắt thời trang", isEssential: false, image: "🕶️" },
+    { name: "Đồ trang trí", isEssential: false, image: "🎨" },
+    { name: "Bàn cờ", isEssential: false, image: "♟️" },
+    { name: "Nhạc cụ", isEssential: false, image: "🎸" },
+    { name: "Tranh ảnh", isEssential: false, image: "🖼️" },
+    { name: "Đồ cổ", isEssential: false, image: "🏺" },
+    { name: "Đồ sưu tầm", isEssential: false, image: "🎭" },
+    { name: "Máy tính", isEssential: false, image: "💻" },
+    { name: "Máy quay phim", isEssential: false, image: "🎥" },
+    { name: "Xe máy", isEssential: false, image: "🏍️" },
   ];
 
   useEffect(() => {
@@ -246,12 +291,12 @@ const SurvivalGame: React.FC = () => {
     if (gameOver) return;
     if (selectedItems.includes(item.name)) return;
 
-    // Giới hạn chỉ chọn tối đa 4 món
-    if (selectedItems.length >= 4) {
+    // Giới hạn chỉ chọn tối đa 15 món
+    if (selectedItems.length >= 15) {
       setFeedback({
         show: true,
         isCorrect: false,
-        message: "Chỉ được chọn 4 món!",
+        message: "Chỉ được chọn 15 món!",
       });
       setTimeout(
         () => setFeedback({ show: false, isCorrect: false, message: "" }),
@@ -271,8 +316,8 @@ const SurvivalGame: React.FC = () => {
       setFeedback({ show: true, isCorrect: false, message: "-5 điểm!" });
     }
 
-    // Tự động kết thúc game khi đã chọn đủ 4 món
-    if (newSelectedItems.length >= 4) {
+    // Tự động kết thúc game khi đã chọn đủ 15 món
+    if (newSelectedItems.length >= 15) {
       setTimeout(() => {
         setGameOver(true);
       }, 1500);
@@ -292,86 +337,89 @@ const SurvivalGame: React.FC = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-white via-red-50 to-yellow-50 p-8 rounded-2xl shadow-2xl relative border border-red-200">
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 rounded-t-2xl"></div>
-      <h3 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">
-        🎮 Siêu thị Tem Phiếu
-      </h3>
-      <div className="text-center mb-6">
-        <div className="flex justify-center items-center gap-4 mb-6 flex-wrap">
-          <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-xl shadow-lg border-2 border-red-200">
-            <Clock className="w-6 h-6 text-red-600" />
-            <span
-              className={`text-2xl font-bold ${
-                timeLeft <= 10 ? "text-red-600 animate-pulse" : "text-gray-900"
-              }`}
-            >
-              {timeLeft}s
-            </span>
-          </div>
-          <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-xl shadow-lg border-2 border-yellow-200">
-            <Trophy className="w-6 h-6 text-yellow-600" />
-            <span className="text-2xl font-bold text-gray-900">
-              {score} điểm
-            </span>
-          </div>
-          <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-xl shadow-lg border-2 border-blue-200">
-            <span className="text-xl font-bold text-gray-700">
-              {selectedItems.length}/4 món
-            </span>
-          </div>
+    <div className="space-y-4">
+      {/* Stats Bar */}
+      <div className="flex justify-center items-center gap-3 flex-wrap">
+        <div className="flex items-center gap-2 bg-gradient-to-r from-red-50 to-red-100 px-4 py-2 rounded-lg border border-red-300">
+          <Clock className="w-5 h-5 text-red-600" />
+          <span
+            className={`text-lg font-bold ${
+              timeLeft <= 10 ? "text-red-600 animate-pulse" : "text-gray-900"
+            }`}
+          >
+            {timeLeft}s
+          </span>
         </div>
-        <AnimatePresence>
-          {feedback.show && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg ${
-                feedback.isCorrect
-                  ? "bg-green-100 text-green-800"
-                  : "bg-red-100 text-red-800"
-              }`}
-            >
-              {feedback.isCorrect ? (
-                <CheckCircle className="w-5 h-5" />
-              ) : (
-                <AlertCircle className="w-5 h-5" />
-              )}
-              {feedback.message}
-            </motion.div>
-          )}
-        </AnimatePresence>
-        {gameOver && (
+        <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-50 to-yellow-100 px-4 py-2 rounded-lg border border-yellow-300">
+          <Trophy className="w-5 h-5 text-yellow-600" />
+          <span className="text-lg font-bold text-gray-900">{score} điểm</span>
+        </div>
+        <div className="flex items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2 rounded-lg border border-blue-300">
+          <span className="text-base font-bold text-gray-700">
+            {selectedItems.length}/15 món
+          </span>
+        </div>
+      </div>
+      {/* Feedback */}
+      <AnimatePresence>
+        {feedback.show && (
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="mt-4 p-6 bg-gradient-to-br from-red-50 to-yellow-50 rounded-lg"
+            exit={{ opacity: 0 }}
+            className="flex justify-center"
           >
-            <Trophy className="w-12 h-12 text-yellow-600 mx-auto mb-3" />
-            <p className="text-2xl font-bold text-gray-900 mb-2">Kết thúc!</p>
-            <p className="text-lg text-gray-700 mb-4">
-              Bạn đã chọn{" "}
-              <span className="font-bold text-green-600">
-                {
-                  selectedItems.filter(
-                    (item) => items.find((i) => i.name === item)?.isEssential
-                  ).length
-                }
-                /4
-              </span>{" "}
-              món thiết yếu
-            </p>
-            <button
-              onClick={restartGame}
-              className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold"
+            <div
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg ${
+                feedback.isCorrect
+                  ? "bg-green-500 text-white"
+                  : "bg-red-500 text-white"
+              }`}
             >
-              Chơi lại
-            </button>
+              {feedback.isCorrect ? (
+                <CheckCircle className="w-4 h-4" />
+              ) : (
+                <AlertCircle className="w-4 h-4" />
+              )}
+              <span className="font-bold text-sm">{feedback.message}</span>
+            </div>
           </motion.div>
         )}
-      </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      </AnimatePresence>
+
+      {/* Game Over */}
+      {gameOver && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="bg-gradient-to-br from-yellow-50 to-red-50 p-6 rounded-xl border-2 border-yellow-400"
+        >
+          <Trophy className="w-12 h-12 text-yellow-600 mx-auto mb-3" />
+          <p className="text-2xl font-bold text-center text-gray-900 mb-2">
+            Kết thúc!
+          </p>
+          <p className="text-center text-gray-700 mb-4">
+            Bạn đã chọn{" "}
+            <span className="font-bold text-green-600">
+              {
+                selectedItems.filter(
+                  (item) => items.find((i) => i.name === item)?.isEssential
+                ).length
+              }
+              /4
+            </span>{" "}
+            món thiết yếu
+          </p>
+          <button
+            onClick={restartGame}
+            className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-yellow-600 text-white rounded-lg hover:shadow-lg transition-all font-semibold"
+          >
+            Chơi lại
+          </button>
+        </motion.div>
+      )}
+      {/* Items Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {items.map((item) => {
           const isDisabled =
             selectedItems.length >= 4 && !selectedItems.includes(item.name);
@@ -379,33 +427,28 @@ const SurvivalGame: React.FC = () => {
           return (
             <motion.div
               key={item.name}
-              className={`p-6 border-3 rounded-xl text-center transition-all duration-300 ${
+              className={`p-4 border-2 rounded-xl text-center transition-all duration-300 ${
                 selectedItems.includes(item.name)
-                  ? "bg-gradient-to-br from-green-100 to-green-200 border-green-500 shadow-lg shadow-green-200 cursor-default"
+                  ? "bg-gradient-to-br from-green-100 to-green-200 border-green-500 shadow-lg cursor-default"
                   : isDisabled
                   ? "bg-gray-100 border-gray-300 cursor-not-allowed opacity-40"
                   : "bg-white border-gray-300 hover:border-red-400 hover:shadow-xl cursor-pointer"
               } ${gameOver ? "cursor-not-allowed opacity-60" : ""}`}
               onClick={() => handleItemClick(item)}
               whileHover={{
-                scale: gameOver || isDisabled ? 1 : 1.08,
-                rotate: gameOver || isDisabled ? 0 : [0, -2, 2, 0],
+                scale: gameOver || isDisabled ? 1 : 1.05,
               }}
               whileTap={{ scale: gameOver || isDisabled ? 1 : 0.95 }}
             >
-              <div className="text-5xl mb-3 filter drop-shadow-lg">
-                {item.image}
-              </div>
-              <p className="text-base font-semibold text-gray-800">
-                {item.name}
-              </p>
+              <div className="text-4xl mb-2">{item.image}</div>
+              <p className="text-sm font-semibold text-gray-800">{item.name}</p>
               {selectedItems.includes(item.name) && (
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   className="mt-2"
                 >
-                  <CheckCircle className="w-6 h-6 text-green-600 mx-auto" />
+                  <CheckCircle className="w-5 h-5 text-green-600 mx-auto" />
                 </motion.div>
               )}
             </motion.div>
@@ -432,7 +475,7 @@ const Basket: React.FC<{ category: string; onDrop: (item: Item) => void }> = ({
   category,
   onDrop,
 }) => {
-  const [{ isOver, canDrop }, drop] = useDrop(
+  const [{ isOver }, drop] = useDrop(
     () => ({
       accept: ItemTypes.ITEM,
       drop: (item: Item) => {
@@ -530,11 +573,6 @@ const StrategyGame: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState(120);
   const [gameOver, setGameOver] = useState(false);
   const [placedItemIds, setPlacedItemIds] = useState<string[]>([]);
-  const [placedItems, setPlacedItems] = useState<{ [key: string]: Item[] }>({
-    luongthuc: [],
-    tieudung: [],
-    xuatkhau: [],
-  });
   const [wrongAttempts, setWrongAttempts] = useState(0);
   const [correctAttempts, setCorrectAttempts] = useState(0);
   const [showFeedback, setShowFeedback] = useState<{
@@ -543,44 +581,70 @@ const StrategyGame: React.FC = () => {
     message: string;
   }>({ show: false, isCorrect: false, message: "" });
 
-  // Comprehensive item list - 24 items total
+  // Comprehensive item list - 50 items total
   const allItems: Item[] = [
-    // Lương thực thực phẩm (8 items)
+    // Lương thực thực phẩm (17 items)
     { id: "1", name: "Lúa gạo", category: "luongthuc", image: "🌾" },
     { id: "2", name: "Ngô", category: "luongthuc", image: "🌽" },
     { id: "3", name: "Khoai lang", category: "luongthuc", image: "🍠" },
-    { id: "4", name: "Thịt heo", category: "luongthuc", image: "🥩" },
-    { id: "5", name: "Thịt gà", category: "luongthuc", image: "🍗" },
-    { id: "6", name: "Cá", category: "luongthuc", image: "🐟" },
-    { id: "7", name: "Rau củ", category: "luongthuc", image: "🥬" },
-    { id: "8", name: "Trứng", category: "luongthuc", image: "🥚" },
+    { id: "4", name: "Khoai tây", category: "luongthuc", image: "🥔" },
+    { id: "5", name: "Sắn", category: "luongthuc", image: "🌿" },
+    { id: "6", name: "Thịt heo", category: "luongthuc", image: "🥩" },
+    { id: "7", name: "Thịt gà", category: "luongthuc", image: "🍗" },
+    { id: "8", name: "Thịt bò", category: "luongthuc", image: "🥩" },
+    { id: "9", name: "Cá", category: "luongthuc", image: "🐟" },
+    { id: "10", name: "Tôm", category: "luongthuc", image: "🦐" },
+    { id: "11", name: "Mực", category: "luongthuc", image: "🦑" },
+    { id: "12", name: "Trứng", category: "luongthuc", image: "🥚" },
+    { id: "13", name: "Rau củ", category: "luongthuc", image: "🥬" },
+    { id: "14", name: "Đậu phụ", category: "luongthuc", image: "🧈" },
+    { id: "15", name: "Nước mắm", category: "luongthuc", image: "🧂" },
+    { id: "16", name: "Dầu ăn", category: "luongthuc", image: "🫗" },
+    { id: "17", name: "Sữa", category: "luongthuc", image: "🥛" },
 
-    // Hàng tiêu dùng (8 items)
-    { id: "9", name: "Quần áo", category: "tieudung", image: "👕" },
-    { id: "10", name: "Giày dép", category: "tieudung", image: "👟" },
-    { id: "11", name: "Xà phòng", category: "tieudung", image: "🧼" },
-    { id: "12", name: "Bàn chải", category: "tieudung", image: "🪥" },
-    { id: "13", name: "Xe đạp", category: "tieudung", image: "🚲" },
-    { id: "14", name: "Đồ dùng nhà bếp", category: "tieudung", image: "🍳" },
-    { id: "15", name: "Vải vóc", category: "tieudung", image: "🧵" },
-    { id: "16", name: "Đồ gốm sứ", category: "tieudung", image: "🏺" },
+    // Hàng tiêu dùng (17 items)
+    { id: "18", name: "Quần áo", category: "tieudung", image: "👕" },
+    { id: "19", name: "Giày dép", category: "tieudung", image: "👟" },
+    { id: "20", name: "Mũ nón", category: "tieudung", image: "🧢" },
+    { id: "21", name: "Xà phòng", category: "tieudung", image: "🧼" },
+    { id: "22", name: "Bàn chải", category: "tieudung", image: "🪥" },
+    { id: "23", name: "Kem đánh răng", category: "tieudung", image: "🦷" },
+    { id: "24", name: "Bột giặt", category: "tieudung", image: "🧴" },
+    { id: "25", name: "Xe đạp", category: "tieudung", image: "🚲" },
+    { id: "26", name: "Đồ dùng nhà bếp", category: "tieudung", image: "🍳" },
+    { id: "27", name: "Vải vóc", category: "tieudung", image: "🧵" },
+    { id: "28", name: "Đồ gốm sứ", category: "tieudung", image: "🏺" },
+    { id: "29", name: "Giấy viết", category: "tieudung", image: "📄" },
+    { id: "30", name: "Bút viết", category: "tieudung", image: "✏️" },
+    { id: "31", name: "Đồ nhựa gia dụng", category: "tieudung", image: "🥤" },
+    { id: "32", name: "Đồ mây tre", category: "tieudung", image: "🧺" },
+    { id: "33", name: "Chiếu", category: "tieudung", image: "🛏️" },
+    { id: "34", name: "Màn", category: "tieudung", image: "🪟" },
 
-    // Hàng xuất khẩu (5 items)
-    { id: "17", name: "Cà phê", category: "xuatkhau", image: "☕" },
-    { id: "18", name: "Tôm đông lạnh", category: "xuatkhau", image: "🦐" },
-    { id: "19", name: "Cao su", category: "xuatkhau", image: "🌳" },
-    { id: "20", name: "Hạt điều", category: "xuatkhau", image: "🥜" },
-    { id: "21", name: "Dệt may", category: "xuatkhau", image: "👔" },
+    // Hàng xuất khẩu (10 items)
+    { id: "35", name: "Cà phê", category: "xuatkhau", image: "☕" },
+    { id: "36", name: "Tôm đông lạnh", category: "xuatkhau", image: "🦐" },
+    { id: "37", name: "Cao su", category: "xuatkhau", image: "🌳" },
+    { id: "38", name: "Hạt điều", category: "xuatkhau", image: "🥜" },
+    { id: "39", name: "Dệt may", category: "xuatkhau", image: "👔" },
+    { id: "40", name: "Hạt tiêu", category: "xuatkhau", image: "🌶️" },
+    { id: "41", name: "Dừa khô", category: "xuatkhau", image: "🥥" },
+    { id: "42", name: "Chè", category: "xuatkhau", image: "🍵" },
+    { id: "43", name: "Gỗ", category: "xuatkhau", image: "🪵" },
+    { id: "44", name: "Thủ công mỹ nghệ", category: "xuatkhau", image: "🎨" },
 
-    // Công nghiệp nặng (TRAP - 3 items)
+    // Công nghiệp nặng (TRAP - 6 items)
     {
-      id: "22",
+      id: "45",
       name: "Máy móc hạng nặng",
       category: "congnghiep",
       image: "⚙️",
     },
-    { id: "23", name: "Than đá", category: "congnghiep", image: "⛏️" },
-    { id: "24", name: "Thép", category: "congnghiep", image: "🏗️" },
+    { id: "46", name: "Than đá", category: "congnghiep", image: "⛏️" },
+    { id: "47", name: "Thép", category: "congnghiep", image: "🏗️" },
+    { id: "48", name: "Xi măng", category: "congnghiep", image: "🧱" },
+    { id: "49", name: "Máy công nghiệp", category: "congnghiep", image: "🔧" },
+    { id: "50", name: "Thiết bị nặng", category: "congnghiep", image: "🏭" },
   ];
 
   const totalCorrectItems = allItems.filter(
@@ -631,10 +695,6 @@ const StrategyGame: React.FC = () => {
       if (item.category === basketCategory) {
         setScore((s) => s + 10);
         setCorrectAttempts((c) => c + 1);
-        setPlacedItems((p) => ({
-          ...p,
-          [basketCategory]: [...p[basketCategory], item],
-        }));
         setShowFeedback({
           show: true,
           isCorrect: true,
@@ -667,11 +727,6 @@ const StrategyGame: React.FC = () => {
     setTimeLeft(120);
     setGameOver(false);
     setPlacedItemIds([]);
-    setPlacedItems({
-      luongthuc: [],
-      tieudung: [],
-      xuatkhau: [],
-    });
     setWrongAttempts(0);
     setCorrectAttempts(0);
     setShowFeedback({ show: false, isCorrect: false, message: "" });
@@ -679,9 +734,9 @@ const StrategyGame: React.FC = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="bg-gradient-to-br from-white via-yellow-50 to-red-50 rounded-xl shadow-xl border border-yellow-200 relative">
+      <div className="space-y-4">
         {/* Compact Stats Bar */}
-        <div className="bg-white/80 backdrop-blur-sm p-3 rounded-t-xl border-b-2 border-yellow-300 sticky top-0 z-10">
+        <div className="bg-white/80 backdrop-blur-sm p-3 rounded-lg border-2 border-yellow-300 sticky top-0 z-10">
           <div className="flex justify-center items-center gap-2 md:gap-4 flex-wrap">
             <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-50 to-yellow-100 px-4 py-2 rounded-lg border border-yellow-300">
               <Trophy className="w-5 h-5 text-yellow-600" />
@@ -706,13 +761,6 @@ const StrategyGame: React.FC = () => {
                 }`}
               >
                 {timeLeft}s
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2 bg-green-50 px-4 py-2 rounded-lg border border-green-300">
-              <CheckCircle className="w-5 h-5 text-green-600" />
-              <span className="text-sm font-bold text-gray-900">
-                {correctAttempts}/{totalCorrectItems}
               </span>
             </div>
 
@@ -841,7 +889,7 @@ const StrategyGame: React.FC = () => {
         </div>
 
         {/* Items Grid - Compact */}
-        <div className="bg-white/80 p-3 md:p-4 mx-3 md:mx-4 mb-4 rounded-xl shadow-inner border border-gray-200">
+        <div className="bg-white/80 p-3 md:p-4 rounded-xl shadow-inner border border-gray-200">
           <h4 className="text-sm font-bold text-gray-700 mb-3 text-center">
             📦 Kéo thả các item vào giỏ phù hợp
           </h4>
@@ -868,6 +916,7 @@ const MiniGamePage: React.FC = () => {
   const [gameToStart, setGameToStart] = useState<"game1" | "game2" | null>(
     null
   );
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const handleGameClick = (gameId: "game1" | "game2") => {
     setGameToStart(gameId);
@@ -884,13 +933,20 @@ const MiniGamePage: React.FC = () => {
     setGameToStart(null);
   };
 
+  // Scroll to top when game modal opens
+  useEffect(() => {
+    if (selectedGame && scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0;
+    }
+  }, [selectedGame]);
+
   const games = [
     {
       id: "game1" as const,
       title: "Siêu thị Tem Phiếu",
-      subtitle: "Đêm Trước Đổi Mới",
+      subtitle: "Đêm Trước Đổi Mới (90s)",
       description:
-        "Lạm phát 774%, thiếu lương thực, ngăn sông cấm chợ. Cảm nhận sự khan hiếm và áp lực của cơ chế tập trung quan liêu bao cấp.",
+        "Lạm phát 774%, thiếu lương thực, ngăn sông cấm chợ. Chọn 15 món đồ thiết yếu từ 50 item trong 90 giây. Cảm nhận sự khan hiếm và áp lực của cơ chế tập trung quan liêu bao cấp.",
       icon: "🌑",
       color: "from-red-500 to-orange-600",
       bgColor: "from-red-50 to-orange-50",
@@ -900,7 +956,7 @@ const MiniGamePage: React.FC = () => {
       title: "Nhà Hoạch Định Chiến Lược",
       subtitle: "Cú Hích Lịch Sử - Đại Hội VI (120s)",
       description:
-        "Phân loại 24 item vào 3 chương trình kinh tế ưu tiên của Đại hội VI. Chuyển hướng từ công nghiệp nặng sang lương thực, hàng tiêu dùng, xuất khẩu. Thử thách khả năng hiểu biết lịch sử!",
+        "Phân loại 50 item vào 3 chương trình kinh tế ưu tiên của Đại hội VI. Chuyển hướng từ công nghiệp nặng sang lương thực, hàng tiêu dùng, xuất khẩu. Thử thách khả năng hiểu biết lịch sử!",
       icon: "⚡",
       color: "from-yellow-500 to-red-600",
       bgColor: "from-yellow-50 to-red-50",
@@ -1012,7 +1068,10 @@ const MiniGamePage: React.FC = () => {
                 </div>
 
                 {/* Scrollable Content */}
-                <div className="flex-1 overflow-y-auto bg-white">
+                <div
+                  ref={scrollContainerRef}
+                  className="flex-1 overflow-y-auto bg-white"
+                >
                   <div className="container mx-auto p-4 md:p-6">
                     {selectedGame === "game1" && <SurvivalGame />}
                     {selectedGame === "game2" && <StrategyGame />}
