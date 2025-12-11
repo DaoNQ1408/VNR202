@@ -213,11 +213,11 @@ export default function DomeGallery({
   // Hover effects on elements
   const addHoverEffect = (ref: React.RefObject<HTMLDivElement>) => {
     if (!ref.current) return;
-    
+
     ref.current.addEventListener('mouseenter', () => {
       gsap.to(ref.current, { boxShadow: '0 20px 80px rgba(139,26,26,0.6)', scale: 1.02, duration: 0.3 });
     });
-    
+
     ref.current.addEventListener('mouseleave', () => {
       gsap.to(ref.current, { boxShadow: '0 20px 60px rgba(139,26,26,0.4)', scale: 1, duration: 0.3 });
     });
@@ -499,7 +499,8 @@ export default function DomeGallery({
     { target: mainRef, eventOptions: { passive: true } }
   );
 
-  const openItemFromElement = (el: HTMLElement) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _openItemFromElement = (el: HTMLElement) => {
     if (openingRef.current) return;
     openingRef.current = true;
     openStartedAtRef.current = performance.now();
@@ -623,12 +624,12 @@ export default function DomeGallery({
     if (draggingRef.current) return;
     if (performance.now() - lastDragEndAt.current < 80) return;
     if (openingRef.current) return;
-    
+
     // Get image info from parent
     const parent = e.currentTarget.parentElement as HTMLElement;
     const rawSrc = parent?.dataset.src || "";
     const rawAlt = parent?.dataset.alt || "";
-    
+
     // Open modal with image centered
     setSelectedCard({ src: rawSrc, alt: rawAlt });
     setIsExpanded(false);
@@ -641,11 +642,11 @@ export default function DomeGallery({
       if (draggingRef.current) return;
       if (performance.now() - lastDragEndAt.current < 80) return;
       if (openingRef.current) return;
-      
+
       const parent = e.currentTarget.parentElement as HTMLElement;
       const rawSrc = parent?.dataset.src || "";
       const rawAlt = parent?.dataset.alt || "";
-      
+
       setSelectedCard({ src: rawSrc, alt: rawAlt });
       setIsExpanded(false);
       lockScroll();
@@ -657,11 +658,11 @@ export default function DomeGallery({
     if (draggingRef.current) return;
     if (performance.now() - lastDragEndAt.current < 80) return;
     if (openingRef.current) return;
-    
+
     const parent = e.currentTarget.parentElement as HTMLElement;
     const rawSrc = parent?.dataset.src || "";
     const rawAlt = parent?.dataset.alt || "";
-    
+
     setSelectedCard({ src: rawSrc, alt: rawAlt });
     setIsExpanded(false);
     lockScroll();
@@ -848,51 +849,52 @@ export default function DomeGallery({
           <div ref={sphereRef} className="sphere">
             {items.map((it, i) => {
               const tileId = `${it.x},${it.y},${i}`;
-              
+
               return (
-              <div
-                key={tileId}
-                className="item"
-                data-tile-id={tileId}
-                data-src={it.src}
-                data-alt={it.alt}
-                data-offset-x={it.x}
-                data-offset-y={it.y}
-                data-size-x={it.sizeX}
-                data-size-y={it.sizeY}
-                style={
-                  {
-                    ["--offset-x" as any]: it.x,
-                    ["--offset-y" as any]: it.y,
-                    ["--item-size-x" as any]: it.sizeX,
-                    ["--item-size-y" as any]: it.sizeY,
-                  } as React.CSSProperties
-                }
-              >
                 <div
-                  className="item__image"
-                  role="button"
-                  tabIndex={0}
-                  aria-label={it.alt || "Open image"}
-                  onClick={onTileClick}
-                  onPointerUp={onTilePointerUp}
-                  onTouchEnd={onTileTouchEnd}
+                  key={tileId}
+                  className="item"
+                  data-tile-id={tileId}
+                  data-src={it.src}
+                  data-alt={it.alt}
+                  data-offset-x={it.x}
+                  data-offset-y={it.y}
+                  data-size-x={it.sizeX}
+                  data-size-y={it.sizeY}
+                  style={
+                    {
+                      ["--offset-x" as any]: it.x,
+                      ["--offset-y" as any]: it.y,
+                      ["--item-size-x" as any]: it.sizeX,
+                      ["--item-size-y" as any]: it.sizeY,
+                    } as React.CSSProperties
+                  }
                 >
-                  <img
-                    src={it.src}
-                    draggable={false}
-                    alt={it.alt}
-                    onError={(e) => {
-                      const img = e.target as HTMLImageElement;
-                      if (!img.dataset.errorHandled) {
-                        img.dataset.errorHandled = "true";
-                        img.src = `https://picsum.photos/seed/${Math.random()}/800/600`;
-                      }
-                    }}
-                  />
+                  <div
+                    className="item__image"
+                    role="button"
+                    tabIndex={0}
+                    aria-label={it.alt || "Open image"}
+                    onClick={onTileClick}
+                    onPointerUp={onTilePointerUp}
+                    onTouchEnd={onTileTouchEnd}
+                  >
+                    <img
+                      src={it.src}
+                      draggable={false}
+                      alt={it.alt}
+                      onError={(e) => {
+                        const img = e.target as HTMLImageElement;
+                        if (!img.dataset.errorHandled) {
+                          img.dataset.errorHandled = "true";
+                          img.src = `https://picsum.photos/seed/${Math.random()}/800/600`;
+                        }
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
+              )
+            }
             )}
           </div>
         </div>
@@ -910,7 +912,7 @@ export default function DomeGallery({
 
       {/* Modal with Pop & Flip Animation */}
       {selectedCard && (
-        <div 
+        <div
           className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 backdrop-blur-sm"
           style={{ position: 'fixed', perspective: '2000px' }}
           onClick={() => {
@@ -919,11 +921,11 @@ export default function DomeGallery({
             unlockScroll();
           }}
         >
-          <div 
+          <div
             ref={modalRef}
             className="relative"
-            style={{ 
-              width: isExpanded ? '95vw' : '800px', 
+            style={{
+              width: isExpanded ? '95vw' : '800px',
               maxWidth: isExpanded ? '1600px' : '90vw',
               height: '80vh',
               maxHeight: '900px',
@@ -934,9 +936,9 @@ export default function DomeGallery({
               if (!isExpanded) {
                 // Second click - Image rotates 360°, move to Grid 2, text appears on Grid 3
                 setIsExpanded(true);
-                
+
                 const tl = gsap.timeline();
-                
+
                 // Image rotates 360° Y-axis while moving to Grid 2 position
                 tl.to(imageBoxRef.current, {
                   rotateY: 360,
@@ -944,44 +946,44 @@ export default function DomeGallery({
                   ease: 'power2.inOut',
                   transformOrigin: 'center center'
                 }, 0)
-                
-                // Arrow appears & rotates during spin (lively effect)
-                .fromTo(arrowRef.current, 
-                  { 
-                    opacity: 0, 
-                    scale: 0.2,
-                    rotateZ: -90,
-                    rotateY: -180
-                  },
-                  { 
-                    opacity: 1, 
-                    scale: 1,
-                    rotateZ: 0,
-                    rotateY: 0,
-                    duration: 0.7,
-                    ease: 'back.out(2.2)'
-                  },
-                  '+=0.4'
-                )
-                
-                // Text pops in after image rotation completes
-                .fromTo(textBoxRef.current,
-                  { 
-                    opacity: 0, 
-                    scale: 0.4,
-                    x: 60,
-                    rotateY: 90
-                  },
-                  { 
-                    opacity: 1, 
-                    scale: 1,
-                    x: 0,
-                    rotateY: 0,
-                    duration: 0.7,
-                    ease: 'back.out(1.6)'
-                  },
-                  '-=0.3'
-                );
+
+                  // Arrow appears & rotates during spin (lively effect)
+                  .fromTo(arrowRef.current,
+                    {
+                      opacity: 0,
+                      scale: 0.2,
+                      rotateZ: -90,
+                      rotateY: -180
+                    },
+                    {
+                      opacity: 1,
+                      scale: 1,
+                      rotateZ: 0,
+                      rotateY: 0,
+                      duration: 0.7,
+                      ease: 'back.out(2.2)'
+                    },
+                    '+=0.4'
+                  )
+
+                  // Text pops in after image rotation completes
+                  .fromTo(textBoxRef.current,
+                    {
+                      opacity: 0,
+                      scale: 0.4,
+                      x: 60,
+                      rotateY: 90
+                    },
+                    {
+                      opacity: 1,
+                      scale: 1,
+                      x: 0,
+                      rotateY: 0,
+                      duration: 0.7,
+                      ease: 'back.out(1.6)'
+                    },
+                    '-=0.3'
+                  );
               } else {
                 // Toggle back - collapse the grid
                 setIsExpanded(false);
@@ -1000,8 +1002,8 @@ export default function DomeGallery({
 
                 {/* Image Container */}
                 <div className="p-10 flex items-center justify-center h-[calc(100%-100px)]">
-                  <img 
-                    src={selectedCard.src} 
+                  <img
+                    src={selectedCard.src}
                     alt={selectedCard.alt}
                     className="max-w-full max-h-full rounded-2xl shadow-2xl object-contain"
                   />
@@ -1014,7 +1016,7 @@ export default function DomeGallery({
               </div>
             ) : (
               /* Grid Layout: Grid 2 (Image) | Arrow | Grid 3 (Text) */
-              <div 
+              <div
                 className="w-full h-full grid grid-cols-12 gap-6 p-6"
                 style={{ perspective: '2000px' }}
               >
@@ -1022,7 +1024,7 @@ export default function DomeGallery({
                 <div className="col-span-3"></div>
 
                 {/* Grid 2: Image Box (after spin) */}
-                <div 
+                <div
                   ref={imageBoxRef}
                   className="col-span-3 bg-gradient-to-br from-white to-red-50 rounded-3xl shadow-[0_20px_60px_rgba(139,26,26,0.4)] overflow-hidden flex flex-col transition-all duration-300 hover:cursor-pointer"
                   style={{ transformStyle: 'preserve-3d' }}
@@ -1033,8 +1035,8 @@ export default function DomeGallery({
                     </h3>
                   </div>
                   <div className="flex-1 p-4 flex items-center justify-center">
-                    <img 
-                      src={selectedCard.src} 
+                    <img
+                      src={selectedCard.src}
                       alt={selectedCard.alt}
                       className="max-w-full max-h-full rounded-xl shadow-xl object-contain"
                     />
@@ -1042,15 +1044,15 @@ export default function DomeGallery({
                 </div>
 
                 {/* Arrow between Grid 2 and Grid 3 */}
-                <div 
+                <div
                   ref={arrowRef}
                   className="col-span-1 flex items-center justify-center"
-                  style={{ 
+                  style={{
                     transformStyle: 'preserve-3d',
                     perspective: '1200px'
                   }}
                 >
-                  <div 
+                  <div
                     className="relative"
                     style={{
                       width: '90px',
@@ -1060,7 +1062,7 @@ export default function DomeGallery({
                     }}
                   >
                     {/* Arrow Shaft with gradient */}
-                    <div 
+                    <div
                       className="absolute top-1/2 left-0 bg-gradient-to-r from-[#8B1A1A] via-[#C71C1C] to-[#AC0705] rounded-l-lg shadow-lg"
                       style={{
                         width: '50px',
@@ -1069,9 +1071,9 @@ export default function DomeGallery({
                         boxShadow: '0 8px 20px rgba(139, 26, 26, 0.7), inset 0 2px 4px rgba(255, 255, 255, 0.2)',
                       }}
                     />
-                    
+
                     {/* Arrow Head - Triangle */}
-                    <div 
+                    <div
                       className="absolute top-1/2 right-0"
                       style={{
                         transform: 'translateY(-50%) translateZ(15px)',
@@ -1083,9 +1085,9 @@ export default function DomeGallery({
                         filter: 'drop-shadow(0 8px 16px rgba(139, 26, 26, 0.8))',
                       }}
                     />
-                    
+
                     {/* Depth shadow layers */}
-                    <div 
+                    <div
                       className="absolute top-1/2 left-0 bg-[#6B0F0F] rounded-l-lg"
                       style={{
                         width: '50px',
@@ -1094,7 +1096,7 @@ export default function DomeGallery({
                         opacity: 0.8
                       }}
                     />
-                    <div 
+                    <div
                       className="absolute top-1/2 left-0 bg-[#4B0909] rounded-l-lg"
                       style={{
                         width: '50px',
@@ -1103,17 +1105,17 @@ export default function DomeGallery({
                         opacity: 0.6
                       }}
                     />
-                    
+
                     {/* Glow effect */}
-                    <div 
+                    <div
                       className="absolute top-1/2 left-1/2 w-32 h-32 bg-[#FFD700] rounded-full blur-2xl opacity-40"
                       style={{
                         transform: 'translate(-50%, -50%) translateZ(-15px)',
                       }}
                     />
-                    
+
                     {/* Extra shine for depth */}
-                    <div 
+                    <div
                       className="absolute top-1/4 left-1/4 w-20 h-20 bg-white rounded-full blur-xl opacity-30"
                       style={{
                         transform: 'translateZ(20px)',
@@ -1123,7 +1125,7 @@ export default function DomeGallery({
                 </div>
 
                 {/* Grid 3: Text Box */}
-                <div 
+                <div
                   ref={textBoxRef}
                   className="col-span-5 bg-gradient-to-br from-[#FFD700] via-[#FFA500] to-[#FF8C00] rounded-3xl shadow-[0_20px_60px_rgba(255,165,0,0.5)] overflow-hidden flex flex-col transition-all duration-300 hover:cursor-pointer"
                   style={{ transformStyle: 'preserve-3d' }}
