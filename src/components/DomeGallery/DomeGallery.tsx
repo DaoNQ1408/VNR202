@@ -1,7 +1,8 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useMemo, useRef, useCallback } from "react";
+import { useEffect, useMemo, useRef, useCallback, useState } from "react";
 import { useGesture } from "@use-gesture/react";
+import gsap from "gsap";
 
 type ImageItem = string | { src: string; alt?: string };
 
@@ -36,7 +37,7 @@ type ItemDef = {
 
 const DEFAULT_IMAGES: ImageItem[] = [
   {
-    src: "https://fsivietnam.com.vn/wp-content/uploads/2024/01/toan-canh-chuyen-doi-so-1.png",
+    src: "https://nghiencuulichsu.com/wp-content/uploads/2015/11/nguyen-ai-quoc.jpg?w=640",
     alt: "Hình ảnh lưu niệm Nguyễn Ái Quốc và những người bạn Pháp tại Paris vào năm 1921",
   },
   {
@@ -44,16 +45,12 @@ const DEFAULT_IMAGES: ImageItem[] = [
     alt: "Nguyễn Ái Quốc với nhân dân Moskva (Nga) trên đồi Chim Sẻ, trong thời gian tham dự Đại hội lần thứ V Quốc tế cộng sản (17-6/8-7-1924). Ảnh: Tư liệu/TTXVN",
   },
   {
-    src: "https://hungyen.dcs.vn/ckfinder/userfiles/images/bo-truong-nguyen-manh-hung.jpg",
+    src: "https://tuongnangtien.wordpress.com/wp-content/uploads/2021/04/1-thauchin.png",
     alt: "Bác Hồ (Thầu Chín) và các đồng chí tại Thái Lan năm 1928. Thầu Chín là bí danh của lãnh tụ Nguyễn Ái Quốc hoạt động ở Xiêm, nay là Vương quốc Thái Lan, trong thời gian 1928-1929. Thầu là tiếng Thái-Lào, để gọi người nhiều tuổi và biểu thị sự tôn kính. Ảnh: Tư liệu/TTXVN ",
   },
   {
-    src: "https://vdigital.vn/wp-content/uploads/2022/10/vi-momo.png",
+    src: "https://file.qdnd.vn/data/images/0/2021/05/29/phucthang/06-hcm01.jpg?dpi=150&quality=100&w=575",
     alt: "Hình ảnh trong chuyến hành trình tìm đường cứu nước của Bác từ ngày 25 đến 30-12-1920, chàng thanh niên yêu nước Nguyễn Ái Quốc (tên của Chủ tịch Hồ Chí Minh trong thời gian hoạt động cách mạng ở Pháp) tham dự Đại hội lần thứ 18 Đảng Xã hội Pháp ở thành phố Tours với tư cách đại biểu Đông Dương",
-  },
-  {
-    src: "https://vdigital.vn/wp-content/uploads/2022/10/chuyen-doi-so-1-1.png",
-    alt: "Hình ảnh lưu niệm Nguyễn Ái Quốc và những người bạn Pháp tại Paris vào năm 1921",
   },
   ///==============================================
   {
@@ -63,35 +60,7 @@ const DEFAULT_IMAGES: ImageItem[] = [
   {
     src: "https://i.pinimg.com/1200x/e6/7c/2d/e67c2d4aef707306d987d8920988b0a3.jpg",
     alt: "Nguyễn Ái Quốc với nhân dân Moskva (Nga) trên đồi Chim Sẻ, trong thời gian tham dự Đại hội lần thứ V Quốc tế cộng sản (17-6/8-7-1924). Ảnh: Tư liệu/TTXVN",
-  },
-  {
-    src: "https://i.pinimg.com/1200x/ed/af/1c/edaf1c6df0453ab2a70678554adc675c.jpg",
-    alt: "Bác Hồ (Thầu Chín) và các đồng chí tại Thái Lan năm 1928. Thầu Chín là bí danh của lãnh tụ Nguyễn Ái Quốc hoạt động ở Xiêm, nay là Vương quốc Thái Lan, trong thời gian 1928-1929. Thầu là tiếng Thái-Lào, để gọi người nhiều tuổi và biểu thị sự tôn kính. Ảnh: Tư liệu/TTXVN ",
-  },
-  {
-    src: "https://i.pinimg.com/736x/1d/da/30/1dda30227d711b81bde28aee70dd0f21.jpg",
-    alt: "Hình ảnh trong chuyến hành trình tìm đường cứu nước của Bác từ ngày 25 đến 30-12-1920, chàng thanh niên yêu nước Nguyễn Ái Quốc (tên của Chủ tịch Hồ Chí Minh trong thời gian hoạt động cách mạng ở Pháp) tham dự Đại hội lần thứ 18 Đảng Xã hội Pháp ở thành phố Tours với tư cách đại biểu Đông Dương",
-  },
-  {
-    src: "https://i.pinimg.com/736x/a7/81/f9/a781f939dbb5febebd85e3e1180d6013.jpg",
-    alt: "Hình ảnh lưu niệm Nguyễn Ái Quốc và những người bạn Pháp tại Paris vào năm 1921",
-  },
-  {
-    src: "https://i.pinimg.com/736x/d0/c1/8f/d0c18ff4867fa326b72826d33de2f721.jpg",
-    alt: "Hình ảnh lưu niệm Nguyễn Ái Quốc và những người bạn Pháp tại Paris vào năm 1921",
-  },
-  {
-    src: "https://i.pinimg.com/1200x/32/6e/b6/326eb6302b601e7d2afac4955bf20e19.jpg",
-    alt: "Nguyễn Ái Quốc với nhân dân Moskva (Nga) trên đồi Chim Sẻ, trong thời gian tham dự Đại hội lần thứ V Quốc tế cộng sản (17-6/8-7-1924). Ảnh: Tư liệu/TTXVN",
-  },
-  {
-    src: "https://i.pinimg.com/1200x/67/df/a4/67dfa45b32ce1553d8784a0407f6d495.jpg",
-    alt: "Bác Hồ (Thầu Chín) và các đồng chí tại Thái Lan năm 1928. Thầu Chín là bí danh của lãnh tụ Nguyễn Ái Quốc hoạt động ở Xiêm, nay là Vương quốc Thái Lan, trong thời gian 1928-1929. Thầu là tiếng Thái-Lào, để gọi người nhiều tuổi và biểu thị sự tôn kính. Ảnh: Tư liệu/TTXVN ",
-  },
-  {
-    src: "https://i.pinimg.com/736x/52/9f/17/529f17501859a7b8f07363968022b397.jpg",
-    alt: "Hình ảnh trong chuyến hành trình tìm đường cứu nước của Bác từ ngày 25 đến 30-12-1920, chàng thanh niên yêu nước Nguyễn Ái Quốc (tên của Chủ tịch Hồ Chí Minh trong thời gian hoạt động cách mạng ở Pháp) tham dự Đại hội lần thứ 18 Đảng Xã hội Pháp ở thành phố Tours với tư cách đại biểu Đông Dương",
-  },
+  }
 ];
 
 const DEFAULTS = {
@@ -222,6 +191,44 @@ export default function DomeGallery({
   const openingRef = useRef(false);
   const openStartedAtRef = useRef(0);
   const lastDragEndAt = useRef(0);
+
+  // State cho custom card
+  const [selectedCard, setSelectedCard] = useState<{ src: string; alt: string } | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const imageBoxRef = useRef<HTMLDivElement>(null);
+  const textBoxRef = useRef<HTMLDivElement>(null);
+  const arrowRef = useRef<HTMLDivElement>(null);
+
+  // Animate modal opening
+  useEffect(() => {
+    if (selectedCard && modalRef.current && !isExpanded) {
+      gsap.fromTo(modalRef.current,
+        { scale: 0.3, opacity: 0, rotateY: -20 },
+        { scale: 1, opacity: 1, rotateY: 0, duration: 0.6, ease: 'back.out(1.4)' }
+      );
+    }
+  }, [selectedCard, isExpanded]);
+
+  // Hover effects on elements
+  const addHoverEffect = (ref: React.RefObject<HTMLDivElement>) => {
+    if (!ref.current) return;
+    
+    ref.current.addEventListener('mouseenter', () => {
+      gsap.to(ref.current, { boxShadow: '0 20px 80px rgba(139,26,26,0.6)', scale: 1.02, duration: 0.3 });
+    });
+    
+    ref.current.addEventListener('mouseleave', () => {
+      gsap.to(ref.current, { boxShadow: '0 20px 60px rgba(139,26,26,0.4)', scale: 1, duration: 0.3 });
+    });
+  };
+
+  useEffect(() => {
+    if (isExpanded) {
+      addHoverEffect(imageBoxRef);
+      addHoverEffect(textBoxRef);
+    }
+  }, [isExpanded]);
 
   const scrollLockedRef = useRef(false);
   const lockScroll = useCallback(() => {
@@ -616,8 +623,17 @@ export default function DomeGallery({
     if (draggingRef.current) return;
     if (performance.now() - lastDragEndAt.current < 80) return;
     if (openingRef.current) return;
-    openItemFromElement(e.currentTarget);
-  }, []);
+    
+    // Get image info from parent
+    const parent = e.currentTarget.parentElement as HTMLElement;
+    const rawSrc = parent?.dataset.src || "";
+    const rawAlt = parent?.dataset.alt || "";
+    
+    // Open modal with image centered
+    setSelectedCard({ src: rawSrc, alt: rawAlt });
+    setIsExpanded(false);
+    lockScroll();
+  }, [lockScroll]);
 
   const onTilePointerUp = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
@@ -625,17 +641,31 @@ export default function DomeGallery({
       if (draggingRef.current) return;
       if (performance.now() - lastDragEndAt.current < 80) return;
       if (openingRef.current) return;
-      openItemFromElement(e.currentTarget);
+      
+      const parent = e.currentTarget.parentElement as HTMLElement;
+      const rawSrc = parent?.dataset.src || "";
+      const rawAlt = parent?.dataset.alt || "";
+      
+      setSelectedCard({ src: rawSrc, alt: rawAlt });
+      setIsExpanded(false);
+      lockScroll();
     },
-    []
+    [lockScroll]
   );
 
   const onTileTouchEnd = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
     if (draggingRef.current) return;
     if (performance.now() - lastDragEndAt.current < 80) return;
     if (openingRef.current) return;
-    openItemFromElement(e.currentTarget);
-  }, []);
+    
+    const parent = e.currentTarget.parentElement as HTMLElement;
+    const rawSrc = parent?.dataset.src || "";
+    const rawAlt = parent?.dataset.alt || "";
+    
+    setSelectedCard({ src: rawSrc, alt: rawAlt });
+    setIsExpanded(false);
+    lockScroll();
+  }, [lockScroll]);
 
   useEffect(() => {
     const scrim = scrimRef.current;
@@ -816,11 +846,16 @@ export default function DomeGallery({
         </div>
         <div className="stage">
           <div ref={sphereRef} className="sphere">
-            {items.map((it, i) => (
+            {items.map((it, i) => {
+              const tileId = `${it.x},${it.y},${i}`;
+              
+              return (
               <div
-                key={`${it.x},${it.y},${i}`}
+                key={tileId}
                 className="item"
+                data-tile-id={tileId}
                 data-src={it.src}
+                data-alt={it.alt}
                 data-offset-x={it.x}
                 data-offset-y={it.y}
                 data-size-x={it.sizeX}
@@ -843,10 +878,22 @@ export default function DomeGallery({
                   onPointerUp={onTilePointerUp}
                   onTouchEnd={onTileTouchEnd}
                 >
-                  <img src={it.src} draggable={false} alt={it.alt} />
+                  <img
+                    src={it.src}
+                    draggable={false}
+                    alt={it.alt}
+                    onError={(e) => {
+                      const img = e.target as HTMLImageElement;
+                      if (!img.dataset.errorHandled) {
+                        img.dataset.errorHandled = "true";
+                        img.src = `https://picsum.photos/seed/${Math.random()}/800/600`;
+                      }
+                    }}
+                  />
                 </div>
               </div>
-            ))}
+            )}
+            )}
           </div>
         </div>
 
@@ -860,6 +907,258 @@ export default function DomeGallery({
           <div ref={frameRef} className="frame" />
         </div>
       </main>
+
+      {/* Modal with Pop & Flip Animation */}
+      {selectedCard && (
+        <div 
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          style={{ position: 'fixed', perspective: '2000px' }}
+          onClick={() => {
+            setSelectedCard(null);
+            setIsExpanded(false);
+            unlockScroll();
+          }}
+        >
+          <div 
+            ref={modalRef}
+            className="relative"
+            style={{ 
+              width: isExpanded ? '95vw' : '800px', 
+              maxWidth: isExpanded ? '1600px' : '90vw',
+              height: '80vh',
+              maxHeight: '900px',
+              transformStyle: 'preserve-3d',
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (!isExpanded) {
+                // Second click - Image rotates 360°, move to Grid 2, text appears on Grid 3
+                setIsExpanded(true);
+                
+                const tl = gsap.timeline();
+                
+                // Image rotates 360° Y-axis while moving to Grid 2 position
+                tl.to(imageBoxRef.current, {
+                  rotateY: 360,
+                  duration: 1.2,
+                  ease: 'power2.inOut',
+                  transformOrigin: 'center center'
+                }, 0)
+                
+                // Arrow appears & rotates during spin (lively effect)
+                .fromTo(arrowRef.current, 
+                  { 
+                    opacity: 0, 
+                    scale: 0.2,
+                    rotateZ: -90,
+                    rotateY: -180
+                  },
+                  { 
+                    opacity: 1, 
+                    scale: 1,
+                    rotateZ: 0,
+                    rotateY: 0,
+                    duration: 0.7,
+                    ease: 'back.out(2.2)'
+                  },
+                  '+=0.4'
+                )
+                
+                // Text pops in after image rotation completes
+                .fromTo(textBoxRef.current,
+                  { 
+                    opacity: 0, 
+                    scale: 0.4,
+                    x: 60,
+                    rotateY: 90
+                  },
+                  { 
+                    opacity: 1, 
+                    scale: 1,
+                    x: 0,
+                    rotateY: 0,
+                    duration: 0.7,
+                    ease: 'back.out(1.6)'
+                  },
+                  '-=0.3'
+                );
+              } else {
+                // Toggle back - collapse the grid
+                setIsExpanded(false);
+              }
+            }}
+          >
+            {!isExpanded ? (
+              /* Centered Image View */
+              <div className="w-full h-full bg-gradient-to-br from-white to-red-50 rounded-3xl shadow-[0_25px_70px_rgba(139,26,26,0.5)] overflow-hidden">
+                {/* Card Header */}
+                <div className="bg-gradient-to-r from-[#8B1A1A] to-[#AC0705] px-8 py-6 border-b-4 border-[#FFD700]">
+                  <h3 className="text-white font-bold text-3xl text-center tracking-wide">
+                    LỊCH SỬ ĐẢNG CỘNG SẢN VIỆT NAM
+                  </h3>
+                </div>
+
+                {/* Image Container */}
+                <div className="p-10 flex items-center justify-center h-[calc(100%-100px)]">
+                  <img 
+                    src={selectedCard.src} 
+                    alt={selectedCard.alt}
+                    className="max-w-full max-h-full rounded-2xl shadow-2xl object-contain"
+                  />
+                </div>
+
+                {/* Click Hint */}
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#8B1A1A] px-8 py-4 rounded-full text-base font-bold shadow-lg animate-pulse border-2 border-[#8B1A1A]">
+                  👆 Click để xem mô tả chi tiết
+                </div>
+              </div>
+            ) : (
+              /* Grid Layout: Grid 2 (Image) | Arrow | Grid 3 (Text) */
+              <div 
+                className="w-full h-full grid grid-cols-12 gap-6 p-6"
+                style={{ perspective: '2000px' }}
+              >
+                {/* Grid 1: Empty space */}
+                <div className="col-span-3"></div>
+
+                {/* Grid 2: Image Box (after spin) */}
+                <div 
+                  ref={imageBoxRef}
+                  className="col-span-3 bg-gradient-to-br from-white to-red-50 rounded-3xl shadow-[0_20px_60px_rgba(139,26,26,0.4)] overflow-hidden flex flex-col transition-all duration-300 hover:cursor-pointer"
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <div className="bg-gradient-to-r from-[#8B1A1A] to-[#AC0705] px-4 py-3 border-b-4 border-[#FFD700]">
+                    <h3 className="text-white font-bold text-lg text-center tracking-wide">
+                      🖼️ HÌNH ẢNH
+                    </h3>
+                  </div>
+                  <div className="flex-1 p-4 flex items-center justify-center">
+                    <img 
+                      src={selectedCard.src} 
+                      alt={selectedCard.alt}
+                      className="max-w-full max-h-full rounded-xl shadow-xl object-contain"
+                    />
+                  </div>
+                </div>
+
+                {/* Arrow between Grid 2 and Grid 3 */}
+                <div 
+                  ref={arrowRef}
+                  className="col-span-1 flex items-center justify-center"
+                  style={{ 
+                    transformStyle: 'preserve-3d',
+                    perspective: '1200px'
+                  }}
+                >
+                  <div 
+                    className="relative"
+                    style={{
+                      width: '90px',
+                      height: '90px',
+                      transformStyle: 'preserve-3d',
+                      animation: 'float 4s ease-in-out infinite'
+                    }}
+                  >
+                    {/* Arrow Shaft with gradient */}
+                    <div 
+                      className="absolute top-1/2 left-0 bg-gradient-to-r from-[#8B1A1A] via-[#C71C1C] to-[#AC0705] rounded-l-lg shadow-lg"
+                      style={{
+                        width: '50px',
+                        height: '12px',
+                        transform: 'translateY(-50%) translateZ(12px)',
+                        boxShadow: '0 8px 20px rgba(139, 26, 26, 0.7), inset 0 2px 4px rgba(255, 255, 255, 0.2)',
+                      }}
+                    />
+                    
+                    {/* Arrow Head - Triangle */}
+                    <div 
+                      className="absolute top-1/2 right-0"
+                      style={{
+                        transform: 'translateY(-50%) translateZ(15px)',
+                        width: 0,
+                        height: 0,
+                        borderTop: '22px solid transparent',
+                        borderBottom: '22px solid transparent',
+                        borderLeft: '35px solid #AC0705',
+                        filter: 'drop-shadow(0 8px 16px rgba(139, 26, 26, 0.8))',
+                      }}
+                    />
+                    
+                    {/* Depth shadow layers */}
+                    <div 
+                      className="absolute top-1/2 left-0 bg-[#6B0F0F] rounded-l-lg"
+                      style={{
+                        width: '50px',
+                        height: '12px',
+                        transform: 'translateY(-50%) translateZ(6px)',
+                        opacity: 0.8
+                      }}
+                    />
+                    <div 
+                      className="absolute top-1/2 left-0 bg-[#4B0909] rounded-l-lg"
+                      style={{
+                        width: '50px',
+                        height: '12px',
+                        transform: 'translateY(-50%) translateZ(0px)',
+                        opacity: 0.6
+                      }}
+                    />
+                    
+                    {/* Glow effect */}
+                    <div 
+                      className="absolute top-1/2 left-1/2 w-32 h-32 bg-[#FFD700] rounded-full blur-2xl opacity-40"
+                      style={{
+                        transform: 'translate(-50%, -50%) translateZ(-15px)',
+                      }}
+                    />
+                    
+                    {/* Extra shine for depth */}
+                    <div 
+                      className="absolute top-1/4 left-1/4 w-20 h-20 bg-white rounded-full blur-xl opacity-30"
+                      style={{
+                        transform: 'translateZ(20px)',
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Grid 3: Text Box */}
+                <div 
+                  ref={textBoxRef}
+                  className="col-span-5 bg-gradient-to-br from-[#FFD700] via-[#FFA500] to-[#FF8C00] rounded-3xl shadow-[0_20px_60px_rgba(255,165,0,0.5)] overflow-hidden flex flex-col transition-all duration-300 hover:cursor-pointer"
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <div className="bg-gradient-to-r from-[#8B1A1A] to-[#AC0705] px-6 py-4 border-b-4 border-white">
+                    <h3 className="text-white font-bold text-xl text-center tracking-wide">
+                      📜 MÔ TẢ CHI TIẾT
+                    </h3>
+                  </div>
+                  <div className="flex-1 p-6 overflow-y-auto">
+                    <div className="bg-white/97 border-4 border-[#8B1A1A] rounded-2xl p-6 h-full shadow-[inset_0_4px_12px_rgba(139,26,26,0.15)]">
+                      <p className="text-[#8B1A1A] font-bold text-lg leading-relaxed">
+                        {selectedCard.alt}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Close Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedCard(null);
+                setIsExpanded(false);
+                unlockScroll();
+              }}
+              className="absolute top-4 right-4 w-14 h-14 bg-[#FFD700] hover:bg-[#FFA500] text-[#8B1A1A] rounded-full flex items-center justify-center font-bold text-3xl shadow-lg transition-all duration-300 hover:scale-110 hover:rotate-90 z-20"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

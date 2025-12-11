@@ -17,6 +17,7 @@ const navigation: NavItem[] = [
   { name: "Quiz", href: "/quiz" },
   { name: "Mini Game", href: "/minigame" },
   { name: "AI Hỗ Trợ", href: "/ai-ho-tro" },
+  { name: "Case Study", href: "/case-study" },
 ];
 
 export default function Header() {
@@ -100,9 +101,8 @@ export default function Header() {
                     >
                       {item.name}
                       <svg
-                        className={`w-4 h-4 transition-transform ${
-                          dropdownOpen ? "rotate-180" : ""
-                        }`}
+                        className={`w-4 h-4 transition-transform ${dropdownOpen ? "rotate-180" : ""
+                          }`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"

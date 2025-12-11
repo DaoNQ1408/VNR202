@@ -8,6 +8,8 @@ import QuizPage from "./pages/QuizPage";
 import CaseStudyPage from "./pages/CaseStudyPage";
 import LibraryPage from "./pages/LibraryPage";
 import MiniGamePage from "./pages/MiniGamePage";
+import AIUsagePage from "./pages/AIUsagePage";
+import YNghiaPage from "./pages/YNghiaPage";
 import IntroLoader from "./components/sections/IntroLoader";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -106,9 +108,8 @@ const App: React.FC = () => {
       {showIntro && <IntroLoader onComplete={handleIntroComplete} />}
 
       <div
-        className={`transition-opacity duration-700 ${
-          showContent ? "opacity-100" : "opacity-0"
-        }`}
+        className={`transition-opacity duration-700 ${showContent ? "opacity-100" : "opacity-0"
+          }`}
         style={{ visibility: showContent ? "visible" : "hidden" }}
       >
         <Router>
@@ -133,6 +134,8 @@ const App: React.FC = () => {
                         <Route path="/quiz" element={<QuizPage />} />
                         <Route path="/case-study" element={<CaseStudyPage />} />
                         <Route path="/minigame" element={<MiniGamePage />} />
+                        <Route path="/y-nghia" element={<YNghiaPage />} />
+                        <Route path="/ai-ho-tro" element={<AIUsagePage />} />
                       </Routes>
                       <Footer />
                       <ScrollToTop />

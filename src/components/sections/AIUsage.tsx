@@ -258,9 +258,8 @@ const AIUsage: React.FC = () => {
                             className="mt-8 p-6 bg-white text-gray-900 rounded-xl text-center"
                             whileHover={{ scale: 1.02 }}
                         >
-                            <p className="text-xl font-bold mb-2">Sinh viên thực hiện: [Tên SV]</p>
-                            <p className="text-lg">MSSV: [Mã SV] - Lớp: [Mã Lớp]</p>
-                            <p className="text-sm text-gray-600 mt-4">Ngày cam kết: {new Date().toLocaleDateString('vi-VN')}</p>
+                            <p className="text-xl font-bold mb-2">Nhóm 9 Hoàng Minh Khang, Hoàng Quốc An, Nguyễn Việt</p>
+                            <p className="text-sm text-gray-600 mt-4">Ngày cam kết: 11/12/2025</p>
                         </motion.div>
                     </div>
                 </motion.div>
