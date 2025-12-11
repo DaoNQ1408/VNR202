@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight, X, Sparkles } from "lucide-react";
@@ -21,8 +20,8 @@ const HistoricalStoryTimeline: React.FC = () => {
   const [currentPeriod, setCurrentPeriod] = useState(0);
   const [showColoredImage, setShowColoredImage] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showPeriods, setShowPeriods] = useState(false);
   const timelineRef = useRef<HTMLDivElement>(null);
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: false });
 
   const periods: Period[] = [
     {
@@ -315,13 +314,14 @@ const HistoricalStoryTimeline: React.FC = () => {
     }
   }, []);
 
-    const handleImageClick = (index: number) => {
-        setCurrentPeriod(index);
-        setShowColoredImage(false);
-        setIsModalOpen(true);
-        // Prevent body scroll when modal is open
-        document.body.style.overflow = 'hidden';
-    };  const handleNextPeriod = () => {
+  const handleImageClick = (index: number) => {
+    setCurrentPeriod(index);
+    setShowColoredImage(false);
+    setIsModalOpen(true);
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = "hidden";
+  };
+  const handleNextPeriod = () => {
     if (currentPeriod < periods.length - 1) {
       setCurrentPeriod(currentPeriod + 1);
       setShowColoredImage(false);
@@ -335,257 +335,306 @@ const HistoricalStoryTimeline: React.FC = () => {
     }
   };
 
-    const toggleImage = () => {
-        if (periods[currentPeriod].coloredImage) {
-            setShowColoredImage(!showColoredImage);
-        }
+  const toggleImage = () => {
+    if (periods[currentPeriod].coloredImage) {
+      setShowColoredImage(!showColoredImage);
+    }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    // Restore body scroll when modal is closed
+    document.body.style.overflow = "unset";
+  };
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "unset";
     };
+  }, []);
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-        // Restore body scroll when modal is closed
-        document.body.style.overflow = 'unset';
-    };
-
-    // Cleanup on unmount
-    useEffect(() => {
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, []);  return (
-    <section
-      ref={timelineRef}
-      className="py-20 bg-gradient-to-br from-red-50 via-yellow-50 to-white"
-    >
-      <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="inline-block mb-4"
-          >
-            <span className="px-6 py-2 bg-gradient-to-r from-red-600 to-yellow-600 text-white rounded-full text-sm font-semibold">
-              🇻🇳 Hành Trình Lịch Sử
-            </span>
-          </motion.div>
-
-          <h1 className="story-title text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-700 via-yellow-600 to-red-700 bg-clip-text text-transparent">
-            Tiếp Tục Thực Hiện Đổi Mới Toàn Diện
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto mb-4">
-            Kinh Tế - Xã Hội (1991-1996)
-          </p>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Khám phá 19 giai đoạn lịch sử quan trọng của Việt Nam trong thời kỳ
-            đổi mới. Nhấp vào từng hình ảnh để khám phá câu chuyện và xem phiên
-            bản màu đặc biệt.
-          </p>
-        </div>
-
-        {/* Period Grid */}
-        <div
-          ref={ref}
-          className="period-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto"
-        >
-          {periods.map((period, index) => (
+  return (
+    <>
+      <section
+        ref={timelineRef}
+        className="py-20 bg-gradient-to-br from-red-50 via-yellow-50 to-white"
+      >
+        <div className="container mx-auto px-4">
+          {/* Header */}
+          <div className="text-center mb-16">
             <motion.div
-              key={period.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={
-                inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }
-              }
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="period-card group cursor-pointer"
-              onClick={() => handleImageClick(index)}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="inline-block mb-4"
             >
-              <div className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 bg-white">
-                {/* Image */}
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={period.originalImage}
-                    alt={period.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="px-6 py-2 bg-gradient-to-r from-red-600 to-yellow-600 text-white rounded-full text-sm font-semibold">
+                🇻🇳 Hành Trình Lịch Sử
+              </span>
+            </motion.div>
 
-                  {/* Colored indicator */}
-                  {period.coloredImage && (
-                    <div className="absolute top-3 right-3 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                      <Sparkles size={14} />
-                      <span>Có màu</span>
-                    </div>
-                  )}
+            <h1 className="story-title text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-700 via-yellow-600 to-red-700 bg-clip-text text-transparent">
+              Tiếp Tục Thực Hiện Đổi Mới Toàn Diện
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto mb-4">
+              Kinh Tế - Xã Hội (1991-1996)
+            </p>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Khám phá 19 giai đoạn lịch sử quan trọng của Việt Nam trong thời
+              kỳ đổi mới. Nhấp vào nút Play để bắt đầu hành trình khám phá!
+            </p>
+          </div>
+
+          {/* Play Button */}
+          {!showPeriods && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex justify-center items-center min-h-[400px]"
+            >
+              <button
+                onClick={() => setShowPeriods(true)}
+                className="group relative"
+              >
+                {/* Outer glow ring */}
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full blur-2xl opacity-50 group-hover:opacity-75 transition-opacity animate-pulse"></div>
+
+                {/* Main button */}
+                <div className="relative bg-gradient-to-br from-red-600 via-red-700 to-yellow-600 rounded-full p-8 shadow-2xl transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-3xl">
+                  <div className="relative flex items-center justify-center w-32 h-32">
+                    {/* Play icon */}
+                    <svg
+                      className="w-20 h-20 text-white transform translate-x-1"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+
+                    {/* Ripple effect */}
+                    <div className="absolute inset-0 rounded-full border-4 border-white/30 animate-ping"></div>
+                  </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-4">
-                  <div className="text-sm font-semibold text-red-600 mb-1">
-                    {period.year}
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-red-700 transition-colors">
-                    {period.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 line-clamp-3">
-                    {period.content}
+                {/* Text below button */}
+                <div className="mt-6 text-center">
+                  <p className="text-2xl font-bold bg-gradient-to-r from-red-700 to-yellow-600 bg-clip-text text-transparent">
+                    Bắt Đầu Khám Phá
+                  </p>
+                  <p className="text-gray-600 mt-2">
+                    19 giai đoạn lịch sử đang chờ bạn
                   </p>
                 </div>
+              </button>
+            </motion.div>
+          )}
 
-                {/* Hover overlay */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                  <div className="bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-xl">
-                    <span className="text-red-600 font-bold">
-                      Xem chi tiết →
+          {/* Period Grid */}
+          {showPeriods && (
+            <div className="period-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+              {periods.map((period, index) => (
+                <motion.div
+                  key={period.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: index * 0.02,
+                    ease: "easeOut",
+                  }}
+                  className="period-card group cursor-pointer"
+                  onClick={() => handleImageClick(index)}
+                >
+                  <div className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 bg-white">
+                    {/* Image */}
+                    <div className="relative h-64 overflow-hidden">
+                      <img
+                        src={period.originalImage}
+                        alt={period.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                      {/* Colored indicator */}
+                      {period.coloredImage && (
+                        <div className="absolute top-3 right-3 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                          <Sparkles size={14} />
+                          <span>Có màu</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-4">
+                      <div className="text-sm font-semibold text-red-600 mb-1">
+                        {period.year}
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-red-700 transition-colors">
+                        {period.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 line-clamp-3">
+                        {period.content}
+                      </p>
+                    </div>
+
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                      <div className="bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-xl">
+                        <span className="text-red-600 font-bold">
+                          Xem chi tiết →
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Modal - Outside section for fullscreen */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/70"
+            style={{ margin: 0, overflow: "hidden" }}
+            onClick={closeModal}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="bg-white rounded-2xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden relative my-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 z-10 bg-red-600 hover:bg-red-700 text-white p-2 rounded-full transition-colors shadow-lg"
+              >
+                <X size={24} />
+              </button>
+
+              {/* Navigation buttons */}
+              {currentPeriod > 0 && (
+                <button
+                  onClick={handlePrevPeriod}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-red-600 p-3 rounded-full transition-all shadow-lg"
+                >
+                  <ChevronLeft size={28} />
+                </button>
+              )}
+              {currentPeriod < periods.length - 1 && (
+                <button
+                  onClick={handleNextPeriod}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-red-600 p-3 rounded-full transition-all shadow-lg"
+                >
+                  <ChevronRight size={28} />
+                </button>
+              )}
+
+              <div className="grid md:grid-cols-2 h-full overflow-y-auto">
+                {/* Image Section */}
+                <div className="relative bg-gray-100 flex items-center justify-center p-6">
+                  <div className="relative w-full max-h-[70vh]">
+                    <motion.img
+                      key={showColoredImage ? "colored" : "original"}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.5 }}
+                      src={
+                        showColoredImage && periods[currentPeriod].coloredImage
+                          ? periods[currentPeriod].coloredImage
+                          : periods[currentPeriod].originalImage
+                      }
+                      alt={periods[currentPeriod].title}
+                      className="w-full h-full object-contain rounded-lg shadow-xl"
+                    />
+
+                    {/* Toggle button */}
+                    {periods[currentPeriod].coloredImage && (
+                      <button
+                        onClick={toggleImage}
+                        className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-gray-900 px-6 py-3 rounded-full font-bold shadow-lg transition-all flex items-center gap-2"
+                      >
+                        <Sparkles size={20} />
+                        {showColoredImage ? "Xem ảnh gốc" : "Xem ảnh màu"}
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                {/* Content Section */}
+                <div className="p-8 overflow-y-auto">
+                  <div className="mb-4">
+                    <span className="text-sm font-semibold text-red-600 bg-red-100 px-3 py-1 rounded-full">
+                      {periods[currentPeriod].year}
                     </span>
+                  </div>
+
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                    {periods[currentPeriod].title}
+                  </h2>
+
+                  <div className="prose prose-lg max-w-none">
+                    <p className="text-gray-700 leading-relaxed mb-6">
+                      {periods[currentPeriod].content}
+                    </p>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                      <span className="w-1 h-6 bg-red-600 rounded"></span>
+                      Điểm Nổi Bật
+                    </h3>
+                    <ul className="space-y-3">
+                      {periods[currentPeriod].highlights.map(
+                        (highlight, idx) => (
+                          <li key={idx} className="flex items-start gap-3">
+                            <span className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-red-500 to-yellow-500 text-white rounded-full flex items-center justify-center text-sm font-bold mt-1">
+                              {idx + 1}
+                            </span>
+                            <span className="text-gray-700 flex-1">
+                              {highlight}
+                            </span>
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+
+                  {/* Progress indicator */}
+                  <div className="mt-8 pt-6 border-t border-gray-200">
+                    <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
+                      <span>Tiến độ</span>
+                      <span className="font-semibold">
+                        {currentPeriod + 1} / {periods.length}
+                      </span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-gradient-to-r from-red-600 to-yellow-600 h-2 rounded-full transition-all duration-300"
+                        style={{
+                          width: `${
+                            ((currentPeriod + 1) / periods.length) * 100
+                          }%`,
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </motion.div>
-          ))}
-        </div>
-
-        {/* Modal */}
-        <AnimatePresence>
-          {isModalOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-              style={{ margin: 0, overflow: 'hidden' }}
-              onClick={closeModal}
-            >
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0, y: 20 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
-                className="bg-white rounded-2xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden relative my-auto"
-                onClick={(e) => e.stopPropagation()}
-              >
-                {/* Close button */}
-                <button
-                  onClick={closeModal}
-                  className="absolute top-4 right-4 z-10 bg-red-600 hover:bg-red-700 text-white p-2 rounded-full transition-colors shadow-lg"
-                >
-                  <X size={24} />
-                </button>
-
-                {/* Navigation buttons */}
-                {currentPeriod > 0 && (
-                  <button
-                    onClick={handlePrevPeriod}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-red-600 p-3 rounded-full transition-all shadow-lg"
-                  >
-                    <ChevronLeft size={28} />
-                  </button>
-                )}
-                {currentPeriod < periods.length - 1 && (
-                  <button
-                    onClick={handleNextPeriod}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-red-600 p-3 rounded-full transition-all shadow-lg"
-                  >
-                    <ChevronRight size={28} />
-                  </button>
-                )}
-
-                <div className="grid md:grid-cols-2 h-full overflow-y-auto">
-                  {/* Image Section */}
-                  <div className="relative bg-gray-100 flex items-center justify-center p-6">
-                    <div className="relative w-full max-h-[70vh]">
-                      <motion.img
-                        key={showColoredImage ? "colored" : "original"}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                        src={
-                          showColoredImage &&
-                          periods[currentPeriod].coloredImage
-                            ? periods[currentPeriod].coloredImage
-                            : periods[currentPeriod].originalImage
-                        }
-                        alt={periods[currentPeriod].title}
-                        className="w-full h-full object-contain rounded-lg shadow-xl"
-                      />
-
-                      {/* Toggle button */}
-                      {periods[currentPeriod].coloredImage && (
-                        <button
-                          onClick={toggleImage}
-                          className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-gray-900 px-6 py-3 rounded-full font-bold shadow-lg transition-all flex items-center gap-2"
-                        >
-                          <Sparkles size={20} />
-                          {showColoredImage ? "Xem ảnh gốc" : "Xem ảnh màu"}
-                        </button>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Content Section */}
-                  <div className="p-8 overflow-y-auto">
-                    <div className="mb-4">
-                      <span className="text-sm font-semibold text-red-600 bg-red-100 px-3 py-1 rounded-full">
-                        {periods[currentPeriod].year}
-                      </span>
-                    </div>
-
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                      {periods[currentPeriod].title}
-                    </h2>
-
-                    <div className="prose prose-lg max-w-none">
-                      <p className="text-gray-700 leading-relaxed mb-6">
-                        {periods[currentPeriod].content}
-                      </p>
-
-                      <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <span className="w-1 h-6 bg-red-600 rounded"></span>
-                        Điểm Nổi Bật
-                      </h3>
-                      <ul className="space-y-3">
-                        {periods[currentPeriod].highlights.map(
-                          (highlight, idx) => (
-                            <li key={idx} className="flex items-start gap-3">
-                              <span className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-red-500 to-yellow-500 text-white rounded-full flex items-center justify-center text-sm font-bold mt-1">
-                                {idx + 1}
-                              </span>
-                              <span className="text-gray-700 flex-1">
-                                {highlight}
-                              </span>
-                            </li>
-                          )
-                        )}
-                      </ul>
-                    </div>
-
-                    {/* Progress indicator */}
-                    <div className="mt-8 pt-6 border-t border-gray-200">
-                      <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
-                        <span>Tiến độ</span>
-                        <span className="font-semibold">
-                          {currentPeriod + 1} / {periods.length}
-                        </span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div
-                          className="bg-gradient-to-r from-red-600 to-yellow-600 h-2 rounded-full transition-all duration-300"
-                          style={{
-                            width: `${
-                              ((currentPeriod + 1) / periods.length) * 100
-                            }%`,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </section>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
