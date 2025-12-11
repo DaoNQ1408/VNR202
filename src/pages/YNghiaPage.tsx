@@ -1,8 +1,12 @@
 import React from 'react';
-import AboutUs from '../components/sections/AboutUs';
+import HistoricalStoryTimeline from '../components/sections/HistoricalStoryTimeline';
 
 const YNghiaPage: React.FC = () => {
-    return <AboutUs />;
+    return (
+        <div className="min-h-screen">
+            <HistoricalStoryTimeline />
+        </div>
+    );
 };
 
 export default YNghiaPage;
