@@ -112,8 +112,12 @@ const InstructionsModal: React.FC<{
           >
             <X className="w-5 h-5" />
           </button>
-          <h2 className="text-2xl md:text-3xl font-bold mb-1">{instructions.title}</h2>
-          <p className="text-base md:text-lg opacity-90">{instructions.subtitle}</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">
+            {instructions.title}
+          </h2>
+          <p className="text-base md:text-lg opacity-90">
+            {instructions.subtitle}
+          </p>
         </div>
 
         {/* Scrollable Content */}
@@ -152,7 +156,9 @@ const InstructionsModal: React.FC<{
                   <h4 className="font-bold text-sm md:text-base text-gray-900 mb-1">
                     {rule.title}
                   </h4>
-                  <p className="text-xs md:text-sm text-gray-600 leading-snug">{rule.desc}</p>
+                  <p className="text-xs md:text-sm text-gray-600 leading-snug">
+                    {rule.desc}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -174,7 +180,9 @@ const InstructionsModal: React.FC<{
                   className="flex items-start gap-2 bg-yellow-50 p-2.5 md:p-3 rounded-lg border-l-4 border-yellow-500"
                 >
                   <span className="text-lg">💡</span>
-                  <p className="text-xs md:text-sm text-gray-700 leading-snug">{tip}</p>
+                  <p className="text-xs md:text-sm text-gray-700 leading-snug">
+                    {tip}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -424,17 +432,20 @@ const Basket: React.FC<{ category: string; onDrop: (item: Item) => void }> = ({
   category,
   onDrop,
 }) => {
-  const [{ isOver, canDrop }, drop] = useDrop(() => ({
-    accept: ItemTypes.ITEM,
-    drop: (item: Item) => {
-      onDrop(item);
-      return undefined;
-    },
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
-      canDrop: !!monitor.canDrop(),
+  const [{ isOver, canDrop }, drop] = useDrop(
+    () => ({
+      accept: ItemTypes.ITEM,
+      drop: (item: Item) => {
+        onDrop(item);
+        return undefined;
+      },
+      collect: (monitor) => ({
+        isOver: !!monitor.isOver(),
+        canDrop: !!monitor.canDrop(),
+      }),
     }),
-  }), [onDrop]);
+    [onDrop]
+  );
 
   const getCategoryColor = () => {
     if (category === "Lương thực")
@@ -459,11 +470,13 @@ const Basket: React.FC<{ category: string; onDrop: (item: Item) => void }> = ({
           : `${getCategoryColor()} shadow-md`
       }`}
       style={{
-        transform: isOver ? 'scale(1.05)' : 'scale(1)',
+        transform: isOver ? "scale(1.05)" : "scale(1)",
       }}
     >
       <div className="text-2xl md:text-3xl mb-2">{getCategoryIcon()}</div>
-      <h4 className="font-bold text-sm md:text-base text-gray-800">{category}</h4>
+      <h4 className="font-bold text-sm md:text-base text-gray-800">
+        {category}
+      </h4>
       <p className="text-xs text-gray-600 mt-1 hidden md:block">
         {isOver ? "Thả vào đây!" : "Kéo thả"}
       </p>
@@ -475,14 +488,17 @@ const DraggableItem: React.FC<{ item: Item; isPlaced: boolean }> = ({
   item,
   isPlaced,
 }) => {
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type: ItemTypes.ITEM,
-    item: { ...item },
-    canDrag: !isPlaced,
-    collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
+  const [{ isDragging }, drag] = useDrag(
+    () => ({
+      type: ItemTypes.ITEM,
+      item: { ...item },
+      canDrag: !isPlaced,
+      collect: (monitor) => ({
+        isDragging: !!monitor.isDragging(),
+      }),
     }),
-  }), [isPlaced]);
+    [isPlaced]
+  );
 
   if (isPlaced) {
     return null; // Don't render placed items
@@ -496,13 +512,15 @@ const DraggableItem: React.FC<{ item: Item; isPlaced: boolean }> = ({
           ? "opacity-50 scale-110"
           : "opacity-100 border-gray-300 cursor-move hover:border-yellow-400"
       }`}
-      style={{ 
-        transform: isDragging ? 'scale(1.1)' : 'none',
-        cursor: isPlaced ? 'default' : 'move'
+      style={{
+        transform: isDragging ? "scale(1.1)" : "none",
+        cursor: isPlaced ? "default" : "move",
       }}
     >
       <div className="text-2xl md:text-3xl mb-1">{item.image}</div>
-      <p className="text-[10px] md:text-xs font-semibold text-gray-800 leading-tight">{item.name}</p>
+      <p className="text-[10px] md:text-xs font-semibold text-gray-800 leading-tight">
+        {item.name}
+      </p>
     </div>
   );
 };
@@ -536,7 +554,7 @@ const StrategyGame: React.FC = () => {
     { id: "6", name: "Cá", category: "luongthuc", image: "🐟" },
     { id: "7", name: "Rau củ", category: "luongthuc", image: "🥬" },
     { id: "8", name: "Trứng", category: "luongthuc", image: "🥚" },
-    
+
     // Hàng tiêu dùng (8 items)
     { id: "9", name: "Quần áo", category: "tieudung", image: "👕" },
     { id: "10", name: "Giày dép", category: "tieudung", image: "👟" },
@@ -546,21 +564,28 @@ const StrategyGame: React.FC = () => {
     { id: "14", name: "Đồ dùng nhà bếp", category: "tieudung", image: "🍳" },
     { id: "15", name: "Vải vóc", category: "tieudung", image: "🧵" },
     { id: "16", name: "Đồ gốm sứ", category: "tieudung", image: "🏺" },
-    
+
     // Hàng xuất khẩu (5 items)
     { id: "17", name: "Cà phê", category: "xuatkhau", image: "☕" },
     { id: "18", name: "Tôm đông lạnh", category: "xuatkhau", image: "🦐" },
     { id: "19", name: "Cao su", category: "xuatkhau", image: "🌳" },
     { id: "20", name: "Hạt điều", category: "xuatkhau", image: "🥜" },
     { id: "21", name: "Dệt may", category: "xuatkhau", image: "👔" },
-    
+
     // Công nghiệp nặng (TRAP - 3 items)
-    { id: "22", name: "Máy móc hạng nặng", category: "congnghiep", image: "⚙️" },
+    {
+      id: "22",
+      name: "Máy móc hạng nặng",
+      category: "congnghiep",
+      image: "⚙️",
+    },
     { id: "23", name: "Than đá", category: "congnghiep", image: "⛏️" },
     { id: "24", name: "Thép", category: "congnghiep", image: "🏗️" },
   ];
 
-  const totalCorrectItems = allItems.filter(item => item.category !== "congnghiep").length;
+  const totalCorrectItems = allItems.filter(
+    (item) => item.category !== "congnghiep"
+  ).length;
 
   // Timer countdown
   useEffect(() => {
@@ -581,29 +606,32 @@ const StrategyGame: React.FC = () => {
 
   const handleDrop = React.useCallback((basketCategory: string, item: Item) => {
     // Check if item already placed
-    setPlacedItemIds(prev => {
+    setPlacedItemIds((prev) => {
       if (prev.includes(item.id)) {
         return prev;
       }
 
       // Heavy industry items are WRONG
       if (item.category === "congnghiep") {
-        setScore(s => Math.max(0, s - 5));
-        setWrongAttempts(w => w + 1);
+        setScore((s) => Math.max(0, s - 5));
+        setWrongAttempts((w) => w + 1);
         setShowFeedback({
           show: true,
           isCorrect: false,
           message: "❌ Sai lầm! Đại hội VI không ưu tiên Công nghiệp nặng!",
         });
-        setTimeout(() => setShowFeedback({ show: false, isCorrect: false, message: "" }), 2000);
+        setTimeout(
+          () => setShowFeedback({ show: false, isCorrect: false, message: "" }),
+          2000
+        );
         return [...prev, item.id];
       }
 
       // Check if correct category
       if (item.category === basketCategory) {
-        setScore(s => s + 10);
-        setCorrectAttempts(c => c + 1);
-        setPlacedItems(p => ({
+        setScore((s) => s + 10);
+        setCorrectAttempts((c) => c + 1);
+        setPlacedItems((p) => ({
           ...p,
           [basketCategory]: [...p[basketCategory], item],
         }));
@@ -612,17 +640,23 @@ const StrategyGame: React.FC = () => {
           isCorrect: true,
           message: "✅ Chính xác! +10 điểm",
         });
-        setTimeout(() => setShowFeedback({ show: false, isCorrect: false, message: "" }), 1000);
+        setTimeout(
+          () => setShowFeedback({ show: false, isCorrect: false, message: "" }),
+          1000
+        );
         return [...prev, item.id];
       } else {
-        setScore(s => Math.max(0, s - 5));
-        setWrongAttempts(w => w + 1);
+        setScore((s) => Math.max(0, s - 5));
+        setWrongAttempts((w) => w + 1);
         setShowFeedback({
           show: true,
           isCorrect: false,
           message: "⚠️ Sai giỏ rồi! -5 điểm",
         });
-        setTimeout(() => setShowFeedback({ show: false, isCorrect: false, message: "" }), 1500);
+        setTimeout(
+          () => setShowFeedback({ show: false, isCorrect: false, message: "" }),
+          1500
+        );
         return prev;
       }
     });
@@ -646,37 +680,42 @@ const StrategyGame: React.FC = () => {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="bg-gradient-to-br from-white via-yellow-50 to-red-50 rounded-xl shadow-xl border border-yellow-200 relative">
-        
         {/* Compact Stats Bar */}
         <div className="bg-white/80 backdrop-blur-sm p-3 rounded-t-xl border-b-2 border-yellow-300 sticky top-0 z-10">
           <div className="flex justify-center items-center gap-2 md:gap-4 flex-wrap">
             <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-50 to-yellow-100 px-4 py-2 rounded-lg border border-yellow-300">
               <Trophy className="w-5 h-5 text-yellow-600" />
-              <span className="text-lg font-bold text-gray-900">
-                {score}
-              </span>
+              <span className="text-lg font-bold text-gray-900">{score}</span>
             </div>
-            
-            <div className={`flex items-center gap-2 px-4 py-2 rounded-lg border ${
-              timeLeft <= 20 ? 'bg-red-100 border-red-400 animate-pulse' : 'bg-blue-50 border-blue-300'
-            }`}>
-              <Clock className={`w-5 h-5 ${
-                timeLeft <= 20 ? 'text-red-600' : 'text-blue-600'
-              }`} />
-              <span className={`text-lg font-bold ${
-                timeLeft <= 20 ? 'text-red-600' : 'text-gray-900'
-              }`}>
+
+            <div
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg border ${
+                timeLeft <= 20
+                  ? "bg-red-100 border-red-400 animate-pulse"
+                  : "bg-blue-50 border-blue-300"
+              }`}
+            >
+              <Clock
+                className={`w-5 h-5 ${
+                  timeLeft <= 20 ? "text-red-600" : "text-blue-600"
+                }`}
+              />
+              <span
+                className={`text-lg font-bold ${
+                  timeLeft <= 20 ? "text-red-600" : "text-gray-900"
+                }`}
+              >
                 {timeLeft}s
               </span>
             </div>
-            
+
             <div className="flex items-center gap-2 bg-green-50 px-4 py-2 rounded-lg border border-green-300">
               <CheckCircle className="w-5 h-5 text-green-600" />
               <span className="text-sm font-bold text-gray-900">
                 {correctAttempts}/{totalCorrectItems}
               </span>
             </div>
-            
+
             <button
               onClick={restartGame}
               className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-md hover:shadow-lg font-semibold text-sm flex items-center gap-2"
@@ -685,7 +724,7 @@ const StrategyGame: React.FC = () => {
             </button>
           </div>
         </div>
-          
+
         {/* Feedback Messages - Fixed Position */}
         <AnimatePresence>
           {showFeedback.show && (
@@ -695,26 +734,29 @@ const StrategyGame: React.FC = () => {
               exit={{ opacity: 0 }}
               className="fixed top-20 left-1/2 transform -translate-x-1/2 z-20"
             >
-              <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg shadow-lg text-sm font-bold ${
-                showFeedback.isCorrect
-                  ? 'bg-green-500 text-white'
-                  : 'bg-red-500 text-white'
-              }`}>
+              <div
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg shadow-lg text-sm font-bold ${
+                  showFeedback.isCorrect
+                    ? "bg-green-500 text-white"
+                    : "bg-red-500 text-white"
+                }`}
+              >
                 {showFeedback.message}
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-        
+
         {/* Compact Tip */}
         {!gameOver && (
           <div className="bg-gradient-to-r from-yellow-50 to-red-50 border-l-4 border-yellow-600 p-3 mx-4 mt-3 rounded-lg">
             <p className="text-xs text-gray-700">
-              <strong>💡</strong> Phân loại 21 item đúng vào 3 giỏ. Tránh Công nghiệp nặng!
+              <strong>💡</strong> Phân loại 21 item đúng vào 3 giỏ. Tránh Công
+              nghiệp nặng!
             </p>
           </div>
         )}
-        
+
         {/* Game Over Screen */}
         <AnimatePresence>
           {gameOver && (
@@ -726,38 +768,51 @@ const StrategyGame: React.FC = () => {
               <div className="bg-gradient-to-br from-yellow-50 to-red-50 p-10 rounded-3xl shadow-2xl max-w-2xl w-full border-4 border-yellow-400">
                 <Trophy className="w-20 h-20 text-yellow-600 mx-auto mb-6" />
                 <h3 className="text-4xl font-bold text-center mb-6 bg-gradient-to-r from-yellow-600 to-red-600 bg-clip-text text-transparent">
-                  {correctAttempts === totalCorrectItems ? '🎉 Hoàn Thành Xuất Sắc!' : '⏰ Hết Giờ!'}
+                  {correctAttempts === totalCorrectItems
+                    ? "🎉 Hoàn Thành Xuất Sắc!"
+                    : "⏰ Hết Giờ!"}
                 </h3>
-                
+
                 <div className="grid grid-cols-2 gap-6 mb-8">
                   <div className="bg-white p-6 rounded-xl shadow-lg text-center">
                     <p className="text-gray-600 mb-2">Tổng điểm</p>
-                    <p className="text-4xl font-bold text-yellow-600">{score}</p>
+                    <p className="text-4xl font-bold text-yellow-600">
+                      {score}
+                    </p>
                   </div>
                   <div className="bg-white p-6 rounded-xl shadow-lg text-center">
                     <p className="text-gray-600 mb-2">Độ chính xác</p>
                     <p className="text-4xl font-bold text-green-600">
-                      {Math.round((correctAttempts / (correctAttempts + wrongAttempts)) * 100) || 0}%
+                      {Math.round(
+                        (correctAttempts / (correctAttempts + wrongAttempts)) *
+                          100
+                      ) || 0}
+                      %
                     </p>
                   </div>
                   <div className="bg-white p-6 rounded-xl shadow-lg text-center">
                     <p className="text-gray-600 mb-2">Đúng</p>
-                    <p className="text-4xl font-bold text-green-600">{correctAttempts}</p>
+                    <p className="text-4xl font-bold text-green-600">
+                      {correctAttempts}
+                    </p>
                   </div>
                   <div className="bg-white p-6 rounded-xl shadow-lg text-center">
                     <p className="text-gray-600 mb-2">Sai</p>
-                    <p className="text-4xl font-bold text-red-600">{wrongAttempts}</p>
+                    <p className="text-4xl font-bold text-red-600">
+                      {wrongAttempts}
+                    </p>
                   </div>
                 </div>
-                
+
                 <div className="bg-yellow-100 border-l-4 border-yellow-600 p-6 rounded-lg mb-8">
                   <p className="text-sm text-gray-800 leading-relaxed">
-                    <strong>📚 Bài học lịch sử:</strong> Đại hội VI (1986) đánh dấu bước ngoặt lịch sử, 
-                    chuyển hướng từ ưu tiên công nghiệp nặng sang 3 chương trình kinh tế: 
-                    Lương thực thực phẩm, Hàng tiêu dùng, và Hàng xuất khẩu.
+                    <strong>📚 Bài học lịch sử:</strong> Đại hội VI (1986) đánh
+                    dấu bước ngoặt lịch sử, chuyển hướng từ ưu tiên công nghiệp
+                    nặng sang 3 chương trình kinh tế: Lương thực thực phẩm, Hàng
+                    tiêu dùng, và Hàng xuất khẩu.
                   </p>
                 </div>
-                
+
                 <button
                   onClick={restartGame}
                   className="w-full py-4 bg-gradient-to-r from-yellow-600 to-red-600 text-white rounded-xl font-bold text-xl hover:shadow-2xl transition-all flex items-center justify-center gap-3"
@@ -768,7 +823,7 @@ const StrategyGame: React.FC = () => {
             </motion.div>
           )}
         </AnimatePresence>
-        
+
         {/* Baskets - Compact Grid */}
         <div className="grid grid-cols-3 gap-2 md:gap-4 p-3 md:p-4">
           <Basket
@@ -784,7 +839,7 @@ const StrategyGame: React.FC = () => {
             onDrop={(item) => handleDrop("xuatkhau", item)}
           />
         </div>
-        
+
         {/* Items Grid - Compact */}
         <div className="bg-white/80 p-3 md:p-4 mx-3 md:mx-4 mb-4 rounded-xl shadow-inner border border-gray-200">
           <h4 className="text-sm font-bold text-gray-700 mb-3 text-center">
@@ -943,7 +998,9 @@ const MiniGamePage: React.FC = () => {
                 <div className="flex-shrink-0 bg-gradient-to-r from-red-600 to-yellow-600 p-4 shadow-lg">
                   <div className="container mx-auto flex justify-between items-center">
                     <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-                      {selectedGame === "game1" ? "🌑 Siêu thị Tem Phiếu" : "⚡ Nhà Hoạch Định Chiến Lược"}
+                      {selectedGame === "game1"
+                        ? "🌑 Siêu thị Tem Phiếu"
+                        : "⚡ Nhà Hoạch Định Chiến Lược"}
                     </h2>
                     <button
                       onClick={handleCloseGame}
@@ -953,7 +1010,7 @@ const MiniGamePage: React.FC = () => {
                     </button>
                   </div>
                 </div>
-                
+
                 {/* Scrollable Content */}
                 <div className="flex-1 overflow-y-auto bg-white">
                   <div className="container mx-auto p-4 md:p-6">
