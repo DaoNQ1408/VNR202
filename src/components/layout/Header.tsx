@@ -1,143 +1,199 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+"use client";
 
-const Header: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Menu, X, Star } from "lucide-react";
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+type NavItem = {
+  name: string;
+  href: string;
+  children?: NavItem[];
+};
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+const navigation: NavItem[] = [
+  { name: "Trang Chủ", href: "/" },
+  { name: "Thư Viện 3D", href: "/thu-vien" },
+  { name: "Ý Nghĩa", href: "/y-nghia" },
+  { name: "Quiz", href: "/quiz" },
+  { name: "Mini Game", href: "/minigame" },
+  { name: "AI Hỗ Trợ", href: "/ai-ho-tro" },
+];
 
-  const navLinks = [
-    { label: 'Timeline', href: '#timeline' },
-    { label: 'Cải Cách', href: '#reform' },
-    { label: 'Thành Tựu', href: '#achievements' },
-    { label: 'Quiz', href: '#quiz' },
-    { label: 'AI Usage', href: '#ai-usage' },
-  ];
+export default function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
-    <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-lg shadow-lg' : 'bg-white/50 backdrop-blur-sm'
-        }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+    <header
+      className="sticky top-0 z-50 shadow-lg"
+      style={{ backgroundColor: "var(--vietnam-red)" }}
     >
-      <nav className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
+      {/* Top decorative bar - vintage gold stripe */}
+      <div
+        className="h-1"
+        style={{
+          background:
+            "linear-gradient(90deg, var(--vietnam-red), var(--vietnam-gold), var(--vietnam-red))",
+        }}
+      ></div>
+
+      <nav className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <motion.a
-            href="#"
-            className="flex items-center space-x-3"
-            whileHover={{ scale: 1.05 }}
-          >
-            <motion.div
-              className="w-12 h-12 bg-gradient-to-br from-red-600 to-yellow-600 rounded-lg flex items-center justify-center shadow-lg"
-              animate={{ rotate: [0, 5, -5, 0] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              <span className="text-white font-bold text-xl">🇻🇳</span>
-            </motion.div>
-            <span className="text-xl font-bold bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">
-              Lịch Sử Đảng
-            </span>
-          </motion.a>
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="relative">
+              {/* Outer glow effect */}
+              <div className="absolute inset-0 bg-[#8B1A1A] rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
+              {/* Logo container */}
+              <div
+                className="relative w-11 h-11 rounded-lg flex items-center justify-center border-2 border-[#8B1A1A] shadow-lg overflow-hidden"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #8B1A1A 0%, #B22222 50%, #DC143C 100%)",
+                }}
+              >
+                {/* Inner pattern */}
+                <div
+                  className="absolute inset-0 opacity-20"
+                  style={{
+                    backgroundImage: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 50%)`,
+                  }}
+                ></div>
+                <Star
+                  className="w-5 h-5 text-[#C9A227] drop-shadow-md relative z-10"
+                  fill="#C9A227"
+                />
+              </div>
+            </div>
+            <div className="hidden sm:block">
+              <div className="flex items-center gap-2">
+                <span
+                  className="text-white font-bold text-lg group-hover:text-[#FFD700] transition-colors tracking-wide"
+                  style={{ color: "var(--vietnam-gold)" }}
+                >
+                  Lịch Sử Đảng
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-px bg-[#C9A227]/50"></div>
+                <span
+                  className="text-[#FFD700] text-xs tracking-[0.2em] font-medium"
+                  style={{ color: "#FFD700" }}
+                >
+                  1986 — 1996
+                </span>
+                <div className="w-4 h-px bg-[#FFD700]/50"></div>
+              </div>
+            </div>
+          </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            {navLinks.map((link, index) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                className="text-gray-700 hover:text-red-600 transition-colors duration-200 font-semibold"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.1, y: -2 }}
-              >
-                {link.label}
-              </motion.a>
+          <div className="hidden lg:flex items-center gap-1">
+            {navigation.map((item) => (
+              <div key={item.name} className="relative">
+                {item.children ? (
+                  <div className="relative">
+                    <button
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                      className="px-4 py-2 text-[#FFD700] hover:text-[#FFFFFF] transition-colors text-sm font-semibold flex items-center gap-1 tracking-wide"
+                      style={{ color: "#FFD700" }}
+                    >
+                      {item.name}
+                      <svg
+                        className={`w-4 h-4 transition-transform ${
+                          dropdownOpen ? "rotate-180" : ""
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                    {dropdownOpen && (
+                      <div
+                        className="absolute top-full left-0 mt-1 w-72 rounded-lg shadow-2xl overflow-hidden border border-[#C9A227]/30"
+                        style={{ backgroundColor: "#FFFDF8" }}
+                      >
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.name}
+                            to={child.href}
+                            className="block px-4 py-3 text-sm text-[#0F1C3F] hover:bg-[#F5EDE0] hover:text-[#8B1A1A] transition-colors border-l-4 border-transparent hover:border-[#C9A227] font-medium"
+                            onClick={() => setDropdownOpen(false)}
+                          >
+                            {child.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className="px-4 py-2 text-[#FFD700] hover:text-[#FFFFFF] transition-colors text-sm font-semibold tracking-wide"
+                    style={{ color: "#FFD700" }}
+                  >
+                    {item.name}
+                  </Link>
+                )}
+              </div>
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-2 bg-gradient-to-r from-red-600 to-yellow-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
-            >
-              Tìm Hiểu Ngay
-            </motion.button>
-          </div>
-
-          {/* Mobile Menu Button */}
+          {/* Mobile menu button */}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-gray-700 hover:text-red-600"
-            aria-label="Toggle menu"
+            className="lg:hidden p-2 text-[#FFD700] hover:text-[#FFFFFF] transition-colors"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {isMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
+            {mobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-gray-200">
-            <div className="flex flex-col space-y-4 pt-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-gray-700 hover:text-red-600 transition-colors duration-200 font-semibold"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="pt-4">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full px-6 py-2 bg-gradient-to-r from-red-600 to-yellow-600 text-white rounded-xl font-semibold shadow-lg"
-                >
-                  Tìm Hiểu Ngay
-                </motion.button>
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden py-4 border-t border-[#C9A227]/30">
+            {navigation.map((item) => (
+              <div key={item.name}>
+                {item.children ? (
+                  <>
+                    <div className="px-4 py-2 text-[#FFD700] font-semibold text-sm tracking-wide uppercase">
+                      {item.name}
+                    </div>
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.name}
+                        to={child.href}
+                        className="block px-6 py-2 text-[#FFD700] hover:text-[#FFFFFF] hover:bg-[#1A2D5A] transition-colors text-sm"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {child.name}
+                      </Link>
+                    ))}
+                  </>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className="block px-4 py-2 text-[#FFD700] hover:text-[#FFFFFF] hover:bg-[#1A2D5A] transition-colors text-sm font-semibold"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )}
               </div>
-            </div>
+            ))}
           </div>
         )}
       </nav>
-    </motion.header>
+    </header>
   );
-};
-
-export default Header;
+}
