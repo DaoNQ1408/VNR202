@@ -1127,17 +1127,17 @@ export default function DomeGallery({
                 {/* Grid 3: Text Box */}
                 <div
                   ref={textBoxRef}
-                  className="col-span-5 bg-gradient-to-br from-[#FFD700] via-[#FFA500] to-[#FF8C00] rounded-3xl shadow-[0_20px_60px_rgba(255,165,0,0.5)] overflow-hidden flex flex-col transition-all duration-300 hover:cursor-pointer"
+                  className="col-span-5 bg-gradient-to-br from-amber-100 via-amber-50 to-yellow-50 rounded-3xl shadow-[0_20px_60px_rgba(180,100,0,0.3)] overflow-hidden flex flex-col transition-all duration-300 hover:cursor-pointer"
                   style={{ transformStyle: 'preserve-3d' }}
                 >
-                  <div className="bg-gradient-to-r from-[#8B1A1A] to-[#AC0705] px-6 py-4 border-b-4 border-white">
+                  <div className="bg-gradient-to-r from-amber-900 to-amber-800 px-6 py-4 border-b-4 border-amber-600">
                     <h3 className="text-white font-bold text-xl text-center tracking-wide">
                       📜 MÔ TẢ CHI TIẾT
                     </h3>
                   </div>
                   <div className="flex-1 p-6 overflow-y-auto">
-                    <div className="bg-white/97 border-4 border-[#8B1A1A] rounded-2xl p-6 h-full shadow-[inset_0_4px_12px_rgba(139,26,26,0.15)]">
-                      <p className="text-[#8B1A1A] font-bold text-lg leading-relaxed">
+                    <div className="bg-amber-50 border-4 border-amber-700 rounded-2xl p-6 h-full shadow-[inset_0_4px_12px_rgba(120,80,40,0.1)]">
+                      <p className="text-amber-900 font-bold text-lg leading-relaxed">
                         {selectedCard.alt}
                       </p>
                     </div>
