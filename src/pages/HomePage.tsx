@@ -4,7 +4,6 @@ import HistoryTimeline from '../components/sections/HistoryTimeline';
 import ReformAnalysis from '../components/sections/ReformAnalysis';
 import KeyAchievements from '../components/sections/KeyAchievements';
 import ModernContext from '../components/sections/ModernContext';
-import AIUsage from '../components/sections/AIUsage';
 import CTA from '../components/sections/CTA';
 
 const HomePage: React.FC = () => {
@@ -15,7 +14,6 @@ const HomePage: React.FC = () => {
       <ReformAnalysis />
       <KeyAchievements />
       <ModernContext />
-      <AIUsage />
       <CTA />
     </main>
   );
