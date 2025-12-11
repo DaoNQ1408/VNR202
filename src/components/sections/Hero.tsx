@@ -178,14 +178,26 @@ export const Hero: React.FC = () => {
       ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 animate-section"
       data-speed="0.5"
-      style={{ backgroundColor: 'var(--antique-parchment)' }}
+      style={{ backgroundColor: "var(--antique-parchment)" }}
     >
       {/* Vintage Border Decoration */}
       <div className="absolute inset-0 overflow-hidden parallax-bg">
-        <div className="absolute top-0 left-0 right-0 h-2" style={{ backgroundColor: 'var(--vietnam-red)' }} />
-        <div className="absolute bottom-0 left-0 right-0 h-2" style={{ backgroundColor: 'var(--vietnam-red)' }} />
-        <div className="absolute top-0 left-0 bottom-0 w-2" style={{ backgroundColor: 'var(--vietnam-red)' }} />
-        <div className="absolute top-0 right-0 bottom-0 w-2" style={{ backgroundColor: 'var(--vietnam-red)' }} />
+        <div
+          className="absolute top-0 left-0 right-0 h-2"
+          style={{ backgroundColor: "var(--vietnam-red)" }}
+        />
+        <div
+          className="absolute bottom-0 left-0 right-0 h-2"
+          style={{ backgroundColor: "var(--vietnam-red)" }}
+        />
+        <div
+          className="absolute top-0 left-0 bottom-0 w-2"
+          style={{ backgroundColor: "var(--vietnam-red)" }}
+        />
+        <div
+          className="absolute top-0 right-0 bottom-0 w-2"
+          style={{ backgroundColor: "var(--vietnam-red)" }}
+        />
       </div>
 
       <div className="container mx-auto px-4 py-20 relative z-10">
@@ -193,7 +205,14 @@ export const Hero: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="animate-item">
-              <div className="inline-block mb-6 px-4 py-2 text-sm font-semibold shadow-lg border-2" style={{ backgroundColor: 'var(--vietnam-red)', color: 'var(--vietnam-white)', borderColor: 'var(--vietnam-gold)' }}>
+              <div
+                className="inline-block mb-6 px-4 py-2 text-sm font-semibold shadow-lg border-2"
+                style={{
+                  backgroundColor: "var(--vietnam-red)",
+                  color: "var(--vietnam-white)",
+                  borderColor: "var(--vietnam-gold)",
+                }}
+              >
                 🇻🇳 Chương 3: Đảng lãnh đạo cả nước quá độ lên CNXH và tiến hành
                 công cuộc đổi mới
               </div>
@@ -201,13 +220,16 @@ export const Hero: React.FC = () => {
               <h1
                 ref={titleRef}
                 className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
-                style={{ color: 'var(--ink-black)' }}
+                style={{ color: "var(--ink-black)" }}
               >
                 <span className="word inline-block">Đổi</span>{" "}
                 <span className="word inline-block">Mới</span>{" "}
                 <span className="word inline-block">Toàn</span>{" "}
                 <span className="word inline-block">Diện</span>{" "}
-                <span className="word inline-block" style={{ color: 'var(--vietnam-red)' }}>
+                <span
+                  className="word inline-block"
+                  style={{ color: "var(--vietnam-red)" }}
+                >
                   1986 - 1996
                 </span>
               </h1>
@@ -215,25 +237,38 @@ export const Hero: React.FC = () => {
               <p
                 ref={textRef}
                 className="text-xl mb-8 leading-relaxed font-medium"
-                style={{ color: 'var(--ancient-stone)' }}
+                style={{ color: "var(--ancient-stone)" }}
               >
-                <span className="font-bold" style={{ color: 'var(--vietnam-red)' }}>3.2.1.</span> Đưa đất
-                nước ra khỏi khủng hoảng kinh tế - xã hội, đẩy mạnh công nghiệp
-                hóa, hiện đại hóa và hội nhập quốc tế
+                <span
+                  className="font-bold"
+                  style={{ color: "var(--vietnam-red)" }}
+                >
+                  3.2.1.
+                </span>{" "}
+                Đưa đất nước ra khỏi khủng hoảng kinh tế - xã hội, đẩy mạnh công
+                nghiệp hóa, hiện đại hóa và hội nhập quốc tế
               </p>
 
               <div ref={buttonsRef} className="flex flex-wrap gap-4">
                 <a
                   href="#reform-analysis"
                   className="px-8 py-4 font-semibold shadow-xl hover:shadow-2xl transition-all cursor-pointer inline-block border-2"
-                  style={{ backgroundColor: 'var(--vietnam-red)', color: 'var(--vietnam-white)', borderColor: 'var(--vietnam-gold)' }}
+                  style={{
+                    backgroundColor: "var(--vietnam-red)",
+                    color: "var(--vietnam-white)",
+                    borderColor: "var(--vietnam-gold)",
+                  }}
                 >
                   Tìm Hiểu Đổi Mới →
                 </a>
                 <a
                   href="#achievements"
                   className="px-8 py-4 border-2 font-semibold transition-all cursor-pointer inline-block"
-                  style={{ backgroundColor: 'var(--vietnam-white)', borderColor: 'var(--vietnam-red)', color: 'var(--vietnam-red)' }}
+                  style={{
+                    backgroundColor: "var(--vietnam-white)",
+                    borderColor: "var(--vietnam-red)",
+                    color: "var(--vietnam-red)",
+                  }}
                 >
                   Thành Tựu
                 </a>
@@ -242,20 +277,44 @@ export const Hero: React.FC = () => {
               {/* Stats */}
               <div ref={statsRef} className="grid grid-cols-3 gap-6 mt-12">
                 <div className="text-center animate-item">
-                  <div className="text-3xl font-bold" style={{ color: 'var(--vietnam-red)' }}>1986</div>
-                  <div className="text-sm font-medium" style={{ color: 'var(--ancient-stone)' }}>
+                  <div
+                    className="text-3xl font-bold"
+                    style={{ color: "var(--vietnam-red)" }}
+                  >
+                    1986
+                  </div>
+                  <div
+                    className="text-sm font-medium"
+                    style={{ color: "var(--ancient-stone)" }}
+                  >
                     Đại Hội VI - Khởi Đầu Đổi Mới
                   </div>
                 </div>
                 <div className="text-center animate-item">
-                  <div className="text-3xl font-bold" style={{ color: 'var(--vietnam-gold)' }}>1996</div>
-                  <div className="text-sm font-medium" style={{ color: 'var(--ancient-stone)' }}>
+                  <div
+                    className="text-3xl font-bold"
+                    style={{ color: "var(--vietnam-gold)" }}
+                  >
+                    1996
+                  </div>
+                  <div
+                    className="text-sm font-medium"
+                    style={{ color: "var(--ancient-stone)" }}
+                  >
                     Ra Khỏi Khủng Hoảng
                   </div>
                 </div>
                 <div className="text-center animate-item">
-                  <div className="text-3xl font-bold" style={{ color: 'var(--vietnam-red)' }}>10 Năm</div>
-                  <div className="text-sm font-medium" style={{ color: 'var(--ancient-stone)' }}>
+                  <div
+                    className="text-3xl font-bold"
+                    style={{ color: "var(--vietnam-red)" }}
+                  >
+                    10 Năm
+                  </div>
+                  <div
+                    className="text-sm font-medium"
+                    style={{ color: "var(--ancient-stone)" }}
+                  >
                     Đổi Mới Toàn Diện
                   </div>
                 </div>
@@ -275,7 +334,7 @@ export const Hero: React.FC = () => {
                 <div
                   className="w-32 h-32 rounded-full flex items-center justify-center shadow-2xl"
                   style={{
-                    backgroundColor: 'var(--vietnam-gold)',
+                    backgroundColor: "var(--vietnam-gold)",
                     clipPath:
                       "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
                   }}
@@ -289,27 +348,50 @@ export const Hero: React.FC = () => {
                 ref={flagRef}
                 className="floating-item absolute top-40 right-20"
               >
-                <div className="w-48 h-32 rounded-lg shadow-2xl flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: 'var(--vietnam-red)' }}>
+                <div
+                  className="w-48 h-32 rounded-lg shadow-2xl flex items-center justify-center relative overflow-hidden"
+                  style={{ backgroundColor: "var(--vietnam-red)" }}
+                >
                   <span className="text-6xl relative z-10">🇻🇳</span>
                 </div>
               </div>
 
               {/* Floating Documents */}
-              <div className="floating-item absolute bottom-40 left-10 w-40 h-48 shadow-2xl p-4 border-2" style={{ backgroundColor: 'var(--parchment-dark)', borderColor: 'var(--sepia)' }}>
-                <div className="w-full h-full rounded-lg flex items-center justify-center" style={{ backgroundColor: 'var(--antique-parchment)' }}>
+              <div
+                className="floating-item absolute bottom-40 left-10 w-40 h-48 shadow-2xl p-4 border-2"
+                style={{
+                  backgroundColor: "var(--parchment-dark)",
+                  borderColor: "var(--sepia)",
+                }}
+              >
+                <div
+                  className="w-full h-full rounded-lg flex items-center justify-center"
+                  style={{ backgroundColor: "var(--antique-parchment)" }}
+                >
                   <div className="text-center">
                     <div className="text-3xl mb-2">📜</div>
-                    <div className="text-xs font-semibold" style={{ color: 'var(--sepia)' }}>
+                    <div
+                      className="text-xs font-semibold"
+                      style={{ color: "var(--sepia)" }}
+                    >
                       Đại Hội VI
                     </div>
-                    <div className="text-xs" style={{ color: 'var(--ancient-stone)' }}>1986</div>
+                    <div
+                      className="text-xs"
+                      style={{ color: "var(--ancient-stone)" }}
+                    >
+                      1986
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Gear Animation */}
               <div className="floating-item absolute bottom-20 right-10">
-                <div className="w-24 h-24 border-8 rounded-full flex items-center justify-center" style={{ borderColor: 'var(--vietnam-red)' }}>
+                <div
+                  className="w-24 h-24 border-8 rounded-full flex items-center justify-center"
+                  style={{ borderColor: "var(--vietnam-red)" }}
+                >
                   <div className="text-3xl">⚙️</div>
                 </div>
               </div>
@@ -320,7 +402,7 @@ export const Hero: React.FC = () => {
                   key={i}
                   className="sparkle absolute w-2 h-2 rounded-full"
                   style={{
-                    backgroundColor: 'var(--vietnam-gold)',
+                    backgroundColor: "var(--vietnam-gold)",
                     top: `${Math.random() * 100}%`,
                     left: `${Math.random() * 100}%`,
                   }}
@@ -334,7 +416,10 @@ export const Hero: React.FC = () => {
       {/* Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-item">
         <div className="text-center">
-          <div className="text-sm mb-2" style={{ color: 'var(--ancient-stone)' }}>
+          <div
+            className="text-sm mb-2"
+            style={{ color: "var(--ancient-stone)" }}
+          >
             Cuộn xuống để khám phá
           </div>
           <div className="text-2xl">↓</div>
