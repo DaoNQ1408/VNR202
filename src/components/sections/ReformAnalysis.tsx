@@ -67,22 +67,12 @@ const ReformAnalysis: React.FC = () => {
   return (
     <section
       id="reform-analysis"
-      className="py-20 bg-gradient-to-br from-red-50 via-white to-yellow-50 relative overflow-hidden"
+      className="py-20 relative overflow-hidden"
+      style={{ backgroundColor: 'var(--off-white)' }}
     >
-      {/* Animated Background Elements */}
-      <motion.div
-        className="absolute top-0 right-0 w-96 h-96 bg-red-300 rounded-full filter blur-3xl opacity-20"
-        animate={{
-          x: [0, 50, 0],
-          y: [0, 30, 0],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+      {/* Vintage Border Decoration */}
+      <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: 'var(--vietnam-red)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-1" style={{ backgroundColor: 'var(--vietnam-red)' }} />
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
@@ -94,18 +84,19 @@ const ReformAnalysis: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.span
-            className="inline-block px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-semibold mb-4"
+            className="inline-block px-4 py-2 text-sm font-semibold mb-4 border-2"
+            style={{ backgroundColor: 'var(--parchment-dark)', color: 'var(--vietnam-red)', borderColor: 'var(--vietnam-red)' }}
             animate={{ scale: [1, 1.05, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
             Phần 3.2.1 - Thuyết Trình
           </motion.span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            <span className="bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: 'var(--ink-black)' }}>
+            <span style={{ color: 'var(--vietnam-red)' }}>
               Đổi Mới Toàn Diện 1986 - 1996
             </span>
           </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: 'var(--ancient-stone)' }}>
             Đưa đất nước ra khỏi <strong>khủng hoảng kinh tế - xã hội</strong>,
             đẩy mạnh <strong>công nghiệp hóa, hiện đại hóa</strong> và{" "}
             <strong>hội nhập quốc tế</strong>
@@ -124,11 +115,16 @@ const ReformAnalysis: React.FC = () => {
             <motion.button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all ${
+              className={`px-6 py-3 font-semibold transition-all border-2 ${
                 activeTab === tab.id
-                  ? "bg-gradient-to-r from-red-600 to-yellow-600 text-white shadow-xl"
-                  : "bg-white text-gray-700 hover:bg-gray-50 shadow-md"
+                  ? "shadow-xl"
+                  : "shadow-md"
               }`}
+              style={{
+                backgroundColor: activeTab === tab.id ? 'var(--vietnam-red)' : 'var(--vietnam-white)',
+                color: activeTab === tab.id ? 'var(--vietnam-white)' : 'var(--ancient-stone)',
+                borderColor: activeTab === tab.id ? 'var(--vietnam-gold)' : 'var(--ancient-stone)'
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -148,7 +144,7 @@ const ReformAnalysis: React.FC = () => {
             transition={{ duration: 0.4 }}
             className="max-w-4xl mx-auto"
           >
-            <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border-2 border-gray-100">
+            <div className="shadow-xl rounded-2xl p-8 border-4" style={{ backgroundColor: 'var(--vietnam-white)', borderColor: 'var(--vietnam-gold)' }}>
               <div className="flex items-center gap-4 mb-6">
                 <motion.div
                   className="text-5xl"
@@ -157,7 +153,7 @@ const ReformAnalysis: React.FC = () => {
                 >
                   {currentTab.icon}
                 </motion.div>
-                <h3 className="text-3xl font-bold text-gray-900">
+                <h3 className="text-3xl font-bold" style={{ color: 'var(--ink-black)' }}>
                   {currentTab.title}
                 </h3>
               </div>
@@ -169,7 +165,8 @@ const ReformAnalysis: React.FC = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="flex items-start gap-3 p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl hover:shadow-md transition-all"
+                    className="flex items-start gap-3 p-4 rounded-xl hover:shadow-md transition-all border-2"
+                    style={{ backgroundColor: 'var(--vietnam-white)', borderColor: 'var(--parchment-dark)' }}
                   >
                     <motion.div
                       className="text-2xl"
@@ -182,7 +179,7 @@ const ReformAnalysis: React.FC = () => {
                     >
                       {item.split(" ")[0]}
                     </motion.div>
-                    <p className="text-lg text-gray-700 flex-1">
+                    <p className="text-lg flex-1" style={{ color: 'var(--ancient-stone)' }}>
                       {item.split(" ").slice(1).join(" ")}
                     </p>
                   </motion.div>
@@ -200,7 +197,7 @@ const ReformAnalysis: React.FC = () => {
           viewport={{ once: false }}
           transition={{ duration: 0.6 }}
         >
-          <div className="bg-gradient-to-br from-red-600 to-yellow-600 rounded-2xl shadow-2xl p-8 text-white">
+          <div className="rounded-2xl shadow-2xl p-8 border-4" style={{ backgroundColor: 'var(--vietnam-red)', color: 'var(--vietnam-white)', borderColor: 'var(--vietnam-gold)' }}>
             <h3 className="text-2xl font-bold mb-4 flex items-center gap-3">
               <span className="text-3xl">🎯</span>Ý Nghĩa Lịch Sử
             </h3>

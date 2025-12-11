@@ -77,22 +77,12 @@ const KeyAchievements: React.FC = () => {
     <section
       id="achievements"
       ref={ref}
-      className="py-20 bg-gradient-to-br from-white via-blue-50 to-purple-50 relative overflow-hidden"
+      className="py-20 relative overflow-hidden"
+      style={{ backgroundColor: 'var(--antique-parchment)' }}
     >
-      {/* Animated Background */}
-      <motion.div
-        className="absolute top-0 right-0 w-96 h-96 bg-purple-300 rounded-full filter blur-3xl opacity-20"
-        animate={{
-          scale: [1, 1.3, 1],
-          x: [0, -50, 0],
-          y: [0, 50, 0],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+      {/* Vintage Border Decoration */}
+      <div className="absolute top-0 left-0 right-0 h-2" style={{ backgroundColor: 'var(--vietnam-gold)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-2" style={{ backgroundColor: 'var(--vietnam-gold)' }} />
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
@@ -103,20 +93,21 @@ const KeyAchievements: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.span
-            className="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-semibold mb-4"
+            className="inline-block px-4 py-2 text-sm font-semibold mb-4 border-2"
+            style={{ backgroundColor: 'var(--parchment-dark)', color: 'var(--vietnam-red)', borderColor: 'var(--vietnam-red)' }}
             animate={{ scale: [1, 1.05, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
             🏆 Thành Tựu Nổi Bật
           </motion.span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--ink-black)' }}>
             10 Năm{" "}
-            <span className="bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">
+            <span style={{ color: 'var(--vietnam-red)' }}>
               Đổi Mới
             </span>{" "}
             (1986-1996)
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl max-w-3xl mx-auto" style={{ color: 'var(--ancient-stone)' }}>
             Những bước chuyển mình đáng tự hào đưa đất nước thoát khỏi khủng
             hoảng
           </p>
@@ -135,12 +126,17 @@ const KeyAchievements: React.FC = () => {
               className="relative"
             >
               <div
-                className={`bg-gradient-to-br ${achievement.color} rounded-2xl shadow-xl p-8 text-white h-full relative overflow-hidden`}
+                className="rounded-2xl shadow-xl p-8 h-full relative overflow-hidden border-4"
+                style={{
+                  backgroundColor: index % 2 === 0 ? 'var(--vietnam-red)' : 'var(--royal-burgundy)',
+                  borderColor: 'var(--vietnam-gold)',
+                  color: 'var(--vietnam-white)'
+                }}
               >
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full -translate-y-1/2 translate-x-1/2" />
-                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full translate-y-1/2 -translate-x-1/2" />
+                  <div className="absolute top-0 right-0 w-32 h-32 rounded-full -translate-y-1/2 translate-x-1/2" style={{ backgroundColor: 'var(--vietnam-white)' }} />
+                  <div className="absolute bottom-0 left-0 w-24 h-24 rounded-full translate-y-1/2 -translate-x-1/2" style={{ backgroundColor: 'var(--vietnam-white)' }} />
                 </div>
 
                 <div className="relative z-10">
@@ -212,7 +208,7 @@ const KeyAchievements: React.FC = () => {
           viewport={{ once: false }}
           transition={{ duration: 0.8 }}
         >
-          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border-l-8 border-red-600">
+          <div className="rounded-2xl shadow-2xl p-8 md:p-12 border-l-8" style={{ backgroundColor: 'var(--parchment-dark)', borderColor: 'var(--vietnam-red)' }}>
             <div className="flex items-start gap-6">
               <motion.div
                 className="text-6xl"
@@ -222,12 +218,12 @@ const KeyAchievements: React.FC = () => {
                 💬
               </motion.div>
               <div>
-                <p className="text-2xl text-gray-700 italic mb-4 leading-relaxed">
+                <p className="text-2xl italic mb-4 leading-relaxed" style={{ color: 'var(--sepia)' }}>
                   "Đổi mới là con đường duy nhất để cứu đất nước khỏi nguy cơ
                   tụt hậu. Không đổi mới thì đất nước sẽ tiếp tục đói nghèo, lạc
                   hậu."
                 </p>
-                <p className="text-lg font-semibold text-gray-900">
+                <p className="text-lg font-semibold" style={{ color: 'var(--ink-black)' }}>
                   - Tổng Bí thư Nguyễn Văn Linh (1986)
                 </p>
               </div>
