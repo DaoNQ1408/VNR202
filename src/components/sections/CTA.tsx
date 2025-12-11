@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 const CTA: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ const CTA: React.FC = () => {
           transition={{
             duration: 8,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         />
         <motion.div
@@ -27,7 +27,7 @@ const CTA: React.FC = () => {
           transition={{
             duration: 10,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         />
       </div>
@@ -49,11 +49,11 @@ const CTA: React.FC = () => {
           </motion.div>
 
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Tiếp Nối Tinh Thần Đổi Mới!
+            Học Tập & Phát Huy Tinh Thần Đổi Mới!
           </h2>
           <p className="text-xl text-yellow-100 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Từ bài học lịch sử đến thực tiễn hiện đại - Dám nghĩ, dám làm, dám chịu trách nhiệm
-            để xây dựng Việt Nam ngày càng giàu mạnh!
+            Từ bài học lịch sử 1986-1996 đến hành động ngày nay - Dám nghĩ, dám
+            làm để xây dựng Việt Nam giàu mạnh, văn minh, hạnh phúc!
           </p>
 
           <motion.div
@@ -84,34 +84,37 @@ const CTA: React.FC = () => {
             animate={{ opacity: [0.7, 1, 0.7] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            ⭐ Sản phẩm được tạo với tinh thần học tập nghiêm túc và sử dụng AI có trách nhiệm
+            ⭐ Sản phẩm được tạo với tinh thần học tập nghiêm túc và sử dụng AI
+            có trách nhiệm
           </motion.p>
         </motion.div>
 
         {/* Floating Icons */}
         <div className="mt-16 relative h-32">
-          {['🏆', '📚', '🎓', '⭐', '🚀', '💡', '✨', '🇻🇳'].map((icon, index) => (
-            <motion.div
-              key={index}
-              className="absolute text-5xl"
-              style={{
-                left: `${(index * 12.5)}%`,
-                top: '50%',
-              }}
-              animate={{
-                y: [-20, 20, -20],
-                rotate: [0, 10, -10, 0],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: index * 0.2,
-                ease: 'easeInOut',
-              }}
-            >
-              {icon}
-            </motion.div>
-          ))}
+          {["🏆", "📚", "🎓", "⭐", "🚀", "💡", "✨", "🇻🇳"].map(
+            (icon, index) => (
+              <motion.div
+                key={index}
+                className="absolute text-5xl"
+                style={{
+                  left: `${index * 12.5}%`,
+                  top: "50%",
+                }}
+                animate={{
+                  y: [-20, 20, -20],
+                  rotate: [0, 10, -10, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: index * 0.2,
+                  ease: "easeInOut",
+                }}
+              >
+                {icon}
+              </motion.div>
+            )
+          )}
         </div>
       </div>
     </section>
