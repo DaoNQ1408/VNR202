@@ -160,8 +160,8 @@ const FloatingChatBot: React.FC = () => {
                                         >
                                             <div
                                                 className={`max-w-xs px-4 py-3 rounded-lg user-select-text select-text ${message.role === 'user'
-                                                        ? 'bg-red-500 text-white rounded-br-none'
-                                                        : 'bg-white text-gray-800 border border-gray-200 rounded-bl-none'
+                                                    ? 'bg-red-500 text-white rounded-br-none'
+                                                    : 'bg-white text-gray-800 border border-gray-200 rounded-bl-none'
                                                     }`}
                                             >
                                                 <p className="text-sm whitespace-pre-wrap break-words">
