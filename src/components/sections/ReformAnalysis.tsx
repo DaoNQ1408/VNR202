@@ -136,9 +136,8 @@ const ReformAnalysis: React.FC = () => {
             <motion.button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-6 py-3 font-semibold transition-all border-2 ${
-                activeTab === tab.id ? "shadow-xl" : "shadow-md"
-              }`}
+              className={`px-6 py-3 font-semibold transition-all border-2 ${activeTab === tab.id ? "shadow-xl" : "shadow-md"
+                }`}
               style={{
                 backgroundColor:
                   activeTab === tab.id
@@ -188,15 +187,15 @@ const ReformAnalysis: React.FC = () => {
                   transition={{ duration: 0.7, ease: "easeOut" }}
                 >
                   {/* Vietnamese pattern background */}
-                  <div 
+                  <div
                     className="absolute -inset-4 rounded-2xl opacity-20"
                     style={{
                       backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffd700' fill-opacity='0.6'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
                     }}
                   />
-                  
+
                   {/* Double gold frame */}
-                  <div 
+                  <div
                     className="relative rounded-xl overflow-hidden shadow-2xl"
                     style={{
                       border: "4px solid var(--vietnam-gold)",
@@ -212,11 +211,11 @@ const ReformAnalysis: React.FC = () => {
                       transition={{ duration: 1, ease: "easeOut" }}
                       whileHover={{ scale: 1.02 }}
                     />
-                    
+
                     {/* Subtle overlay gradient */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
                   </div>
-                  
+
                   {/* Image caption with gold accent */}
                   <div
                     className="mt-3 py-3 px-6 text-center font-semibold rounded-lg shadow-lg"
@@ -233,7 +232,7 @@ const ReformAnalysis: React.FC = () => {
                   </div>
                 </motion.div>
               )}
-              
+
               <div className="flex items-center gap-4 mb-6">
                 <motion.div
                   className="text-5xl"

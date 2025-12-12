@@ -289,25 +289,34 @@ const HistoricalStoryTimeline: React.FC = () => {
   useEffect(() => {
     if (timelineRef.current) {
       const ctx = gsap.context(() => {
-        gsap.from(".story-title", {
-          opacity: 0,
-          y: -50,
-          duration: 1,
-          ease: "power3.out",
-        });
+        // Only animate if elements exist
+        const storyTitle = document.querySelector(".story-title");
+        if (storyTitle) {
+          gsap.from(".story-title", {
+            opacity: 0,
+            y: -50,
+            duration: 1,
+            ease: "power3.out",
+          });
+        }
 
-        gsap.from(".period-card", {
-          scrollTrigger: {
-            trigger: ".period-grid",
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
-          },
-          opacity: 0,
-          y: 50,
-          duration: 0.8,
-          stagger: 0.1,
-        });
+        const periodCards = document.querySelectorAll(".period-card");
+        const periodGrid = document.querySelector(".period-grid");
+        
+        if (periodCards && periodCards.length > 0 && periodGrid) {
+          gsap.from(".period-card", {
+            scrollTrigger: {
+              trigger: ".period-grid",
+              start: "top 80%",
+              end: "bottom 20%",
+              toggleActions: "play none none reverse",
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            stagger: 0.1,
+          });
+        }
       }, timelineRef);
 
       return () => ctx.revert();

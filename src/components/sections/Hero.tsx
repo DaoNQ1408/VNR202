@@ -24,18 +24,20 @@ export const Hero: React.FC = () => {
       // Animate title with SplitText effect
       if (titleRef.current) {
         const words = titleRef.current.querySelectorAll(".word");
-        tl.fromTo(
-          words,
-          { opacity: 0, y: 100, rotationX: -90 },
-          {
-            opacity: 1,
-            y: 0,
-            rotationX: 0,
-            duration: 1,
-            stagger: 0.1,
-          },
-          0.3
-        );
+        if (words && words.length > 0) {
+          tl.fromTo(
+            words,
+            { opacity: 0, y: 100, rotationX: -90 },
+            {
+              opacity: 1,
+              y: 0,
+              rotationX: 0,
+              duration: 1,
+              stagger: 0.1,
+            },
+            0.3
+          );
+        }
       }
 
       // Animate paragraph
@@ -50,24 +52,26 @@ export const Hero: React.FC = () => {
 
       // Animate buttons with elastic effect
       if (buttonsRef.current) {
-        const buttons = buttonsRef.current.querySelectorAll("button");
-        tl.fromTo(
-          buttons,
-          { opacity: 0, scale: 0, rotation: -45 },
-          {
-            opacity: 1,
-            scale: 1,
-            rotation: 0,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: "back.out(1.7)",
-          },
-          0.9
-        );
+        const buttons = buttonsRef.current.querySelectorAll("button, a");
+        if (buttons && buttons.length > 0) {
+          tl.fromTo(
+            buttons,
+            { opacity: 0, scale: 0, rotation: -45 },
+            {
+              opacity: 1,
+              scale: 1,
+              rotation: 0,
+              duration: 0.6,
+              stagger: 0.1,
+              ease: "back.out(1.7)",
+            },
+            0.9
+          );
+        }
       }
 
       // Animate stats with counter
-      if (statsRef.current) {
+      if (statsRef.current && statsRef.current.children.length > 0) {
         tl.fromTo(
           statsRef.current.children,
           { opacity: 0, y: 20 },
@@ -129,45 +133,51 @@ export const Hero: React.FC = () => {
       if (floatingElementsRef.current) {
         const elements =
           floatingElementsRef.current.querySelectorAll(".floating-item");
-        elements.forEach((elem, i) => {
-          gsap.to(elem, {
-            y: `${(i + 1) * -20}`,
-            scrollTrigger: {
-              trigger: heroRef.current,
-              start: "top top",
-              end: "bottom top",
-              scrub: 1,
-            },
+        if (elements && elements.length > 0) {
+          elements.forEach((elem, i) => {
+            gsap.to(elem, {
+              y: `${(i + 1) * -20}`,
+              scrollTrigger: {
+                trigger: heroRef.current,
+                start: "top top",
+                end: "bottom top",
+                scrub: 1,
+              },
+            });
+          });
+        }
+      }
+
+      // Background blobs animation - only if elements exist
+      const blobs = document.querySelectorAll(".blob");
+      if (blobs && blobs.length > 0) {
+        blobs.forEach((blob, i) => {
+          gsap.to(blob, {
+            x: `${Math.sin(i) * 50}`,
+            y: `${Math.cos(i) * 50}`,
+            scale: 1.2,
+            duration: 8 + i * 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
           });
         });
       }
 
-      // Background blobs animation
-      const blobs = document.querySelectorAll(".blob");
-      blobs.forEach((blob, i) => {
-        gsap.to(blob, {
-          x: `${Math.sin(i) * 50}`,
-          y: `${Math.cos(i) * 50}`,
-          scale: 1.2,
-          duration: 8 + i * 2,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        });
-      });
-
-      // Sparkles animation
+      // Sparkles animation - only if elements exist
       const sparkles = document.querySelectorAll(".sparkle");
-      sparkles.forEach((sparkle, i) => {
-        gsap.to(sparkle, {
-          scale: 1.5,
-          opacity: 0,
-          duration: 2,
-          repeat: -1,
-          delay: i * 0.3,
-          ease: "power2.inOut",
+      if (sparkles && sparkles.length > 0) {
+        sparkles.forEach((sparkle, i) => {
+          gsap.to(sparkle, {
+            scale: 1.5,
+            opacity: 0,
+            duration: 2,
+            repeat: -1,
+            delay: i * 0.3,
+            ease: "power2.inOut",
+          });
         });
-      });
+      }
     }, heroRef);
 
     return () => ctx.revert();
@@ -181,20 +191,20 @@ export const Hero: React.FC = () => {
       style={{ backgroundColor: "var(--antique-parchment)" }}
     >
       {/* Animated Banner Background with slow zoom */}
-      <div 
+      <div
         className="absolute inset-0 hero-banner-bg"
-        style={{ 
+        style={{
           backgroundImage: "url('/img/bannner.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat"
         }}
       />
-      
+
       {/* Red to Gold gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-red-900/80 via-red-800/60 to-yellow-900/50" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
-      
+
       {/* Vintage Border Decoration */}
       <div className="absolute inset-0 overflow-hidden parallax-bg">
         <div

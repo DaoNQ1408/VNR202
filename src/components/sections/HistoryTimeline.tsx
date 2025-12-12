@@ -1,9 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface TimelineEvent {
     year: string;
@@ -77,22 +73,9 @@ const HistoryTimeline: React.FC = () => {
     ];
 
     useEffect(() => {
-        if (timelineRef.current) {
-            const timeline = gsap.timeline({
-                scrollTrigger: {
-                    trigger: timelineRef.current,
-                    start: 'top 80%',
-                    end: 'bottom 20%',
-                    scrub: 1,
-                },
-            });
-
-            timeline.fromTo(
-                '.timeline-line',
-                { scaleY: 0 },
-                { scaleY: 1, duration: 1, ease: 'power2.out' }
-            );
-        }
+        // Timeline line animation is handled by CSS and Framer Motion
+        // No need for GSAP here as we're using Framer Motion for animations
+        return () => {};
     }, []);
 
     return (
