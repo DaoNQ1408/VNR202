@@ -116,7 +116,7 @@ const App: React.FC = () => {
         <Router>
           {/* Global Floating ChatBot - Available on all routes */}
           <FloatingChatBot />
-          
+
           <Routes>
             {/* Library page with its own layout (no header/footer wrapper) */}
             <Route path="/thu-vien" element={<LibraryPage />} />
