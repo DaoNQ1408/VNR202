@@ -40,7 +40,7 @@ const App: React.FC = () => {
   useEffect(() => {
     // DISABLED ScrollSmoother - it was blocking scroll events for ScrollToTop button
     // Using normal scroll with ScrollTrigger instead
-    
+
     // Advanced scroll animations with stagger
     const sections = gsap.utils.toArray<HTMLElement>(".animate-section");
     sections.forEach((section) => {

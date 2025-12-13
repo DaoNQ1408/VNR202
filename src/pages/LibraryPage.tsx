@@ -132,7 +132,7 @@ export default function LibraryPage() {
 
       {/* Footer */}
       <Footer />
-      
+
       {/* Scroll to Top Button */}
       <ScrollToTop />
     </div>

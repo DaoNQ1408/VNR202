@@ -12,8 +12,9 @@ const ScrollToTop: React.FC = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-      
+      const scrollPosition =
+        window.pageYOffset || document.documentElement.scrollTop;
+
       if (scrollPosition > 300) {
         setIsVisible(true);
       } else {
@@ -23,7 +24,7 @@ const ScrollToTop: React.FC = () => {
 
     // Listen to window scroll
     window.addEventListener("scroll", toggleVisibility, { passive: true });
-    
+
     // Initial check
     toggleVisibility();
 
