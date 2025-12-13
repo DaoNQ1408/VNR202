@@ -3,6 +3,7 @@ import CircularGallery from "../components/CircularGallery/CircularGallery";
 import DomeGallery from "../components/DomeGallery/DomeGallery";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
+import ScrollToTop from "../components/layout/ScrollToTop";
 import { FaImages, FaCube } from "react-icons/fa";
 
 export default function LibraryPage() {
@@ -131,6 +132,9 @@ export default function LibraryPage() {
 
       {/* Footer */}
       <Footer />
+      
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
     </div>
   );
 }

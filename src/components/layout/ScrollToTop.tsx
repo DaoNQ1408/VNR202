@@ -12,17 +12,25 @@ const ScrollToTop: React.FC = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
+      const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollPosition > 300) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
       }
     };
 
-    window.addEventListener("scroll", toggleVisibility);
+    // Listen to window scroll
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
+    
+    // Initial check
+    toggleVisibility();
 
-    return () => window.removeEventListener("scroll", toggleVisibility);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", toggleVisibility);
+    };
+  }, [location.pathname]);
 
   const scrollToTop = () => {
     window.scrollTo({
