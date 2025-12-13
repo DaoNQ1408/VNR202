@@ -18,9 +18,9 @@ interface Period {
 
 const HistoricalStoryTimeline: React.FC = () => {
   const [currentPeriod, setCurrentPeriod] = useState(0);
-  const [showColoredImage, setShowColoredImage] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showPeriods, setShowPeriods] = useState(false);
+  const [isImageHovered, setIsImageHovered] = useState(false);
   const timelineRef = useRef<HTMLDivElement>(null);
 
   const periods: Period[] = [
@@ -302,7 +302,7 @@ const HistoricalStoryTimeline: React.FC = () => {
 
         const periodCards = document.querySelectorAll(".period-card");
         const periodGrid = document.querySelector(".period-grid");
-        
+
         if (periodCards && periodCards.length > 0 && periodGrid) {
           gsap.from(".period-card", {
             scrollTrigger: {
@@ -325,28 +325,23 @@ const HistoricalStoryTimeline: React.FC = () => {
 
   const handleImageClick = (index: number) => {
     setCurrentPeriod(index);
-    setShowColoredImage(false);
     setIsModalOpen(true);
+    setIsImageHovered(false);
     // Prevent body scroll when modal is open
     document.body.style.overflow = "hidden";
   };
+
   const handleNextPeriod = () => {
     if (currentPeriod < periods.length - 1) {
       setCurrentPeriod(currentPeriod + 1);
-      setShowColoredImage(false);
+      setIsImageHovered(false);
     }
   };
 
   const handlePrevPeriod = () => {
     if (currentPeriod > 0) {
       setCurrentPeriod(currentPeriod - 1);
-      setShowColoredImage(false);
-    }
-  };
-
-  const toggleImage = () => {
-    if (periods[currentPeriod].coloredImage) {
-      setShowColoredImage(!showColoredImage);
+      setIsImageHovered(false);
     }
   };
 
@@ -466,14 +461,6 @@ const HistoricalStoryTimeline: React.FC = () => {
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                      {/* Colored indicator */}
-                      {period.coloredImage && (
-                        <div className="absolute top-3 right-3 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                          <Sparkles size={14} />
-                          <span>Có màu</span>
-                        </div>
-                      )}
                     </div>
 
                     {/* Content */}
@@ -553,31 +540,31 @@ const HistoricalStoryTimeline: React.FC = () => {
               <div className="grid md:grid-cols-2 h-full overflow-y-auto">
                 {/* Image Section */}
                 <div className="relative bg-gray-100 flex items-center justify-center p-6">
-                  <div className="relative w-full max-h-[70vh]">
-                    <motion.img
-                      key={showColoredImage ? "colored" : "original"}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.5 }}
-                      src={
-                        showColoredImage && periods[currentPeriod].coloredImage
-                          ? periods[currentPeriod].coloredImage
-                          : periods[currentPeriod].originalImage
-                      }
+                  <div
+                    className="relative w-full max-h-[70vh]"
+                    onMouseEnter={() => setIsImageHovered(true)}
+                    onMouseLeave={() => setIsImageHovered(false)}
+                  >
+                    {/* Original image - always rendered */}
+                    <img
+                      src={periods[currentPeriod].originalImage}
                       alt={periods[currentPeriod].title}
                       className="w-full h-full object-contain rounded-lg shadow-xl"
                     />
 
-                    {/* Toggle button */}
+                    {/* Colored image overlay - shows on hover if available */}
                     {periods[currentPeriod].coloredImage && (
-                      <button
-                        onClick={toggleImage}
-                        className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-gray-900 px-6 py-3 rounded-full font-bold shadow-lg transition-all flex items-center gap-2"
-                      >
-                        <Sparkles size={20} />
-                        {showColoredImage ? "Xem ảnh gốc" : "Xem ảnh màu"}
-                      </button>
+                      <motion.img
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: isImageHovered ? 1 : 0 }}
+                        transition={{ duration: 0.4 }}
+                        src={periods[currentPeriod].coloredImage}
+                        alt={`${periods[currentPeriod].title} - Phần màu`}
+                        className="absolute inset-0 w-full h-full object-contain rounded-lg shadow-xl pointer-events-none"
+                      />
                     )}
+
+                    {/* Hover hint - only show if colored image exists */}
                   </div>
                 </div>
 
