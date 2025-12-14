@@ -151,7 +151,7 @@ const QuizStart: React.FC<QuizStartProps> = ({ quiz, onStart, loading }) => {
                 setError('');
               }}
               placeholder="Ví dụ: Người yêu đất nước, Chú Bộ Đỏ, Bạn học sử..."
-              className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-red-500 focus:outline-none transition-colors text-lg"
+              className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-red-500 focus:outline-none transition-colors text-lg text-gray-900 placeholder-gray-500 bg-white"
               maxLength={50}
               disabled={loading}
             />
