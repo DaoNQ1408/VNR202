@@ -5,10 +5,8 @@ import QuizQuestion from '../components/Quiz/QuizQuestion';
 import QuizResult from '../components/Quiz/QuizResult';
 import { QuizService } from '../services/quizService';
 import type { Quiz, QuizQuestion as QuizQuestionType, QuizAnswer, QuizState } from '../types/quiz';
-const QUIZ_ID = 'ls-dcsvn'; // Default quiz ID
 
-// const QUIZ_ID = 'history-cpv'; // Default quiz ID
-//CPV = Communist Party of Vietnam
+const QUIZ_ID = 'ls-dcsvn'; // Lịch Sử Đảng Cộng Sản Việt Nam
 const FirebaseQuizPage: React.FC = () => {
   const [state, setState] = useState<QuizState>({
     status: 'loading',
