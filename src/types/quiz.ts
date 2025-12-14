@@ -30,6 +30,7 @@ export interface QuizAnswer {
 export interface QuizSubmission {
   id?: string;
   quizId: string;
+  userName: string; // Tên người làm bài
   score: number;
   totalQuestions: number;
   answers: QuizAnswer[];
@@ -58,5 +59,6 @@ export interface QuizState {
   answers: QuizAnswer[];
   startTime: number | null;
   endTime: number | null;
+  userName: string;
   submission: QuizSubmission | null;
 }
