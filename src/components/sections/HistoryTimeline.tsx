@@ -75,7 +75,7 @@ const HistoryTimeline: React.FC = () => {
     useEffect(() => {
         // Timeline line animation is handled by CSS and Framer Motion
         // No need for GSAP here as we're using Framer Motion for animations
-        return () => {};
+        return () => { };
     }, []);
 
     return (
