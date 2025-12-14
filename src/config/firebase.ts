@@ -18,12 +18,12 @@ function initializeFirebase() {
   // Check if Firebase is already initialized
   if (getApps().length === 0) {
     const newApp = initializeApp(firebaseConfig);
-    
+
     // Analytics only in production
     if (typeof window !== 'undefined' && import.meta.env.PROD) {
       getAnalytics(newApp);
     }
-    
+
     console.log('✅ Firebase initialized successfully');
     return newApp;
   } else {

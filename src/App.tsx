@@ -98,9 +98,8 @@ const App: React.FC = () => {
       {showIntro && <IntroLoader onComplete={handleIntroComplete} />}
 
       <div
-        className={`transition-opacity duration-700 ${
-          showContent ? "opacity-100" : "opacity-0"
-        }`}
+        className={`transition-opacity duration-700 ${showContent ? "opacity-100" : "opacity-0"
+          }`}
         style={{ visibility: showContent ? "visible" : "hidden" }}
       >
         <Router>
