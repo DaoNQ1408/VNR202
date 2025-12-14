@@ -15,15 +15,14 @@ import YNghiaPage from "./pages/YNghiaPage";
 import IntroLoader from "./components/sections/IntroLoader";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger);
 
 const App: React.FC = () => {
-  const smoothWrapper = useRef<HTMLDivElement>(null);
-  const smoothContent = useRef<HTMLDivElement>(null);
   const [showIntro, setShowIntro] = useState(true);
   const [showContent, setShowContent] = useState(false);
+  const smoothWrapper = useRef<HTMLDivElement>(null);
+  const smoothContent = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Check if intro has been shown in this session
@@ -42,18 +41,8 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    // Initialize ScrollSmoother for buttery smooth scrolling
-    let smoother: ScrollSmoother | null = null;
-
-    if (smoothWrapper.current && smoothContent.current) {
-      smoother = ScrollSmoother.create({
-        wrapper: smoothWrapper.current,
-        content: smoothContent.current,
-        smooth: 1.5,
-        effects: true,
-        smoothTouch: 0.1,
-      });
-    }
+    // DISABLED ScrollSmoother - it was blocking scroll events for ScrollToTop button
+    // Using normal scroll with ScrollTrigger instead
 
     // Advanced scroll animations with stagger
     const sections = gsap.utils.toArray<HTMLElement>(".animate-section");
@@ -100,7 +89,6 @@ const App: React.FC = () => {
     });
 
     return () => {
-      smoother?.kill();
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
@@ -110,8 +98,9 @@ const App: React.FC = () => {
       {showIntro && <IntroLoader onComplete={handleIntroComplete} />}
 
       <div
-        className={`transition-opacity duration-700 ${showContent ? "opacity-100" : "opacity-0"
-          }`}
+        className={`transition-opacity duration-700 ${
+          showContent ? "opacity-100" : "opacity-0"
+        }`}
         style={{ visibility: showContent ? "visible" : "hidden" }}
       >
         <Router>
