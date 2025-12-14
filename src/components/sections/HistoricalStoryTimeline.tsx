@@ -302,7 +302,7 @@ const HistoricalStoryTimeline: React.FC = () => {
 
         const periodCards = document.querySelectorAll(".period-card");
         const periodGrid = document.querySelector(".period-grid");
-        
+
         if (periodCards && periodCards.length > 0 && periodGrid) {
           gsap.from(".period-card", {
             scrollTrigger: {
@@ -630,9 +630,8 @@ const HistoricalStoryTimeline: React.FC = () => {
                       <div
                         className="bg-gradient-to-r from-red-600 to-yellow-600 h-2 rounded-full transition-all duration-300"
                         style={{
-                          width: `${
-                            ((currentPeriod + 1) / periods.length) * 100
-                          }%`,
+                          width: `${((currentPeriod + 1) / periods.length) * 100
+                            }%`,
                         }}
                       />
                     </div>
