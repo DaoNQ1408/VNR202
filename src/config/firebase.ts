@@ -14,30 +14,27 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase (singleton pattern)
-let app: FirebaseApp;
-let db: Firestore;
-let analytics: Analytics | undefined;
-
 function initializeFirebase() {
   // Check if Firebase is already initialized
   if (getApps().length === 0) {
-    app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
+    const newApp = initializeApp(firebaseConfig);
     
     // Analytics only in production
     if (typeof window !== 'undefined' && import.meta.env.PROD) {
-      analytics = getAnalytics(app);
+      getAnalytics(newApp);
     }
     
     console.log('✅ Firebase initialized successfully');
+    return newApp;
   } else {
-    app = getApps()[0];
-    db = getFirestore(app);
+    return getApps()[0];
   }
 }
 
 // Initialize on module load
-initializeFirebase();
+const app = initializeFirebase();
+const db = getFirestore(app);
+const analytics = typeof window !== 'undefined' && import.meta.env.PROD ? getAnalytics(app) : undefined;
 
 export { db, analytics };
 export default app;

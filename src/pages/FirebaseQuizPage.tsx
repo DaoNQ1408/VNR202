@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import QuizStart from '../../components/Quiz/QuizStart';
-import QuizQuestion from '../../components/Quiz/QuizQuestion';
-import QuizResult from '../../components/Quiz/QuizResult';
-import QuizService from '../../services/quizService';
-import type { Quiz, QuizQuestion as QuizQuestionType, QuizAnswer, QuizState } from '../../types/quiz';
+import QuizStart from '../components/Quiz/QuizStart';
+import QuizQuestion from '../components/Quiz/QuizQuestion';
+import QuizResult from '../components/Quiz/QuizResult';
+import { QuizService } from '../services/quizService';
+import type { Quiz, QuizQuestion as QuizQuestionType, QuizAnswer, QuizState } from '../types/quiz';
 
 const QUIZ_ID = 'history-cpv'; // Default quiz ID
 
@@ -21,7 +21,7 @@ const FirebaseQuizPage: React.FC = () => {
   });
 
   const [timeElapsed, setTimeElapsed] = useState(0);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<number | null>(null);
 
   // Load quiz data on mount
   useEffect(() => {
@@ -46,7 +46,7 @@ const FirebaseQuizPage: React.FC = () => {
 
   const loadQuiz = async () => {
     try {
-      setState((prev) => ({ ...prev, status: 'loading' }));
+      setState((prev: QuizState) => ({ ...prev, status: 'loading' }));
 
       const quiz = await QuizService.getQuiz(QUIZ_ID);
 
@@ -54,7 +54,7 @@ const FirebaseQuizPage: React.FC = () => {
         throw new Error('Quiz not found. Please contact administrator.');
       }
 
-      setState((prev) => ({
+      setState((prev: QuizState) => ({
         ...prev,
         quiz,
         status: 'ready',
@@ -62,7 +62,7 @@ const FirebaseQuizPage: React.FC = () => {
     } catch (error) {
       console.error('Failed to load quiz:', error);
       alert('Không thể tải bài kiểm tra. Vui lòng thử lại sau.');
-      setState((prev) => ({ ...prev, status: 'idle' }));
+      setState((prev: QuizState) => ({ ...prev, status: 'idle' }));
     }
   };
 
@@ -70,7 +70,7 @@ const FirebaseQuizPage: React.FC = () => {
     if (!state.quiz) return;
 
     try {
-      setState((prev) => ({ ...prev, status: 'loading' }));
+      setState((prev: QuizState) => ({ ...prev, status: 'loading' }));
 
       // Get random questions
       const questions = await QuizService.getRandomQuestions(
@@ -78,7 +78,7 @@ const FirebaseQuizPage: React.FC = () => {
         state.quiz.questionsPerAttempt
       );
 
-      setState((prev) => ({
+      setState((prev: QuizState) => ({
         ...prev,
         questions,
         status: 'in-progress',
@@ -91,7 +91,7 @@ const FirebaseQuizPage: React.FC = () => {
     } catch (error) {
       console.error('Failed to start quiz:', error);
       alert('Không thể bắt đầu bài kiểm tra. Vui lòng thử lại.');
-      setState((prev) => ({ ...prev, status: 'ready' }));
+      setState((prev: QuizState) => ({ ...prev, status: 'ready' }));
     }
   };
 
@@ -113,7 +113,7 @@ const FirebaseQuizPage: React.FC = () => {
     if (state.currentQuestionIndex >= state.questions.length - 1) {
       await completeQuiz(newAnswers);
     } else {
-      setState((prev) => ({
+      setState((prev: QuizState) => ({
         ...prev,
         currentQuestionIndex: prev.currentQuestionIndex + 1,
         answers: newAnswers,
@@ -124,7 +124,7 @@ const FirebaseQuizPage: React.FC = () => {
   const completeQuiz = async (answers: QuizAnswer[]) => {
     const endTime = Date.now();
     const timeSpent = Math.floor((endTime - state.startTime!) / 1000);
-    const score = answers.filter((a) => a.isCorrect).length;
+    const score = answers.filter((a: QuizAnswer) => a.isCorrect).length;
 
     try {
       // Submit to Firebase
@@ -138,7 +138,7 @@ const FirebaseQuizPage: React.FC = () => {
 
       console.log('Quiz submitted:', submissionId);
 
-      setState((prev) => ({
+      setState((prev: QuizState) => ({
         ...prev,
         status: 'completed',
         endTime,
@@ -152,7 +152,7 @@ const FirebaseQuizPage: React.FC = () => {
     } catch (error) {
       console.error('Failed to submit quiz:', error);
       // Still show results even if submission fails
-      setState((prev) => ({
+      setState((prev: QuizState) => ({
         ...prev,
         status: 'completed',
         endTime,
@@ -241,7 +241,7 @@ const FirebaseQuizPage: React.FC = () => {
           {state.status === 'completed' && (
             <QuizResult
               key="result"
-              score={state.answers.filter((a) => a.isCorrect).length}
+              score={state.answers.filter((a: QuizAnswer) => a.isCorrect).length}
               totalQuestions={state.questions.length}
               answers={state.answers}
               timeSpent={timeElapsed}
