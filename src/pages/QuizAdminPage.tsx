@@ -14,6 +14,7 @@ const QUIZ_ID = 'history-cpv';
 
 const QuizAdminPage: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
+  const [clearOldQuestions, setClearOldQuestions] = useState(true);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<{
     type: 'idle' | 'success' | 'error';
@@ -55,11 +56,11 @@ const QuizAdminPage: React.FC = () => {
       });
 
       // Import questions to Firestore
-      await QuizService.importQuestions(QUIZ_ID, questions);
+      await QuizService.importQuestions(QUIZ_ID, questions, clearOldQuestions);
 
       setStatus({
         type: 'success',
-        message: `✅ Đã import thành công ${questions.length} câu hỏi!`,
+        message: `✅ Đã import thành công ${questions.length} câu hỏi!${clearOldQuestions ? ' (Đã xóa câu hỏi cũ)' : ''}`,
       });
 
       setFile(null);
@@ -167,6 +168,27 @@ const QuizAdminPage: React.FC = () => {
                 </div>
               )}
             </div>
+          </div>
+
+          {/* Clear Old Questions Option */}
+          <div className="mb-6">
+            <label className="flex items-center space-x-3 p-4 bg-yellow-50 border-2 border-yellow-300 rounded-xl cursor-pointer hover:bg-yellow-100 transition-colors">
+              <input
+                type="checkbox"
+                checked={clearOldQuestions}
+                onChange={(e) => setClearOldQuestions(e.target.checked)}
+                className="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500"
+              />
+              <div>
+                <div className="font-semibold text-gray-900">
+                  🗑️ Xóa tất cả câu hỏi cũ trước khi import
+                </div>
+                <div className="text-sm text-gray-600">
+                  <strong>Khuyến nghị:</strong> Bật tùy chọn này để tránh trùng lặp câu hỏi.
+                  Nếu tắt, câu hỏi mới sẽ được thêm vào danh sách hiện có.
+                </div>
+              </div>
+            </label>
           </div>
 
           {/* Import Button */}

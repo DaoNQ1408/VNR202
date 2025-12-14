@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Play, BookOpen, Trophy, Clock } from 'lucide-react';
+import { Play, BookOpen, Trophy, Clock, User } from 'lucide-react';
 
 interface QuizStartProps {
   quiz: {
@@ -9,11 +9,28 @@ interface QuizStartProps {
     questionsPerAttempt: number;
     totalQuestions: number;
   };
-  onStart: () => void;
+  onStart: (userName: string) => void;
   loading?: boolean;
 }
 
 const QuizStart: React.FC<QuizStartProps> = ({ quiz, onStart, loading }) => {
+  const [userName, setUserName] = useState('');
+  const [error, setError] = useState('');
+
+  const handleStart = () => {
+    const trimmedName = userName.trim();
+    if (!trimmedName) {
+      setError('Vui lòng nhập nickname của bạn');
+      return;
+    }
+    if (trimmedName.length < 2) {
+      setError('Nickname phải có ít nhất 2 ký tự');
+      return;
+    }
+    setError('');
+    onStart(trimmedName);
+  };
+
   const features = [
     {
       icon: BookOpen,
@@ -114,6 +131,38 @@ const QuizStart: React.FC<QuizStartProps> = ({ quiz, onStart, loading }) => {
             </ul>
           </motion.div>
 
+          {/* User Name Input */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.5 }}
+            className="mb-8"
+          >
+            <label htmlFor="userName" className="block text-sm font-semibold text-gray-700 mb-2">
+              <User className="w-4 h-4 inline mr-1" />
+              Hãy nhập nickname của bạn
+            </label>
+            <input
+              id="userName"
+              type="text"
+              value={userName}
+              onChange={(e) => {
+                setUserName(e.target.value);
+                setError('');
+              }}
+              placeholder="Ví dụ: Người yêu đất nước, Chú Bộ Đỏ, Bạn học sử..."
+              className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-red-500 focus:outline-none transition-colors text-lg"
+              maxLength={50}
+              disabled={loading}
+            />
+            {error && (
+              <p className="mt-2 text-sm text-red-600 flex items-center">
+                <span className="mr-1">⚠️</span>
+                {error}
+              </p>
+            )}
+          </motion.div>
+
           {/* Start Button */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -122,7 +171,7 @@ const QuizStart: React.FC<QuizStartProps> = ({ quiz, onStart, loading }) => {
             className="text-center"
           >
             <button
-              onClick={onStart}
+              onClick={handleStart}
               disabled={loading}
               className="group relative inline-flex items-center px-12 py-4 bg-gradient-to-r from-red-600 to-yellow-600 text-white text-lg font-bold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
