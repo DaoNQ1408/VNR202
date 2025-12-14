@@ -5,7 +5,8 @@ import Footer from "./components/layout/Footer";
 import ScrollToTop from "./components/layout/ScrollToTop";
 import FloatingChatBot from "./components/ChatBot/FloatingChatBot";
 import HomePage from "./pages/HomePage";
-import QuizPage from "./pages/QuizPage";
+import FirebaseQuizPage from "./pages/FirebaseQuizPage";
+import QuizAdminPage from "./pages/QuizAdminPage";
 import CaseStudyPage from "./pages/CaseStudyPage";
 import LibraryPage from "./pages/LibraryPage";
 import MiniGamePage from "./pages/MiniGamePage";
@@ -135,7 +136,8 @@ const App: React.FC = () => {
                       <Header />
                       <Routes>
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/quiz" element={<QuizPage />} />
+                        <Route path="/quiz" element={<FirebaseQuizPage />} />
+                        <Route path="/quiz-admin" element={<QuizAdminPage />} />
                         <Route path="/case-study" element={<CaseStudyPage />} />
                         <Route path="/minigame" element={<MiniGamePage />} />
                         <Route path="/y-nghia" element={<YNghiaPage />} />
