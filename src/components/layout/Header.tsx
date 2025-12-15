@@ -13,7 +13,14 @@ type NavItem = {
 const navigation: NavItem[] = [
   { name: "Trang Chủ", href: "/" },
   { name: "Thư Viện 3D", href: "/thu-vien" },
-  { name: "Ý Nghĩa", href: "/y-nghia" },
+  {
+    name: "Ý Nghĩa",
+    href: "/y-nghia",
+    children: [
+      { name: "📜 Timeline Lịch Sử", href: "/y-nghia" },
+      { name: "🎥 Video Giải Thích", href: "/video-giai-thich" },
+    ],
+  },
   { name: "Quiz", href: "/quiz" },
   { name: "Mini Game", href: "/minigame" },
   { name: "AI Hỗ Trợ", href: "/ai-ho-tro" },
@@ -22,7 +29,7 @@ const navigation: NavItem[] = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
 
   return (
     <header
@@ -93,16 +100,20 @@ export default function Header() {
             {navigation.map((item) => (
               <div key={item.name} className="relative">
                 {item.children ? (
-                  <div className="relative">
+                  <div
+                    className="relative"
+                    onMouseEnter={() => setDropdownOpen(item.name)}
+                    onMouseLeave={() => setDropdownOpen(null)}
+                  >
                     <button
-                      onClick={() => setDropdownOpen(!dropdownOpen)}
                       className="px-4 py-2 text-[#FFD700] hover:text-[#FFFFFF] transition-colors text-sm font-semibold flex items-center gap-1 tracking-wide"
                       style={{ color: "#FFD700" }}
                     >
                       {item.name}
                       <svg
-                        className={`w-4 h-4 transition-transform ${dropdownOpen ? "rotate-180" : ""
-                          }`}
+                        className={`w-4 h-4 transition-transform ${
+                          dropdownOpen === item.name ? "rotate-180" : ""
+                        }`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -115,7 +126,7 @@ export default function Header() {
                         />
                       </svg>
                     </button>
-                    {dropdownOpen && (
+                    {dropdownOpen === item.name && (
                       <div
                         className="absolute top-full left-0 mt-1 w-72 rounded-lg shadow-2xl overflow-hidden border border-[#C9A227]/30"
                         style={{ backgroundColor: "#FFFDF8" }}
@@ -125,7 +136,6 @@ export default function Header() {
                             key={child.name}
                             to={child.href}
                             className="block px-4 py-3 text-sm text-[#0F1C3F] hover:bg-[#F5EDE0] hover:text-[#8B1A1A] transition-colors border-l-4 border-transparent hover:border-[#C9A227] font-medium"
-                            onClick={() => setDropdownOpen(false)}
                           >
                             {child.name}
                           </Link>
