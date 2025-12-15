@@ -157,9 +157,11 @@ export default function Footer() {
               tập.
             </p>
             <div className="flex items-center gap-2">
-              <span className="text-white/70 text-xs">Được xây dựng với</span>
+              <span className="text-white/70 text-xs">
+                Được xây dựng bởi Nhóm 9
+              </span>
               <span className="text-[#FFD700]">❤</span>
-              <span className="text-white/70 text-xs">bằng React & GSAP</span>
+              <span className="text-white/70 text-xs">VNR_3W_06</span>
             </div>
           </div>
         </div>
