@@ -197,7 +197,7 @@ export class QuizService {
         QUESTIONS_SUBCOLLECTION
       );
       const snapshot = await getDocs(questionsRef);
-      
+
       if (snapshot.empty) {
         return 0;
       }

@@ -212,13 +212,12 @@ const QuizAdminPage: React.FC = () => {
             <div
               className={`
               mt-6 p-4 rounded-xl border-2
-              ${
-                status.type === 'success'
+              ${status.type === 'success'
                   ? 'bg-green-50 border-green-300 text-green-800'
                   : status.type === 'error'
-                  ? 'bg-red-50 border-red-300 text-red-800'
-                  : 'bg-blue-50 border-blue-300 text-blue-800'
-              }
+                    ? 'bg-red-50 border-red-300 text-red-800'
+                    : 'bg-blue-50 border-blue-300 text-blue-800'
+                }
             `}
             >
               <p className="font-medium">{status.message}</p>
