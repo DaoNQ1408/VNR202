@@ -21,7 +21,7 @@ const QuizResult: React.FC<QuizResultProps> = ({
 }) => {
   const [highScores, setHighScores] = useState<HighScore[]>([]);
   const [loadingScores, setLoadingScores] = useState(true);
-  
+
   const percentage = Math.round((score / totalQuestions) * 100);
   const wrongAnswers = answers.filter(a => !a.isCorrect);
 
