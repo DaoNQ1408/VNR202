@@ -12,6 +12,7 @@ import LibraryPage from "./pages/LibraryPage";
 import MiniGamePage from "./pages/MiniGamePage";
 import AIUsagePage from "./pages/AIUsagePage";
 import YNghiaPage from "./pages/YNghiaPage";
+import VideoExplanationPage from "./pages/VideoExplanationPage";
 import IntroLoader from "./components/sections/IntroLoader";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -129,6 +130,7 @@ const App: React.FC = () => {
                         <Route path="/case-study" element={<CaseStudyPage />} />
                         <Route path="/minigame" element={<MiniGamePage />} />
                         <Route path="/y-nghia" element={<YNghiaPage />} />
+                        <Route path="/video-giai-thich" element={<VideoExplanationPage />} />
                         <Route path="/ai-ho-tro" element={<AIUsagePage />} />
                       </Routes>
                       <Footer />

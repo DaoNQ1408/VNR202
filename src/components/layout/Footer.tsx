@@ -15,6 +15,7 @@ const footerLinks = [
     links: [
       { name: "Thư Viện Hình Ảnh 3D", href: "/thu-vien" },
       { name: "Ý Nghĩa Lịch Sử", href: "/y-nghia" },
+      { name: "Video Giải Thích", href: "/video-giai-thich" },
       { name: "Quiz Kiến Thức", href: "/quiz" },
     ],
   },
