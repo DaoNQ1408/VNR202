@@ -183,11 +183,126 @@ const QuizResult: React.FC<QuizResultProps> = ({
         </div>
       </motion.div>
 
+      {/* High Scores Leaderboard */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.85 }}
+        className="bg-white rounded-2xl shadow-xl p-8 mb-8"
+      >
+        <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+          <Award className="w-7 h-7 mr-3 text-yellow-600" />
+          Bảng xếp hạng - Top 15
+        </h3>
+
+        {loadingScores ? (
+          <div className="flex justify-center items-center py-12">
+            <div className="w-12 h-12 border-4 border-yellow-600 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        ) : highScores.length > 0 ? (
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b-2 border-gray-200">
+                  <th className="px-4 py-3 text-left text-sm font-bold text-gray-700">Hạng</th>
+                  <th className="px-4 py-3 text-left text-sm font-bold text-gray-700">Tên</th>
+                  <th className="px-4 py-3 text-center text-sm font-bold text-gray-700">Điểm</th>
+                  <th className="px-4 py-3 text-center text-sm font-bold text-gray-700">Tỷ lệ</th>
+                  <th className="px-4 py-3 text-center text-sm font-bold text-gray-700">Thời gian</th>
+                  <th className="px-4 py-3 text-center text-sm font-bold text-gray-700">Ngày làm</th>
+                </tr>
+              </thead>
+              <tbody>
+                {highScores.map((highScore, index) => {
+                  const rank = index + 1;
+                  const isTopThree = rank <= 3;
+                  const getMedalIcon = () => {
+                    if (rank === 1) return '🥇';
+                    if (rank === 2) return '🥈';
+                    if (rank === 3) return '🥉';
+                    return null;
+                  };
+
+                  return (
+                    <motion.tr
+                      key={highScore.id || index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.9 + index * 0.03 }}
+                      className={`
+                        border-b border-gray-100 hover:bg-gray-50 transition-colors
+                        ${isTopThree ? 'bg-gradient-to-r from-yellow-50 to-transparent' : ''}
+                      `}
+                    >
+                      <td className="px-4 py-4">
+                        <div className="flex items-center">
+                          {getMedalIcon() ? (
+                            <span className="text-2xl">{getMedalIcon()}</span>
+                          ) : (
+                            <div className={`
+                              w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm
+                              ${rank <= 5 ? 'bg-yellow-100 text-yellow-700' : 'bg-gray-100 text-gray-600'}
+                            `}>
+                              {rank}
+                            </div>
+                          )}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className={`font-medium ${isTopThree ? 'text-gray-900 font-bold' : 'text-gray-700'}`}>
+                          {highScore.userName}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 text-center">
+                        <div className="font-bold text-gray-900">
+                          {highScore.score}/{highScore.totalQuestions}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 text-center">
+                        <div className={`
+                          inline-flex items-center px-3 py-1 rounded-full text-sm font-bold
+                          ${highScore.percentage === 100 
+                            ? 'bg-yellow-100 text-yellow-800' 
+                            : highScore.percentage >= 80 
+                            ? 'bg-green-100 text-green-800' 
+                            : 'bg-blue-100 text-blue-800'
+                          }
+                        `}>
+                          {highScore.percentage}%
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 text-center">
+                        <div className="flex items-center justify-center text-sm text-gray-600">
+                          <Clock className="w-4 h-4 mr-1" />
+                          {formatTime(highScore.timeSpent)}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 text-center text-sm text-gray-500">
+                        {new Date(highScore.createdAt).toLocaleDateString('vi-VN', {
+                          day: '2-digit',
+                          month: '2-digit',
+                          year: 'numeric',
+                        })}
+                      </td>
+                    </motion.tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="text-center py-12 text-gray-500">
+            <Medal className="w-16 h-16 mx-auto mb-4 text-gray-300" />
+            <p>Chưa có kết quả nào. Hãy là người đầu tiên!</p>
+          </div>
+        )}
+      </motion.div>
+
       {/* Answer Review */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.9 }}
+        transition={{ delay: 1.3 }}
         className="bg-white rounded-2xl shadow-xl p-8"
       >
         <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
@@ -201,7 +316,7 @@ const QuizResult: React.FC<QuizResultProps> = ({
               key={index}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1 + index * 0.05 }}
+              transition={{ delay: 1.4 + index * 0.05 }}
               className={`
                 p-6 rounded-xl border-2 transition-all
                 ${answer.isCorrect
