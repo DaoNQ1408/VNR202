@@ -212,6 +212,7 @@ const SurvivalGame: React.FC = () => {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const [shuffledItems, setShuffledItems] = useState<typeof items>([]);
   const [feedback, setFeedback] = useState<{
     show: boolean;
     isCorrect: boolean;
@@ -264,8 +265,18 @@ const SurvivalGame: React.FC = () => {
     { name: "Nồi niêu", isEssential: true, image: "🍲" },
     { name: "Bát đũa", isEssential: true, image: "🥢" },
     { name: "Đèn dầu", isEssential: true, image: "🕯️" },
+    { name: "Diêm quẹt", isEssential: true, image: "🔥" },
+    { name: "Thuốc trừ sâu", isEssential: true, image: "🧪" },
+    { name: "Lưỡi dao cạo", isEssential: true, image: "🪒" },
+    { name: "Kim chỉ", isEssential: true, image: "🪡" },
+    { name: "Khay đựng", isEssential: true, image: "🥘" },
+    { name: "Xô nhựa", isEssential: true, image: "🪣" },
+    { name: "Cần câu", isEssential: true, image: "🎣" },
+    { name: "Lưới đánh cá", isEssential: true, image: "🥅" },
+    { name: "Dao nhà bếp", isEssential: true, image: "🔪" },
+    { name: "Giỏ xách", isEssential: true, image: "🧺" },
 
-    // Hàng xa xỉ/không thiết yếu (40 items non-essential)
+    // Hàng xa xỉ/không thiết yếu (50 items non-essential)
     { name: "Bánh kẹo", isEssential: false, image: "🍭" },
     { name: "Nước ngọt", isEssential: false, image: "🥤" },
     { name: "Bia rượu", isEssential: false, image: "🍺" },
@@ -306,7 +317,22 @@ const SurvivalGame: React.FC = () => {
     { name: "Vi-ô-lông", isEssential: false, image: "🎻" },
     { name: "Máy cassette", isEssential: false, image: "📼" },
     { name: "Thảm Ba Tư", isEssential: false, image: "🧶" },
+    { name: "Bình hoa sứ", isEssential: false, image: "🏺" },
+    { name: "Tượng trang trí", isEssential: false, image: "🗿" },
+    { name: "Gấu bông cao cấp", isEssential: false, image: "🧸" },
+    { name: "Đồ chơi điện tử", isEssential: false, image: "🕹️" },
+    { name: "Tem sưu tầm", isEssential: false, image: "🎫" },
+    { name: "Tranh sơn dầu", isEssential: false, image: "🖼️" },
+    { name: "Vòng tay vàng", isEssential: false, image: "📿" },
+    { name: "Nhẫn kim cương", isEssential: false, image: "💎" },
+    { name: "Áo choàng lụa", isEssential: false, image: "🥻" },
   ];
+
+  // Shuffle items khi component mount hoặc restart
+  useEffect(() => {
+    const shuffled = [...items].sort(() => Math.random() - 0.5);
+    setShuffledItems(shuffled);
+  }, [gameOver]); // Re-shuffle khi restart game
 
   useEffect(() => {
     if (timeLeft > 0 && !gameOver) {
@@ -456,13 +482,13 @@ const SurvivalGame: React.FC = () => {
         </h4>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
           <AnimatePresence>
-            {items.map((item) => {
+            {shuffledItems.map((item, index) => {
               // Ẩn items đã chọn
               if (selectedItems.includes(item.name)) return null;
 
               return (
                 <motion.div
-                  key={item.name}
+                  key={`${item.name}-${index}`}
                   initial={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.5 }}
                   transition={{ duration: 0.3 }}
@@ -642,8 +668,12 @@ const StrategyGame: React.FC = () => {
     { id: "26", name: "Đậu xanh", category: "luongthuc", image: "🫘" },
     { id: "27", name: "Đậu đỏ", category: "luongthuc", image: "🫘" },
     { id: "28", name: "Mè", category: "luongthuc", image: "🌱" },
+    { id: "83", name: "Thóc", category: "luongthuc", image: "🌾" },
+    { id: "84", name: "Bánh đa", category: "luongthuc", image: "🥮" },
+    { id: "85", name: "Bánh tráng", category: "luongthuc", image: "🍘" },
+    { id: "86", name: "Cháo lòng", category: "luongthuc", image: "🍜" },
 
-    // Hàng tiêu dùng (28 items)
+    // Hàng tiêu dùng (35 items)
     { id: "29", name: "Quần áo", category: "tieudung", image: "👕" },
     { id: "30", name: "Giày dép", category: "tieudung", image: "👟" },
     { id: "31", name: "Mũ nón", category: "tieudung", image: "🧢" },
@@ -672,8 +702,15 @@ const StrategyGame: React.FC = () => {
     { id: "54", name: "Khăn tắm", category: "tieudung", image: "🧴" },
     { id: "55", name: "Dây thừng", category: "tieudung", image: "🪢" },
     { id: "56", name: "Đèn dầu", category: "tieudung", image: "🕯️" },
+    { id: "87", name: "Gương soi", category: "tieudung", image: "🪞" },
+    { id: "88", name: "Lược chải tóc", category: "tieudung", image: "💇" },
+    { id: "89", name: "Kéo cắt", category: "tieudung", image: "✂️" },
+    { id: "90", name: "Dao cạo râu", category: "tieudung", image: "🪒" },
+    { id: "91", name: "Ổ khóa", category: "tieudung", image: "🔒" },
+    { id: "92", name: "Chìa khóa", category: "tieudung", image: "🔑" },
+    { id: "93", name: "Đinh ốc vít", category: "tieudung", image: "🔩" },
 
-    // Hàng xuất khẩu (18 items)
+    // Hàng xuất khẩu (22 items)
     { id: "57", name: "Cà phê", category: "xuatkhau", image: "☕" },
     { id: "58", name: "Tôm đông lạnh", category: "xuatkhau", image: "🦐" },
     { id: "59", name: "Cao su", category: "xuatkhau", image: "🌳" },
@@ -692,8 +729,12 @@ const StrategyGame: React.FC = () => {
     { id: "72", name: "Hạt sắn", category: "xuatkhau", image: "🌿" },
     { id: "73", name: "Nghệ vàng", category: "xuatkhau", image: "🟡" },
     { id: "74", name: "Vải thiều", category: "xuatkhau", image: "🍇" },
+    { id: "94", name: "Thanh long", category: "xuatkhau", image: "🐉" },
+    { id: "95", name: "Măng khô", category: "xuatkhau", image: "🎍" },
+    { id: "96", name: "Nấm khô", category: "xuatkhau", image: "🍄" },
+    { id: "97", name: "Tỏi khô", category: "xuatkhau", image: "🧄" },
 
-    // Công nghiệp nặng (TRAP - 8 items)
+    // Công nghiệp nặng (TRAP - 10 items)
     {
       id: "75",
       name: "Máy móc hạng nặng",
@@ -707,6 +748,8 @@ const StrategyGame: React.FC = () => {
     { id: "80", name: "Thiết bị nặng", category: "congnghiep", image: "🏭" },
     { id: "81", name: "Sắt thô", category: "congnghiep", image: "⚒️" },
     { id: "82", name: "Máy xúc", category: "congnghiep", image: "🚜" },
+    { id: "98", name: "Nhà máy điện", category: "congnghiep", image: "🏭" },
+    { id: "99", name: "Đầu máy xe lửa", category: "congnghiep", image: "🚂" },
   ];
 
   const totalCorrectItems = allItems.filter(
