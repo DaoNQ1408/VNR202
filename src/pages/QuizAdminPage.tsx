@@ -10,10 +10,11 @@ import QuizService from '../services/quizService';
  * For development only - allows importing questions from Excel
  */
 
-const QUIZ_ID = 'history-cpv';
+const QUIZ_ID = 'ls-dcsvn';
 
 const QuizAdminPage: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
+  const [clearOldQuestions, setClearOldQuestions] = useState(true);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<{
     type: 'idle' | 'success' | 'error';
@@ -43,7 +44,7 @@ const QuizAdminPage: React.FC = () => {
 
       setStatus({
         type: 'idle',
-        message: `Đã phân tích ${questions.length} câu hỏi. Đang tải lên Firebase...`,
+        message: `Đã phân tích ${questions.length} câu hỏi. Đang tải lên hệ thống...`,
       });
 
       // Create/update quiz metadata
@@ -55,11 +56,11 @@ const QuizAdminPage: React.FC = () => {
       });
 
       // Import questions to Firestore
-      await QuizService.importQuestions(QUIZ_ID, questions);
+      await QuizService.importQuestions(QUIZ_ID, questions, clearOldQuestions);
 
       setStatus({
         type: 'success',
-        message: `✅ Đã import thành công ${questions.length} câu hỏi!`,
+        message: `✅ Đã import thành công ${questions.length} câu hỏi!${clearOldQuestions ? ' (Đã xóa câu hỏi cũ)' : ''}`,
       });
 
       setFile(null);
@@ -93,11 +94,8 @@ const QuizAdminPage: React.FC = () => {
                 ⚠️ Trang Quản Trị - Dành Cho Chủ Sở Hữu
               </h3>
               <p className="text-yellow-800">
-                Trang này cho phép import câu hỏi từ Excel vào Firebase.{' '}
+                Trang này cho phép import câu hỏi từ Excel vào hệ thống.{' '}
                 <strong>Chỉ sử dụng khi thiết lập hoặc cập nhật câu hỏi.</strong>
-              </p>
-              <p className="text-yellow-800 mt-2 text-sm">
-                💡 Sau khi import xong, bạn có thể ẩn hoặc xóa trang này khỏi production.
               </p>
             </div>
           </div>
@@ -109,7 +107,7 @@ const QuizAdminPage: React.FC = () => {
             Quản Lý Câu Hỏi Quiz
           </h1>
           <p className="text-gray-600 mb-8">
-            Import câu hỏi từ file Excel vào hệ thống Firebase
+            Import câu hỏi từ file Excel vào hệ thống
           </p>
 
           {/* Instructions */}
@@ -129,7 +127,7 @@ const QuizAdminPage: React.FC = () => {
                 </ul>
               </li>
               <li>Chọn file Excel đã điền</li>
-              <li>Nhấn "Import Câu Hỏi" để tải lên Firebase</li>
+              <li>Nhấn "Import Câu Hỏi" để tải lên danh sách các câu hỏi</li>
             </ol>
           </div>
 
@@ -169,6 +167,27 @@ const QuizAdminPage: React.FC = () => {
             </div>
           </div>
 
+          {/* Clear Old Questions Option */}
+          <div className="mb-6">
+            <label className="flex items-center space-x-3 p-4 bg-yellow-50 border-2 border-yellow-300 rounded-xl cursor-pointer hover:bg-yellow-100 transition-colors">
+              <input
+                type="checkbox"
+                checked={clearOldQuestions}
+                onChange={(e) => setClearOldQuestions(e.target.checked)}
+                className="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500"
+              />
+              <div>
+                <div className="font-semibold text-gray-900">
+                  🗑️ Xóa tất cả câu hỏi cũ trước khi import
+                </div>
+                <div className="text-sm text-gray-600">
+                  <strong>Khuyến nghị:</strong> Bật tùy chọn này để tránh trùng lặp câu hỏi.
+                  Nếu tắt, câu hỏi mới sẽ được thêm vào danh sách hiện có.
+                </div>
+              </div>
+            </label>
+          </div>
+
           {/* Import Button */}
           <button
             onClick={handleImport}
@@ -183,7 +202,7 @@ const QuizAdminPage: React.FC = () => {
             ) : (
               <>
                 <Upload className="w-5 h-5 mr-2" />
-                Import Câu Hỏi vào Firebase
+                Import Câu Hỏi
               </>
             )}
           </button>
@@ -193,41 +212,17 @@ const QuizAdminPage: React.FC = () => {
             <div
               className={`
               mt-6 p-4 rounded-xl border-2
-              ${
-                status.type === 'success'
+              ${status.type === 'success'
                   ? 'bg-green-50 border-green-300 text-green-800'
                   : status.type === 'error'
-                  ? 'bg-red-50 border-red-300 text-red-800'
-                  : 'bg-blue-50 border-blue-300 text-blue-800'
-              }
+                    ? 'bg-red-50 border-red-300 text-red-800'
+                    : 'bg-blue-50 border-blue-300 text-blue-800'
+                }
             `}
             >
               <p className="font-medium">{status.message}</p>
             </div>
           )}
-
-          {/* Quick Stats */}
-          <div className="mt-8 pt-8 border-t border-gray-200">
-            <h3 className="font-bold text-gray-900 mb-4">Thông Tin Quiz</h3>
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <div className="text-gray-600">Quiz ID</div>
-                <div className="font-mono font-bold text-gray-900">{QUIZ_ID}</div>
-              </div>
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <div className="text-gray-600">Số câu mỗi lần thi</div>
-                <div className="font-bold text-gray-900">20 câu</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Footer Note */}
-        <div className="mt-6 text-center text-gray-600 text-sm">
-          <p>
-            💡 <strong>Lưu ý:</strong> Mỗi lần import sẽ thêm câu hỏi mới vào Firebase.
-            Để xóa câu hỏi cũ, vui lòng truy cập Firebase Console.
-          </p>
         </div>
       </div>
     </div>

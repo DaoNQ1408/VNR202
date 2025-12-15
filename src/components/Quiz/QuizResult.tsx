@@ -184,10 +184,9 @@ const QuizResult: React.FC<QuizResultProps> = ({
               transition={{ delay: 1 + index * 0.05 }}
               className={`
                 p-6 rounded-xl border-2 transition-all
-                ${
-                  answer.isCorrect
-                    ? 'bg-green-50 border-green-300'
-                    : 'bg-red-50 border-red-300'
+                ${answer.isCorrect
+                  ? 'bg-green-50 border-green-300'
+                  : 'bg-red-50 border-red-300'
                 }
               `}
             >
@@ -226,10 +225,9 @@ const QuizResult: React.FC<QuizResultProps> = ({
                       key={optIndex}
                       className={`
                         p-3 rounded-lg flex items-center
-                        ${
-                          isCorrect
-                            ? 'bg-green-100 border border-green-300'
-                            : isSelected
+                        ${isCorrect
+                          ? 'bg-green-100 border border-green-300'
+                          : isSelected
                             ? 'bg-red-100 border border-red-300'
                             : 'bg-gray-50'
                         }
@@ -238,13 +236,12 @@ const QuizResult: React.FC<QuizResultProps> = ({
                       <div
                         className={`
                         w-7 h-7 rounded-full flex items-center justify-center mr-3 text-sm font-bold
-                        ${
-                          isCorrect
+                        ${isCorrect
                             ? 'bg-green-500 text-white'
                             : isSelected
-                            ? 'bg-red-500 text-white'
-                            : 'bg-gray-300 text-gray-700'
-                        }
+                              ? 'bg-red-500 text-white'
+                              : 'bg-gray-300 text-gray-700'
+                          }
                       `}
                       >
                         {String.fromCharCode(65 + optIndex)}
