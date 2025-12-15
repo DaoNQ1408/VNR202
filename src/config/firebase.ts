@@ -12,7 +12,11 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
-
+console.log("🔥 ENV CHECK", {
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  mode: import.meta.env.MODE,
+});
 // Initialize Firebase (singleton pattern)
 function initializeFirebase() {
   // Check if Firebase is already initialized

@@ -17,12 +17,14 @@ import type {
   QuizQuestion,
   QuizSubmission,
   ExcelQuestionRow,
+  HighScore,
 } from '../types/quiz';
 
 // Collection references
 const QUIZZES_COLLECTION = 'quizzes';
 const QUESTIONS_SUBCOLLECTION = 'questions';
 const SUBMISSIONS_COLLECTION = 'submissions';
+const HIGHSCORES_COLLECTION = 'highscores';
 
 /**
  * Quiz Service - handles all Firebase operations for the Quiz system
@@ -108,7 +110,7 @@ export class QuizService {
   }
 
   /**
-   * Submit quiz results
+   * Submit quiz results and add to high scores
    */
   static async submitQuiz(
     submission: Omit<QuizSubmission, 'id' | 'createdAt'>
@@ -119,10 +121,22 @@ export class QuizService {
         createdAt: Timestamp.now(),
       };
 
+      // Submit to submissions collection
       const docRef = await addDoc(
         collection(db, SUBMISSIONS_COLLECTION),
         submissionData
       );
+
+      // Add to high scores collection
+      const percentage = Math.round((submission.score / submission.totalQuestions) * 100);
+      await addDoc(collection(db, HIGHSCORES_COLLECTION), {
+        userName: submission.userName,
+        score: submission.score,
+        totalQuestions: submission.totalQuestions,
+        percentage,
+        timeSpent: submission.timeSpent,
+        createdAt: Timestamp.now(),
+      });
 
       console.log('✅ Quiz submitted successfully:', docRef.id);
       return docRef.id;
@@ -154,6 +168,31 @@ export class QuizService {
       })) as QuizSubmission[];
     } catch (error) {
       console.error('Error getting submissions:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get top high scores (leaderboard)
+   */
+  static async getHighScores(limit: number = 15): Promise<HighScore[]> {
+    try {
+      const q = query(
+        collection(db, HIGHSCORES_COLLECTION),
+        orderBy('score', 'desc'),
+        orderBy('timeSpent', 'asc'),
+        firestoreLimit(limit)
+      );
+
+      const snapshot = await getDocs(q);
+
+      return snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+        createdAt: doc.data().createdAt?.toDate() || new Date(),
+      })) as HighScore[];
+    } catch (error) {
+      console.error('Error getting high scores:', error);
       throw error;
     }
   }
