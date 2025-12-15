@@ -346,51 +346,61 @@ const SurvivalGame: React.FC = () => {
   };
 
   return (
-    <div className="space-y-4 relative min-h-[500px]">
-      {/* Stats Bar */}
-      <div className="flex justify-center items-center gap-3 flex-wrap">
-        <div className="flex items-center gap-2 bg-gradient-to-r from-red-50 to-red-100 px-4 py-2 rounded-lg border border-red-300">
-          <Clock className="w-5 h-5 text-red-600" />
-          <span
-            className={`text-lg font-bold ${
-              timeLeft <= 10 ? "text-red-600 animate-pulse" : "text-gray-900"
-            }`}
+    <div className="space-y-4 relative">
+      {/* Stats Bar - Sticky */}
+      <div className="sticky top-0 z-20 bg-white/95 backdrop-blur-sm py-3 px-2 rounded-lg shadow-md border-2 border-yellow-300">
+        <div className="flex justify-center items-center gap-3 flex-wrap">
+          <div className="flex items-center gap-2 bg-gradient-to-r from-red-50 to-red-100 px-4 py-2 rounded-lg border border-red-300">
+            <Clock className="w-5 h-5 text-red-600" />
+            <span
+              className={`text-lg font-bold ${
+                timeLeft <= 10 ? "text-red-600 animate-pulse" : "text-gray-900"
+              }`}
+            >
+              {timeLeft}s
+            </span>
+          </div>
+          <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-50 to-yellow-100 px-4 py-2 rounded-lg border border-yellow-300">
+            <Trophy className="w-5 h-5 text-yellow-600" />
+            <span className="text-lg font-bold text-gray-900">
+              {score} điểm
+            </span>
+          </div>
+          <div className="flex items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2 rounded-lg border border-blue-300">
+            <span className="text-base font-bold text-gray-700">
+              {selectedItems.length} món
+            </span>
+          </div>
+          <button
+            onClick={restartGame}
+            className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-md hover:shadow-lg font-semibold text-sm flex items-center gap-2"
           >
-            {timeLeft}s
-          </span>
-        </div>
-        <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-50 to-yellow-100 px-4 py-2 rounded-lg border border-yellow-300">
-          <Trophy className="w-5 h-5 text-yellow-600" />
-          <span className="text-lg font-bold text-gray-900">{score} điểm</span>
-        </div>
-        <div className="flex items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2 rounded-lg border border-blue-300">
-          <span className="text-base font-bold text-gray-700">
-            {selectedItems.length} món
-          </span>
+            🔄 Chơi lại
+          </button>
         </div>
       </div>
-      {/* Feedback */}
+      {/* Feedback - Fixed Position */}
       <AnimatePresence>
         {feedback.show && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            className="flex justify-center"
+            initial={{ opacity: 0, y: -20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50"
           >
             <div
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg ${
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl shadow-2xl text-base font-bold ${
                 feedback.isCorrect
                   ? "bg-green-500 text-white"
                   : "bg-red-500 text-white"
               }`}
             >
               {feedback.isCorrect ? (
-                <CheckCircle className="w-4 h-4" />
+                <CheckCircle className="w-5 h-5" />
               ) : (
-                <AlertCircle className="w-4 h-4" />
+                <AlertCircle className="w-5 h-5" />
               )}
-              <span className="font-bold text-sm">{feedback.message}</span>
+              <span>{feedback.message}</span>
             </div>
           </motion.div>
         )}
@@ -405,71 +415,77 @@ const SurvivalGame: React.FC = () => {
             exit={{ opacity: 0, scale: 0.9 }}
             className="absolute inset-0 bg-black/80 backdrop-blur-md rounded-2xl z-50 flex items-center justify-center p-8"
           >
-            <div className="bg-gradient-to-br from-yellow-50 to-red-50 p-6 rounded-xl border-2 border-yellow-400 max-w-lg w-full"
-          >
-          <Trophy className="w-12 h-12 text-yellow-600 mx-auto mb-3" />
-          <p className="text-2xl font-bold text-center text-gray-900 mb-2">
-            Kết thúc!
-          </p>
-          <p className="text-center text-gray-700 mb-4">
-            Bạn đã chọn{" "}
-            <span className="font-bold text-green-600">
-              {
-                selectedItems.filter(
-                  (item) => items.find((i) => i.name === item)?.isEssential
-                ).length
-              }
-            </span>{" "}
-            món thiết yếu và{" "}
-            <span className="font-bold text-red-600">
-              {
-                selectedItems.filter(
-                  (item) => !items.find((i) => i.name === item)?.isEssential
-                ).length
-              }
-            </span>{" "}
-            món xa xỉ
-          </p>
-          <button
-            onClick={restartGame}
-            className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-yellow-600 text-white rounded-lg hover:shadow-lg transition-all font-semibold"
-          >
-            Chơi lại
-          </button>
+            <div className="bg-gradient-to-br from-yellow-50 to-red-50 p-6 rounded-xl border-2 border-yellow-400 max-w-lg w-full">
+              <Trophy className="w-12 h-12 text-yellow-600 mx-auto mb-3" />
+              <p className="text-2xl font-bold text-center text-gray-900 mb-2">
+                Kết thúc!
+              </p>
+              <p className="text-center text-gray-700 mb-4">
+                Bạn đã chọn{" "}
+                <span className="font-bold text-green-600">
+                  {
+                    selectedItems.filter(
+                      (item) => items.find((i) => i.name === item)?.isEssential
+                    ).length
+                  }
+                </span>{" "}
+                món thiết yếu và{" "}
+                <span className="font-bold text-red-600">
+                  {
+                    selectedItems.filter(
+                      (item) => !items.find((i) => i.name === item)?.isEssential
+                    ).length
+                  }
+                </span>{" "}
+                món xa xỉ
+              </p>
+              <button
+                onClick={restartGame}
+                className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-yellow-600 text-white rounded-lg hover:shadow-lg transition-all font-semibold"
+              >
+                Chơi lại
+              </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-      {/* Items Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <AnimatePresence>
-          {items.map((item) => {
-            // Ẩn items đã chọn
-            if (selectedItems.includes(item.name)) return null;
+      {/* Items Grid với padding để không bị sticky bar che */}
+      <div className="bg-gradient-to-br from-yellow-50 to-red-50 p-4 rounded-xl border border-yellow-200">
+        <h4 className="text-center font-bold text-gray-800 mb-4">
+          🛒 Chọn món đồ thiết yếu
+        </h4>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
+          <AnimatePresence>
+            {items.map((item) => {
+              // Ẩn items đã chọn
+              if (selectedItems.includes(item.name)) return null;
 
-            return (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.5 }}
-                transition={{ duration: 0.3 }}
-                className={`p-4 border-2 rounded-xl text-center transition-all duration-300 ${
-                  gameOver
-                    ? "bg-gray-100 border-gray-300 cursor-not-allowed opacity-60"
-                    : "bg-white border-gray-300 hover:border-red-400 hover:shadow-xl cursor-pointer"
-                }`}
-                onClick={() => handleItemClick(item)}
-                whileHover={{
-                  scale: gameOver ? 1 : 1.05,
-                }}
-                whileTap={{ scale: gameOver ? 1 : 0.95 }}
-              >
-                <div className="text-4xl mb-2">{item.image}</div>
-                <p className="text-sm font-semibold text-gray-800">{item.name}</p>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
+              return (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.3 }}
+                  className={`p-4 border-2 rounded-xl text-center transition-all duration-300 ${
+                    gameOver
+                      ? "bg-gray-100 border-gray-300 cursor-not-allowed opacity-60"
+                      : "bg-white border-gray-300 hover:border-red-400 hover:shadow-xl cursor-pointer"
+                  }`}
+                  onClick={() => handleItemClick(item)}
+                  whileHover={{
+                    scale: gameOver ? 1 : 1.05,
+                  }}
+                  whileTap={{ scale: gameOver ? 1 : 0.95 }}
+                >
+                  <div className="text-4xl mb-2">{item.image}</div>
+                  <p className="text-sm font-semibold text-gray-800">
+                    {item.name}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   );
@@ -523,21 +539,19 @@ const Basket: React.FC<{ category: string; onDrop: (item: Item) => void }> = ({
   return (
     <div
       ref={drop}
-      className={`p-3 md:p-4 border-2 rounded-xl text-center min-h-[120px] md:min-h-[140px] flex flex-col justify-center transition-all duration-300 bg-gradient-to-br ${
+      className={`p-4 border-2 rounded-xl text-center min-h-[100px] flex flex-col justify-center transition-all duration-300 bg-gradient-to-br ${
         isOver
-          ? "border-yellow-500 shadow-xl scale-105"
+          ? "border-yellow-500 shadow-2xl scale-105 ring-4 ring-yellow-300"
           : `${getCategoryColor()} shadow-md`
       }`}
       style={{
         transform: isOver ? "scale(1.05)" : "scale(1)",
       }}
     >
-      <div className="text-2xl md:text-3xl mb-2">{getCategoryIcon()}</div>
-      <h4 className="font-bold text-sm md:text-base text-gray-800">
-        {category}
-      </h4>
-      <p className="text-xs text-gray-600 mt-1 hidden md:block">
-        {isOver ? "Thả vào đây!" : "Kéo thả"}
+      <div className="text-3xl mb-2">{getCategoryIcon()}</div>
+      <h4 className="font-bold text-base text-gray-800">{category}</h4>
+      <p className="text-xs text-gray-600 mt-1">
+        {isOver ? "⬇️ Thả vào!" : "Kéo thả"}
       </p>
     </div>
   );
@@ -825,13 +839,13 @@ const StrategyGame: React.FC = () => {
         <AnimatePresence>
           {showFeedback.show && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="fixed top-20 left-1/2 transform -translate-x-1/2 z-20"
+              initial={{ opacity: 0, y: -20, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50"
             >
               <div
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg shadow-lg text-sm font-bold ${
+                className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl shadow-2xl text-base font-bold ${
                   showFeedback.isCorrect
                     ? "bg-green-500 text-white"
                     : "bg-red-500 text-white"
@@ -842,16 +856,6 @@ const StrategyGame: React.FC = () => {
             </motion.div>
           )}
         </AnimatePresence>
-
-        {/* Compact Tip */}
-        {!gameOver && (
-          <div className="bg-gradient-to-r from-yellow-50 to-red-50 border-l-4 border-yellow-600 p-3 mx-4 mt-3 rounded-lg">
-            <p className="text-xs text-gray-700">
-              <strong>💡</strong> Phân loại 21 item đúng vào 3 giỏ. Tránh Công
-              nghiệp nặng!
-            </p>
-          </div>
-        )}
 
         {/* Game Over Screen */}
         <AnimatePresence>
@@ -920,35 +924,45 @@ const StrategyGame: React.FC = () => {
           )}
         </AnimatePresence>
 
-        {/* Baskets - Compact Grid */}
-        <div className="grid grid-cols-3 gap-2 md:gap-4 p-3 md:p-4">
-          <Basket
-            category="Lương thực"
-            onDrop={(item) => handleDrop("luongthuc", item)}
-          />
-          <Basket
-            category="Hàng tiêu dùng"
-            onDrop={(item) => handleDrop("tieudung", item)}
-          />
-          <Basket
-            category="Hàng xuất khẩu"
-            onDrop={(item) => handleDrop("xuatkhau", item)}
-          />
-        </div>
+        {/* Layout 2 cột: Items bên trái, Baskets bên phải (sticky) */}
+        <div className="grid lg:grid-cols-[1fr,320px] gap-4">
+          {/* Items Grid - Scrollable bên trái */}
+          <div className="bg-white/80 p-3 md:p-4 rounded-xl shadow-inner border border-gray-200 max-h-[600px] overflow-y-auto">
+            <h4 className="text-sm font-bold text-gray-700 mb-3 text-center sticky top-0 bg-white/95 py-2 z-10 rounded">
+              📦 Kéo thả các item vào giỏ bên phải
+            </h4>
+            <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2">
+              {allItems.map((item) => (
+                <DraggableItem
+                  key={item.id}
+                  item={item}
+                  isPlaced={placedItemIds.includes(item.id)}
+                />
+              ))}
+            </div>
+          </div>
 
-        {/* Items Grid - Compact */}
-        <div className="bg-white/80 p-3 md:p-4 rounded-xl shadow-inner border border-gray-200">
-          <h4 className="text-sm font-bold text-gray-700 mb-3 text-center">
-            📦 Kéo thả các item vào giỏ phù hợp
-          </h4>
-          <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
-            {allItems.map((item) => (
-              <DraggableItem
-                key={item.id}
-                item={item}
-                isPlaced={placedItemIds.includes(item.id)}
-              />
-            ))}
+          {/* Baskets - Sticky bên phải */}
+          <div className="lg:sticky lg:top-4 h-fit">
+            <div className="bg-gradient-to-br from-yellow-50 to-red-50 p-4 rounded-xl border-2 border-yellow-300 shadow-lg">
+              <h4 className="text-center font-bold text-gray-800 mb-4 text-lg">
+                🎯 3 Chương Trình Kinh Tế
+              </h4>
+              <div className="space-y-3">
+                <Basket
+                  category="Lương thực"
+                  onDrop={(item) => handleDrop("luongthuc", item)}
+                />
+                <Basket
+                  category="Hàng tiêu dùng"
+                  onDrop={(item) => handleDrop("tieudung", item)}
+                />
+                <Basket
+                  category="Hàng xuất khẩu"
+                  onDrop={(item) => handleDrop("xuatkhau", item)}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
