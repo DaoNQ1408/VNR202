@@ -55,42 +55,62 @@ const VideoExplanationPage: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  const keyLessons = [
+  const coreReasons = [
     {
-      icon: "🎯",
-      title: "Phản ứng kịp thời",
+      number: "1",
+      title: "Cơ chế bao cấp không thể điều hành giá-lương-tiền bằng mệnh lệnh",
       description:
-        "Đảng nhận thức được tính cấp thiết của việc đổi mới khi nền kinh tế rơi vào khủng hoảng nghiêm trọng.",
+        "Khi thả giá – tăng lương – đổi tiền nhưng vẫn giữ tư duy bao cấp, nền kinh tế vỡ trận.",
     },
     {
-      icon: "⚠️",
-      title: "Không thể cải cách từng phần",
+      number: "2",
+      title: "Khủng hoảng lạm phát trở thành cú sốc lịch sử",
       description:
-        "Cải cách giá-lương-tiền không đạt hiệu quả do thiếu đồng bộ, chứng tỏ cần phải đổi mới toàn diện.",
+        "774% lạm phát → tiền mất giá → thị trường hỗn loạn → niềm tin sụp đổ.",
+    },
+    {
+      number: "3",
+      title: "Đời sống nhân dân kiệt quệ",
+      description:
+        "Thu nhập thực tế giảm 30–50%, người lao động không sống nổi bằng lương.",
+    },
+    {
+      number: "4",
+      title: "Buộc Đảng phải thay đổi mô hình kinh tế",
+      description:
+        "Cải cách G–L–T là giọt nước tràn ly, chứng minh mô hình cũ không thể tồn tại. → Đổi mới là tất yếu lịch sử, không thể trì hoãn.",
+    },
+  ];
+
+  const keyLessons = [
+    {
+      icon: "📏",
+      title: "Tôn trọng quy luật khách quan",
+      description:
+        "Không áp đặt ý chí chủ quan lên các quy luật kinh tế thị trường.",
     },
     {
       icon: "🔄",
-      title: "Học hỏi từ thất bại",
+      title: "Đổi mới phải đồng bộ, toàn diện nhưng có lộ trình",
       description:
-        "Thất bại của cải cách 1985 đã trở thành bài học quý giá cho Đại hội VI năm 1986.",
+        "Không thể cải cách một vài khâu tách rời (giá – lương – tiền) khi các yếu tố khác còn bao cấp.",
     },
     {
-      icon: "💪",
-      title: "Dũng cảm thay đổi",
+      icon: "📊",
+      title: "Lấy hiệu quả kinh tế – xã hội làm tiêu chí đánh giá",
       description:
-        "Đảng đã có quyết tâm chính trị mạnh mẽ để thay đổi toàn diện cơ chế kinh tế.",
+        "Thay thế tư duy 'kế hoạch hóa chỉ tiêu' bằng 'hiệu quả thực tế'.",
     },
     {
-      icon: "🌟",
-      title: "Từ khủng hoảng đến cơ hội",
-      description:
-        "Khủng hoảng năm 1985 đã trở thành động lực cho sự đổi mới lịch sử tại Đại hội VI.",
+      icon: "🚩",
+      title: "Kiên định định hướng XHCN và vai trò lãnh đạo của Đảng",
+      description: "Đổi mới nhưng không đổi màu; hội nhập nhưng không hòa tan.",
     },
     {
-      icon: "📈",
-      title: "Tầm nhìn dài hạn",
+      icon: "👥",
+      title: "Phát huy vai trò con người và động lực cá nhân",
       description:
-        "Đại hội VI đã vạch ra con đường phát triển bền vững cho Việt Nam trong nhiều thập kỷ.",
+        "Khoán 10 thành công vì người nông dân được trao quyền lợi và trách nhiệm.",
     },
   ];
 
@@ -159,8 +179,8 @@ const VideoExplanationPage: React.FC = () => {
                 >
                   <strong>
                     Vì sao công cuộc cải cách về giá-lương-tiền lại là nguyên
-                    nhân trực tiếp dẫn tới quyết định đổi mới toàn diện nền
-                    kinh tế Việt Nam tại Đại hội Đảng VI?
+                    nhân trực tiếp dẫn tới quyết định đổi mới toàn diện nền kinh
+                    tế Việt Nam tại Đại hội Đảng VI?
                   </strong>
                 </p>
                 <p
@@ -217,60 +237,60 @@ const VideoExplanationPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Key Lessons Section */}
-        <div className="lessons-section max-w-6xl mx-auto">
+        {/* Core Answer Section */}
+        <div className="max-w-5xl mx-auto mb-20">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-gradient-to-r from-yellow-50 to-red-50 border border-yellow-200">
-              <Lightbulb
-                className="w-5 h-5"
-                style={{ color: "var(--vietnam-gold)" }}
-              />
-              <span
-                className="text-sm font-semibold"
-                style={{ color: "var(--vietnam-red)" }}
-              >
-                Bài Học Lịch Sử
+            <div
+              className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full"
+              style={{ backgroundColor: "var(--vietnam-red)" }}
+            >
+              <BookOpen className="w-5 h-5 text-white" />
+              <span className="text-sm font-semibold text-white">
+                Trả Lời Câu Hỏi Cốt Lõi
               </span>
             </div>
             <h2
-              className="text-3xl md:text-4xl font-bold"
+              className="text-3xl md:text-4xl font-bold mb-4"
               style={{ color: "var(--vietnam-red)" }}
             >
-              Những Bài Học Rút Ra
+              Vì Sao Cải Cách G–L–T Là Nguyên Nhân Trực Tiếp Dẫn Đến Đổi Mới?
             </h2>
+            <p className="text-lg" style={{ color: "var(--ancient-stone)" }}>
+              Vì nó chứng minh rằng:
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {keyLessons.map((lesson, index) => (
+          <div className="grid gap-6">
+            {coreReasons.map((reason, index) => (
               <div
                 key={index}
-                className="lesson-card rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer border-2 border-transparent hover:border-current"
+                className="rounded-xl p-6 shadow-lg border-l-8"
                 style={{
-                  backgroundColor: "#FFFFFF",
-                  color: "var(--vietnam-red)",
+                  backgroundColor: "#FFFDF8",
+                  borderColor: "var(--vietnam-red)",
                 }}
               >
-                <div className="text-4xl mb-4">{lesson.icon}</div>
-                <h3
-                  className="text-xl font-bold mb-3"
-                  style={{ color: "var(--vietnam-red)" }}
-                >
-                  {lesson.title}
-                </h3>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{ color: "var(--ancient-stone)" }}
-                >
-                  {lesson.description}
-                </p>
-                <div className="mt-4 flex items-center gap-2 text-sm font-semibold">
-                  <span style={{ color: "var(--vietnam-gold)" }}>
-                    Tìm hiểu thêm
-                  </span>
-                  <ChevronRight
-                    className="w-4 h-4"
-                    style={{ color: "var(--vietnam-gold)" }}
-                  />
+                <div className="flex gap-4">
+                  <div
+                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold text-white"
+                    style={{ backgroundColor: "var(--vietnam-red)" }}
+                  >
+                    {reason.number}
+                  </div>
+                  <div className="flex-1">
+                    <h3
+                      className="text-xl font-bold mb-2"
+                      style={{ color: "var(--vietnam-red)" }}
+                    >
+                      {reason.title}
+                    </h3>
+                    <p
+                      className="text-base leading-relaxed font-medium"
+                      style={{ color: "#2d3748" }}
+                    >
+                      {reason.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -278,7 +298,7 @@ const VideoExplanationPage: React.FC = () => {
         </div>
 
         {/* Summary Box */}
-        <div className="max-w-4xl mx-auto mt-16">
+        <div className="max-w-4xl mx-auto mt-12">
           <div
             className="rounded-2xl p-8 shadow-xl border-l-8"
             style={{
@@ -287,29 +307,43 @@ const VideoExplanationPage: React.FC = () => {
             }}
           >
             <h3
-              className="text-2xl font-bold mb-4"
+              className="text-2xl font-bold mb-4 flex items-center gap-2"
               style={{ color: "var(--vietnam-red)" }}
             >
-              Kết Luận
+              <span className="text-3xl">💡</span> Kết Luận
             </h3>
             <p
               className="text-lg leading-relaxed mb-4"
               style={{ color: "var(--timeless-navy)" }}
             >
               Cuộc cải cách giá-lương-tiền năm 1985 tuy không thành công nhưng
-              đã trở thành <strong>bài học xương máu</strong> quan trọng. Sự
-              thất bại này đã chỉ ra rằng không thể cải cách từng phần mà cần
-              phải có <strong>sự đổi mới toàn diện</strong> cả về tư duy, cơ
-              chế và chính sách.
+              đã trở thành <strong>bài học xương máu</strong> quan trọng. Nó
+              chứng minh rằng:
             </p>
-            <p
-              className="text-lg leading-relaxed"
+            <ul
+              className="list-disc list-inside space-y-2 mb-4 ml-4"
               style={{ color: "var(--timeless-navy)" }}
             >
-              Chính khủng hoảng này đã thúc đẩy Đảng ta đưa ra quyết định lịch
-              sử tại <strong>Đại hội VI năm 1986</strong>, mở ra thời kỳ Đổi
-              Mới - một bước ngoặt quan trọng trong lịch sử phát triển của đất
-              nước.
+              <li>
+                <strong>Cơ chế bao cấp</strong> không thể điều hành được nền
+                kinh tế hiện đại
+              </li>
+              <li>
+                <strong>Khủng hoảng 774% lạm phát</strong> là hậu quả trực tiếp
+                của cải cách thiếu đồng bộ
+              </li>
+              <li>
+                <strong>Không thể cải cách từng phần</strong> - phải đổi mới
+                toàn diện
+              </li>
+            </ul>
+            <p
+              className="text-lg leading-relaxed font-semibold"
+              style={{ color: "var(--vietnam-red)" }}
+            >
+              → Chính khủng hoảng này đã thúc đẩy Đảng ta đưa ra quyết định lịch
+              sử tại <strong>Đại hội VI năm 1986</strong>, mở ra thời kỳ Đổi Mới
+              - một bước ngoặt quan trọng trong lịch sử phát triển của đất nước.
             </p>
           </div>
         </div>

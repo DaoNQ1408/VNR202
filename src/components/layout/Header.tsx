@@ -100,16 +100,20 @@ export default function Header() {
             {navigation.map((item) => (
               <div key={item.name} className="relative">
                 {item.children ? (
-                  <div className="relative">
+                  <div
+                    className="relative"
+                    onMouseEnter={() => setDropdownOpen(item.name)}
+                    onMouseLeave={() => setDropdownOpen(null)}
+                  >
                     <button
-                      onClick={() => setDropdownOpen(dropdownOpen === item.name ? null : item.name)}
                       className="px-4 py-2 text-[#FFD700] hover:text-[#FFFFFF] transition-colors text-sm font-semibold flex items-center gap-1 tracking-wide"
                       style={{ color: "#FFD700" }}
                     >
                       {item.name}
                       <svg
-                        className={`w-4 h-4 transition-transform ${dropdownOpen === item.name ? "rotate-180" : ""
-                          }`}
+                        className={`w-4 h-4 transition-transform ${
+                          dropdownOpen === item.name ? "rotate-180" : ""
+                        }`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -132,7 +136,6 @@ export default function Header() {
                             key={child.name}
                             to={child.href}
                             className="block px-4 py-3 text-sm text-[#0F1C3F] hover:bg-[#F5EDE0] hover:text-[#8B1A1A] transition-colors border-l-4 border-transparent hover:border-[#C9A227] font-medium"
-                            onClick={() => setDropdownOpen(null)}
                           >
                             {child.name}
                           </Link>
