@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, RotateCcw, CheckCircle, XCircle, Clock, Target } from 'lucide-react';
-import type { QuizAnswer } from '../../types/quiz';
+import { Trophy, RotateCcw, CheckCircle, XCircle, Clock, Target, Award, Medal } from 'lucide-react';
+import type { QuizAnswer, HighScore } from '../../types/quiz';
+import { QuizService } from '../../services/quizService';
 
 interface QuizResultProps {
   score: number;
@@ -18,7 +19,26 @@ const QuizResult: React.FC<QuizResultProps> = ({
   timeSpent,
   onRetry,
 }) => {
+  const [highScores, setHighScores] = useState<HighScore[]>([]);
+  const [loadingScores, setLoadingScores] = useState(true);
+
   const percentage = Math.round((score / totalQuestions) * 100);
+  const wrongAnswers = answers.filter(a => !a.isCorrect);
+
+  useEffect(() => {
+    loadHighScores();
+  }, []);
+
+  const loadHighScores = async () => {
+    try {
+      const scores = await QuizService.getHighScores(15);
+      setHighScores(scores);
+    } catch (error) {
+      console.error('Failed to load high scores:', error);
+    } finally {
+      setLoadingScores(false);
+    }
+  };
 
   const getScoreData = () => {
     if (percentage === 100) {

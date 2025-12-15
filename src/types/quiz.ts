@@ -39,6 +39,16 @@ export interface QuizSubmission {
   userId?: string;
 }
 
+export interface HighScore {
+  id?: string;
+  userName: string;
+  score: number;
+  totalQuestions: number;
+  percentage: number;
+  timeSpent: number;
+  createdAt: Date;
+}
+
 // Excel import format
 export interface ExcelQuestionRow {
   question: string;
