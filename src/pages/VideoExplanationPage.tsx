@@ -201,16 +201,12 @@ const VideoExplanationPage: React.FC = () => {
             style={{ borderColor: "var(--vietnam-gold)" }}
           >
             <div className="relative bg-black">
-              <video
-                ref={videoRef}
-                controls
+              <iframe
+                src="https://drive.google.com/file/d/1XtAswt-ALjyvdFexSO1vLOVRWsfor3Ra/preview"
                 className="w-full aspect-video"
-                poster="/img/tieptucthuchiendoimoi_1991-1996/poster.jpg"
-              >
-                <source src="/vid/last_vid.mov" type="video/mp4" />
-                <source src="/vid/last_vid.mov" type="video/quicktime" />
-                Trình duyệt của bạn không hỗ trợ video HTML5.
-              </video>
+                allow="autoplay"
+                allowFullScreen
+              ></iframe>
             </div>
             <div
               className="p-6"
