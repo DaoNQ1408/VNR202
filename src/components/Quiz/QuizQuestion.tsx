@@ -154,13 +154,12 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
                     <div
                       className={`
                       w-10 h-10 rounded-full flex items-center justify-center mr-4 font-bold
-                      ${
-                        showFeedback && index === question.correctIndex
+                      ${showFeedback && index === question.correctIndex
                           ? 'bg-green-500 text-white'
                           : showFeedback && index === selectedIndex
-                          ? 'bg-red-500 text-white'
-                          : 'bg-gray-100 text-gray-700 group-hover:bg-red-500 group-hover:text-white'
-                      }
+                            ? 'bg-red-500 text-white'
+                            : 'bg-gray-100 text-gray-700 group-hover:bg-red-500 group-hover:text-white'
+                        }
                     `}
                     >
                       {String.fromCharCode(65 + index)}
@@ -183,10 +182,9 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
                 transition={{ duration: 0.3 }}
                 className={`
                   mt-6 p-5 rounded-xl border-2
-                  ${
-                    isCorrect
-                      ? 'bg-green-50 border-green-300'
-                      : 'bg-yellow-50 border-yellow-300'
+                  ${isCorrect
+                    ? 'bg-green-50 border-green-300'
+                    : 'bg-yellow-50 border-yellow-300'
                   }
                 `}
               >
@@ -205,9 +203,8 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
                   </div>
                   <div>
                     <h4
-                      className={`font-bold mb-1 ${
-                        isCorrect ? 'text-green-900' : 'text-yellow-900'
-                      }`}
+                      className={`font-bold mb-1 ${isCorrect ? 'text-green-900' : 'text-yellow-900'
+                        }`}
                     >
                       {isCorrect ? 'Chính xác! 🎉' : 'Chưa đúng'}
                     </h4>
@@ -215,8 +212,8 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
                       {isCorrect
                         ? 'Bạn đã trả lời đúng câu hỏi này!'
                         : `Đáp án đúng là: ${String.fromCharCode(
-                            65 + question.correctIndex
-                          )}. ${question.options[question.correctIndex]}`}
+                          65 + question.correctIndex
+                        )}. ${question.options[question.correctIndex]}`}
                     </p>
                   </div>
                 </div>

@@ -6,8 +6,7 @@ import QuizResult from '../components/Quiz/QuizResult';
 import { QuizService } from '../services/quizService';
 import type { Quiz, QuizQuestion as QuizQuestionType, QuizAnswer, QuizState } from '../types/quiz';
 
-const QUIZ_ID = 'history-cpv'; // Default quiz ID
-
+const QUIZ_ID = 'ls-dcsvn'; // Lịch Sử Đảng Cộng Sản Việt Nam
 const FirebaseQuizPage: React.FC = () => {
   const [state, setState] = useState<QuizState>({
     status: 'loading',
@@ -18,6 +17,7 @@ const FirebaseQuizPage: React.FC = () => {
     startTime: null,
     endTime: null,
     submission: null,
+    userName: '',
   });
 
   const [timeElapsed, setTimeElapsed] = useState(0);
@@ -66,7 +66,7 @@ const FirebaseQuizPage: React.FC = () => {
     }
   };
 
-  const handleStart = async () => {
+  const handleStart = async (userName: string) => {
     if (!state.quiz) return;
 
     try {
@@ -85,6 +85,7 @@ const FirebaseQuizPage: React.FC = () => {
         startTime: Date.now(),
         currentQuestionIndex: 0,
         answers: [],
+        userName,
       }));
 
       setTimeElapsed(0);
@@ -130,6 +131,7 @@ const FirebaseQuizPage: React.FC = () => {
       // Submit to Firebase
       const submissionId = await QuizService.submitQuiz({
         quizId: QUIZ_ID,
+        userName: state.userName,
         score,
         totalQuestions: state.questions.length,
         answers,
@@ -171,6 +173,7 @@ const FirebaseQuizPage: React.FC = () => {
       startTime: null,
       endTime: null,
       submission: null,
+      userName: state.userName, // Giữ lại tên người dùng
     });
     setTimeElapsed(0);
   };

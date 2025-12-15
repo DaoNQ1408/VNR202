@@ -186,13 +186,51 @@ export class QuizService {
   }
 
   /**
+   * ADMIN: Delete all questions in a quiz
+   */
+  static async deleteAllQuestions(quizId: string): Promise<number> {
+    try {
+      const questionsRef = collection(
+        db,
+        QUIZZES_COLLECTION,
+        quizId,
+        QUESTIONS_SUBCOLLECTION
+      );
+      const snapshot = await getDocs(questionsRef);
+
+      if (snapshot.empty) {
+        return 0;
+      }
+
+      const batch = writeBatch(db);
+      snapshot.docs.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+
+      await batch.commit();
+      console.log(`✅ Deleted ${snapshot.size} questions`);
+      return snapshot.size;
+    } catch (error) {
+      console.error('Error deleting questions:', error);
+      throw error;
+    }
+  }
+
+  /**
    * ADMIN: Batch import questions from parsed Excel data
    */
   static async importQuestions(
     quizId: string,
-    questions: ExcelQuestionRow[]
+    questions: ExcelQuestionRow[],
+    clearOldQuestions: boolean = false
   ): Promise<void> {
     try {
+      // Delete old questions if requested
+      if (clearOldQuestions) {
+        const deletedCount = await this.deleteAllQuestions(quizId);
+        console.log(`🗑️ Cleared ${deletedCount} old questions`);
+      }
+
       const batch = writeBatch(db);
       const questionsRef = collection(
         db,
