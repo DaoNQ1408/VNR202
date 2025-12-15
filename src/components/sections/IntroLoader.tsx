@@ -227,7 +227,7 @@ export default function IntroLoader({
         {/* Year badge */}
         <div className="mt-12 px-6 py-2 border border-[#C9A227]/30 rounded-full">
           <span className="text-[#C9A227]/70 text-sm md:text-base tracking-[0.3em] font-light">
-            1945 — 1975
+            1986 — 1996
           </span>
         </div>
       </div>

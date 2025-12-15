@@ -223,7 +223,7 @@ const SurvivalGame: React.FC = () => {
   });
 
   const items = [
-    // Lương thực thiết yếu (25 items essential)
+    // Lương thực thiết yếu (40 items essential)
     { name: "Gạo", isEssential: true, image: "🍚" },
     { name: "Nước mắm", isEssential: true, image: "🧂" },
     { name: "Muối", isEssential: true, image: "🧂" },
@@ -249,8 +249,23 @@ const SurvivalGame: React.FC = () => {
     { name: "Nước sạch", isEssential: true, image: "💧" },
     { name: "Than củi", isEssential: true, image: "🪵" },
     { name: "Dầu hỏa", isEssential: true, image: "🛢️" },
+    { name: "Mì gói", isEssential: true, image: "🍜" },
+    { name: "Phở khô", isEssential: true, image: "🍲" },
+    { name: "Bún khô", isEssential: true, image: "🍝" },
+    { name: "Cá khô", isEssential: true, image: "🐠" },
+    { name: "Tương ớt", isEssential: true, image: "🌶️" },
+    { name: "Giấm", isEssential: true, image: "🍶" },
+    { name: "Bột mì", isEssential: true, image: "🌾" },
+    { name: "Sữa bột", isEssential: true, image: "🥛" },
+    { name: "Cà phê", isEssential: true, image: "☕" },
+    { name: "Chè xanh", isEssential: true, image: "🍵" },
+    { name: "Khăn mặt", isEssential: true, image: "🧺" },
+    { name: "Chăn màn", isEssential: true, image: "🛏️" },
+    { name: "Nồi niêu", isEssential: true, image: "🍲" },
+    { name: "Bát đũa", isEssential: true, image: "🥢" },
+    { name: "Đèn dầu", isEssential: true, image: "🕯️" },
 
-    // Hàng xa xỉ/không thiết yếu (25 items non-essential)
+    // Hàng xa xỉ/không thiết yếu (40 items non-essential)
     { name: "Bánh kẹo", isEssential: false, image: "🍭" },
     { name: "Nước ngọt", isEssential: false, image: "🥤" },
     { name: "Bia rượu", isEssential: false, image: "🍺" },
@@ -276,6 +291,21 @@ const SurvivalGame: React.FC = () => {
     { name: "Máy tính", isEssential: false, image: "💻" },
     { name: "Máy quay phim", isEssential: false, image: "🎥" },
     { name: "Xe máy", isEssential: false, image: "🏍️" },
+    { name: "Socola nhập khẩu", isEssential: false, image: "🍫" },
+    { name: "Rượu vang", isEssential: false, image: "🍾" },
+    { name: "Xì gà", isEssential: false, image: "🚬" },
+    { name: "Áo khoác da", isEssential: false, image: "🧥" },
+    { name: "Giày thể thao hiệu", isEssential: false, image: "👟" },
+    { name: "Túi xách hiệu", isEssential: false, image: "👜" },
+    { name: "Đồng hồ Rolex", isEssential: false, image: "⌚" },
+    { name: "Kính râm hiệu", isEssential: false, image: "🕶️" },
+    { name: "Máy chơi game", isEssential: false, image: "🎮" },
+    { name: "Búp bê nhập khẩu", isEssential: false, image: "🎎" },
+    { name: "Xe đạp đua", isEssential: false, image: "🚴" },
+    { name: "Đàn piano", isEssential: false, image: "🎹" },
+    { name: "Vi-ô-lông", isEssential: false, image: "🎻" },
+    { name: "Máy cassette", isEssential: false, image: "📼" },
+    { name: "Thảm Ba Tư", isEssential: false, image: "🧶" },
   ];
 
   useEffect(() => {
@@ -291,20 +321,6 @@ const SurvivalGame: React.FC = () => {
     if (gameOver) return;
     if (selectedItems.includes(item.name)) return;
 
-    // Giới hạn chỉ chọn tối đa 15 món
-    if (selectedItems.length >= 15) {
-      setFeedback({
-        show: true,
-        isCorrect: false,
-        message: "Chỉ được chọn 15 món!",
-      });
-      setTimeout(
-        () => setFeedback({ show: false, isCorrect: false, message: "" }),
-        1000
-      );
-      return;
-    }
-
     const newSelectedItems = [...selectedItems, item.name];
     setSelectedItems(newSelectedItems);
 
@@ -316,13 +332,6 @@ const SurvivalGame: React.FC = () => {
       setFeedback({ show: true, isCorrect: false, message: "-5 điểm!" });
     }
 
-    // Tự động kết thúc game khi đã chọn đủ 15 món
-    if (newSelectedItems.length >= 15) {
-      setTimeout(() => {
-        setGameOver(true);
-      }, 1500);
-    }
-
     setTimeout(
       () => setFeedback({ show: false, isCorrect: false, message: "" }),
       1000
@@ -330,47 +339,57 @@ const SurvivalGame: React.FC = () => {
   };
 
   const restartGame = () => {
-    setTimeLeft(30);
+    setTimeLeft(90);
     setScore(0);
     setGameOver(false);
     setSelectedItems([]);
   };
 
   return (
-    <div className="space-y-4">
-      {/* Stats Bar */}
-      <div className="flex justify-center items-center gap-3 flex-wrap">
-        <div className="flex items-center gap-2 bg-gradient-to-r from-red-50 to-red-100 px-4 py-2 rounded-lg border border-red-300">
-          <Clock className="w-5 h-5 text-red-600" />
-          <span
-            className={`text-lg font-bold ${
-              timeLeft <= 10 ? "text-red-600 animate-pulse" : "text-gray-900"
-            }`}
+    <div className="space-y-4 relative">
+      {/* Stats Bar - Sticky */}
+      <div className="sticky top-0 z-20 bg-white/95 backdrop-blur-sm py-3 px-2 rounded-lg shadow-md border-2 border-yellow-300">
+        <div className="flex justify-center items-center gap-3 flex-wrap">
+          <div className="flex items-center gap-2 bg-gradient-to-r from-red-50 to-red-100 px-4 py-2 rounded-lg border border-red-300">
+            <Clock className="w-5 h-5 text-red-600" />
+            <span
+              className={`text-lg font-bold ${
+                timeLeft <= 10 ? "text-red-600 animate-pulse" : "text-gray-900"
+              }`}
+            >
+              {timeLeft}s
+            </span>
+          </div>
+          <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-50 to-yellow-100 px-4 py-2 rounded-lg border border-yellow-300">
+            <Trophy className="w-5 h-5 text-yellow-600" />
+            <span className="text-lg font-bold text-gray-900">
+              {score} điểm
+            </span>
+          </div>
+          <div className="flex items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2 rounded-lg border border-blue-300">
+            <span className="text-base font-bold text-gray-700">
+              {selectedItems.length} món
+            </span>
+          </div>
+          <button
+            onClick={restartGame}
+            className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-md hover:shadow-lg font-semibold text-sm flex items-center gap-2"
           >
-            {timeLeft}s
-          </span>
-        </div>
-        <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-50 to-yellow-100 px-4 py-2 rounded-lg border border-yellow-300">
-          <Trophy className="w-5 h-5 text-yellow-600" />
-          <span className="text-lg font-bold text-gray-900">{score} điểm</span>
-        </div>
-        <div className="flex items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2 rounded-lg border border-blue-300">
-          <span className="text-base font-bold text-gray-700">
-            {selectedItems.length}/15 món
-          </span>
+            🔄 Chơi lại
+          </button>
         </div>
       </div>
-      {/* Feedback */}
+      {/* Feedback - Fixed Position */}
       <AnimatePresence>
         {feedback.show && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            className="flex justify-center"
+            initial={{ opacity: 0, y: -20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50"
           >
             <div
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg ${
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl shadow-2xl text-base font-bold ${
                 feedback.isCorrect
                   ? "bg-green-500 text-white"
                   : "bg-red-500 text-white"
@@ -381,79 +400,92 @@ const SurvivalGame: React.FC = () => {
               ) : (
                 <AlertCircle className="w-4 h-4" />
               )}
-              <span className="font-bold text-sm">{feedback.message}</span>
+              <span>{feedback.message}</span>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* Game Over */}
-      {gameOver && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="bg-gradient-to-br from-yellow-50 to-red-50 p-6 rounded-xl border-2 border-yellow-400"
-        >
-          <Trophy className="w-12 h-12 text-yellow-600 mx-auto mb-3" />
-          <p className="text-2xl font-bold text-center text-gray-900 mb-2">
-            Kết thúc!
-          </p>
-          <p className="text-center text-gray-700 mb-4">
-            Bạn đã chọn{" "}
-            <span className="font-bold text-green-600">
-              {
-                selectedItems.filter(
-                  (item) => items.find((i) => i.name === item)?.isEssential
-                ).length
-              }
-              /4
-            </span>{" "}
-            món thiết yếu
-          </p>
-          <button
-            onClick={restartGame}
-            className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-yellow-600 text-white rounded-lg hover:shadow-lg transition-all font-semibold"
+      <AnimatePresence>
+        {gameOver && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            className="absolute inset-0 bg-black/80 backdrop-blur-md rounded-2xl z-50 flex items-center justify-center p-8"
           >
-            Chơi lại
-          </button>
-        </motion.div>
-      )}
-      {/* Items Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        {items.map((item) => {
-          const isDisabled =
-            selectedItems.length >= 4 && !selectedItems.includes(item.name);
+            <div className="bg-gradient-to-br from-yellow-50 to-red-50 p-6 rounded-xl border-2 border-yellow-400 max-w-lg w-full">
+              <Trophy className="w-12 h-12 text-yellow-600 mx-auto mb-3" />
+              <p className="text-2xl font-bold text-center text-gray-900 mb-2">
+                Kết thúc!
+              </p>
+              <p className="text-center text-gray-700 mb-4">
+                Bạn đã chọn{" "}
+                <span className="font-bold text-green-600">
+                  {
+                    selectedItems.filter(
+                      (item) => items.find((i) => i.name === item)?.isEssential
+                    ).length
+                  }
+                </span>{" "}
+                món thiết yếu và{" "}
+                <span className="font-bold text-red-600">
+                  {
+                    selectedItems.filter(
+                      (item) => !items.find((i) => i.name === item)?.isEssential
+                    ).length
+                  }
+                </span>{" "}
+                món xa xỉ
+              </p>
+              <button
+                onClick={restartGame}
+                className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-yellow-600 text-white rounded-lg hover:shadow-lg transition-all font-semibold"
+              >
+                Chơi lại
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* Items Grid với padding để không bị sticky bar che */}
+      <div className="bg-gradient-to-br from-yellow-50 to-red-50 p-4 rounded-xl border border-yellow-200">
+        <h4 className="text-center font-bold text-gray-800 mb-4">
+          🛒 Chọn món đồ thiết yếu
+        </h4>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
+          <AnimatePresence>
+            {items.map((item) => {
+              // Ẩn items đã chọn
+              if (selectedItems.includes(item.name)) return null;
 
-          return (
-            <motion.div
-              key={item.name}
-              className={`p-4 border-2 rounded-xl text-center transition-all duration-300 ${
-                selectedItems.includes(item.name)
-                  ? "bg-gradient-to-br from-green-100 to-green-200 border-green-500 shadow-lg cursor-default"
-                  : isDisabled
-                  ? "bg-gray-100 border-gray-300 cursor-not-allowed opacity-40"
-                  : "bg-white border-gray-300 hover:border-red-400 hover:shadow-xl cursor-pointer"
-              } ${gameOver ? "cursor-not-allowed opacity-60" : ""}`}
-              onClick={() => handleItemClick(item)}
-              whileHover={{
-                scale: gameOver || isDisabled ? 1 : 1.05,
-              }}
-              whileTap={{ scale: gameOver || isDisabled ? 1 : 0.95 }}
-            >
-              <div className="text-4xl mb-2">{item.image}</div>
-              <p className="text-sm font-semibold text-gray-800">{item.name}</p>
-              {selectedItems.includes(item.name) && (
+              return (
                 <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="mt-2"
+                  key={item.name}
+                  initial={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.3 }}
+                  className={`p-4 border-2 rounded-xl text-center transition-all duration-300 ${
+                    gameOver
+                      ? "bg-gray-100 border-gray-300 cursor-not-allowed opacity-60"
+                      : "bg-white border-gray-300 hover:border-red-400 hover:shadow-xl cursor-pointer"
+                  }`}
+                  onClick={() => handleItemClick(item)}
+                  whileHover={{
+                    scale: gameOver ? 1 : 1.05,
+                  }}
+                  whileTap={{ scale: gameOver ? 1 : 0.95 }}
                 >
-                  <CheckCircle className="w-5 h-5 text-green-600 mx-auto" />
+                  <div className="text-4xl mb-2">{item.image}</div>
+                  <p className="text-sm font-semibold text-gray-800">
+                    {item.name}
+                  </p>
                 </motion.div>
-              )}
-            </motion.div>
-          );
-        })}
+              );
+            })}
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   );
@@ -507,21 +539,19 @@ const Basket: React.FC<{ category: string; onDrop: (item: Item) => void }> = ({
   return (
     <div
       ref={drop}
-      className={`p-3 md:p-4 border-2 rounded-xl text-center min-h-[120px] md:min-h-[140px] flex flex-col justify-center transition-all duration-300 bg-gradient-to-br ${
+      className={`p-4 border-2 rounded-xl text-center min-h-[100px] flex flex-col justify-center transition-all duration-300 bg-gradient-to-br ${
         isOver
-          ? "border-yellow-500 shadow-xl scale-105"
+          ? "border-yellow-500 shadow-2xl scale-105 ring-4 ring-yellow-300"
           : `${getCategoryColor()} shadow-md`
       }`}
       style={{
         transform: isOver ? "scale(1.05)" : "scale(1)",
       }}
     >
-      <div className="text-2xl md:text-3xl mb-2">{getCategoryIcon()}</div>
-      <h4 className="font-bold text-sm md:text-base text-gray-800">
-        {category}
-      </h4>
-      <p className="text-xs text-gray-600 mt-1 hidden md:block">
-        {isOver ? "Thả vào đây!" : "Kéo thả"}
+      <div className="text-3xl mb-2">{getCategoryIcon()}</div>
+      <h4 className="font-bold text-base text-gray-800">{category}</h4>
+      <p className="text-xs text-gray-600 mt-1">
+        {isOver ? "⬇️ Thả vào!" : "Kéo thả"}
       </p>
     </div>
   );
@@ -581,9 +611,9 @@ const StrategyGame: React.FC = () => {
     message: string;
   }>({ show: false, isCorrect: false, message: "" });
 
-  // Comprehensive item list - 50 items total
+  // Comprehensive item list - 80 items total
   const allItems: Item[] = [
-    // Lương thực thực phẩm (17 items)
+    // Lương thực thực phẩm (28 items)
     { id: "1", name: "Lúa gạo", category: "luongthuc", image: "🌾" },
     { id: "2", name: "Ngô", category: "luongthuc", image: "🌽" },
     { id: "3", name: "Khoai lang", category: "luongthuc", image: "🍠" },
@@ -601,50 +631,82 @@ const StrategyGame: React.FC = () => {
     { id: "15", name: "Nước mắm", category: "luongthuc", image: "🧂" },
     { id: "16", name: "Dầu ăn", category: "luongthuc", image: "🫗" },
     { id: "17", name: "Sữa", category: "luongthuc", image: "🥛" },
+    { id: "18", name: "Bún khô", category: "luongthuc", image: "🍜" },
+    { id: "19", name: "Mì gói", category: "luongthuc", image: "🍝" },
+    { id: "20", name: "Phở khô", category: "luongthuc", image: "🍲" },
+    { id: "21", name: "Cá khô", category: "luongthuc", image: "🐠" },
+    { id: "22", name: "Mắm tôm", category: "luongthuc", image: "🧂" },
+    { id: "23", name: "Muối", category: "luongthuc", image: "🧂" },
+    { id: "24", name: "Đường", category: "luongthuc", image: "🍬" },
+    { id: "25", name: "Bột mì", category: "luongthuc", image: "🌾" },
+    { id: "26", name: "Đậu xanh", category: "luongthuc", image: "🫘" },
+    { id: "27", name: "Đậu đỏ", category: "luongthuc", image: "🫘" },
+    { id: "28", name: "Mè", category: "luongthuc", image: "🌱" },
 
-    // Hàng tiêu dùng (17 items)
-    { id: "18", name: "Quần áo", category: "tieudung", image: "👕" },
-    { id: "19", name: "Giày dép", category: "tieudung", image: "👟" },
-    { id: "20", name: "Mũ nón", category: "tieudung", image: "🧢" },
-    { id: "21", name: "Xà phòng", category: "tieudung", image: "🧼" },
-    { id: "22", name: "Bàn chải", category: "tieudung", image: "🪥" },
-    { id: "23", name: "Kem đánh răng", category: "tieudung", image: "🦷" },
-    { id: "24", name: "Bột giặt", category: "tieudung", image: "🧴" },
-    { id: "25", name: "Xe đạp", category: "tieudung", image: "🚲" },
-    { id: "26", name: "Đồ dùng nhà bếp", category: "tieudung", image: "🍳" },
-    { id: "27", name: "Vải vóc", category: "tieudung", image: "🧵" },
-    { id: "28", name: "Đồ gốm sứ", category: "tieudung", image: "🏺" },
-    { id: "29", name: "Giấy viết", category: "tieudung", image: "📄" },
-    { id: "30", name: "Bút viết", category: "tieudung", image: "✏️" },
-    { id: "31", name: "Đồ nhựa gia dụng", category: "tieudung", image: "🥤" },
-    { id: "32", name: "Đồ mây tre", category: "tieudung", image: "🧺" },
-    { id: "33", name: "Chiếu", category: "tieudung", image: "🛏️" },
-    { id: "34", name: "Màn", category: "tieudung", image: "🪟" },
+    // Hàng tiêu dùng (28 items)
+    { id: "29", name: "Quần áo", category: "tieudung", image: "👕" },
+    { id: "30", name: "Giày dép", category: "tieudung", image: "👟" },
+    { id: "31", name: "Mũ nón", category: "tieudung", image: "🧢" },
+    { id: "32", name: "Xà phòng", category: "tieudung", image: "🧼" },
+    { id: "33", name: "Bàn chải", category: "tieudung", image: "🪥" },
+    { id: "34", name: "Kem đánh răng", category: "tieudung", image: "🦷" },
+    { id: "35", name: "Bột giặt", category: "tieudung", image: "🧴" },
+    { id: "36", name: "Xe đạp", category: "tieudung", image: "🚲" },
+    { id: "37", name: "Đồ dùng nhà bếp", category: "tieudung", image: "🍳" },
+    { id: "38", name: "Vải vóc", category: "tieudung", image: "🧵" },
+    { id: "39", name: "Đồ gốm sứ", category: "tieudung", image: "🏺" },
+    { id: "40", name: "Giấy viết", category: "tieudung", image: "📄" },
+    { id: "41", name: "Bút viết", category: "tieudung", image: "✏️" },
+    { id: "42", name: "Đồ nhựa gia dụng", category: "tieudung", image: "🥤" },
+    { id: "43", name: "Đồ mây tre", category: "tieudung", image: "🧺" },
+    { id: "44", name: "Chiếu", category: "tieudung", image: "🛏️" },
+    { id: "45", name: "Màn", category: "tieudung", image: "🪟" },
+    { id: "46", name: "Khăn mặt", category: "tieudung", image: "🧣" },
+    { id: "47", name: "Chăn gối", category: "tieudung", image: "🛏️" },
+    { id: "48", name: "Nồi niêu", category: "tieudung", image: "🍲" },
+    { id: "49", name: "Bát đũa", category: "tieudung", image: "🥢" },
+    { id: "50", name: "Thau chậu", category: "tieudung", image: "🪣" },
+    { id: "51", name: "Bàn ghế", category: "tieudung", image: "🪑" },
+    { id: "52", name: "Chổi lau nhà", category: "tieudung", image: "🧹" },
+    { id: "53", name: "Giấy vệ sinh", category: "tieudung", image: "🧻" },
+    { id: "54", name: "Khăn tắm", category: "tieudung", image: "🧴" },
+    { id: "55", name: "Dây thừng", category: "tieudung", image: "🪢" },
+    { id: "56", name: "Đèn dầu", category: "tieudung", image: "🕯️" },
 
-    // Hàng xuất khẩu (10 items)
-    { id: "35", name: "Cà phê", category: "xuatkhau", image: "☕" },
-    { id: "36", name: "Tôm đông lạnh", category: "xuatkhau", image: "🦐" },
-    { id: "37", name: "Cao su", category: "xuatkhau", image: "🌳" },
-    { id: "38", name: "Hạt điều", category: "xuatkhau", image: "🥜" },
-    { id: "39", name: "Dệt may", category: "xuatkhau", image: "👔" },
-    { id: "40", name: "Hạt tiêu", category: "xuatkhau", image: "🌶️" },
-    { id: "41", name: "Dừa khô", category: "xuatkhau", image: "🥥" },
-    { id: "42", name: "Chè", category: "xuatkhau", image: "🍵" },
-    { id: "43", name: "Gỗ", category: "xuatkhau", image: "🪵" },
-    { id: "44", name: "Thủ công mỹ nghệ", category: "xuatkhau", image: "🎨" },
+    // Hàng xuất khẩu (18 items)
+    { id: "57", name: "Cà phê", category: "xuatkhau", image: "☕" },
+    { id: "58", name: "Tôm đông lạnh", category: "xuatkhau", image: "🦐" },
+    { id: "59", name: "Cao su", category: "xuatkhau", image: "🌳" },
+    { id: "60", name: "Hạt điều", category: "xuatkhau", image: "🥜" },
+    { id: "61", name: "Dệt may", category: "xuatkhau", image: "👔" },
+    { id: "62", name: "Hạt tiêu", category: "xuatkhau", image: "🌶️" },
+    { id: "63", name: "Dừa khô", category: "xuatkhau", image: "🥥" },
+    { id: "64", name: "Chè", category: "xuatkhau", image: "🍵" },
+    { id: "65", name: "Gỗ", category: "xuatkhau", image: "🪵" },
+    { id: "66", name: "Thủ công mỹ nghệ", category: "xuatkhau", image: "🎨" },
+    { id: "67", name: "Mía đường", category: "xuatkhau", image: "🎋" },
+    { id: "68", name: "Cá tra xuất khẩu", category: "xuatkhau", image: "🐟" },
+    { id: "69", name: "Gạo Jasmine", category: "xuatkhau", image: "🍚" },
+    { id: "70", name: "Hoa quả nhiệt đới", category: "xuatkhau", image: "🍍" },
+    { id: "71", name: "Mật ong", category: "xuatkhau", image: "🍯" },
+    { id: "72", name: "Hạt sắn", category: "xuatkhau", image: "🌿" },
+    { id: "73", name: "Nghệ vàng", category: "xuatkhau", image: "🟡" },
+    { id: "74", name: "Vải thiều", category: "xuatkhau", image: "🍇" },
 
-    // Công nghiệp nặng (TRAP - 6 items)
+    // Công nghiệp nặng (TRAP - 8 items)
     {
-      id: "45",
+      id: "75",
       name: "Máy móc hạng nặng",
       category: "congnghiep",
       image: "⚙️",
     },
-    { id: "46", name: "Than đá", category: "congnghiep", image: "⛏️" },
-    { id: "47", name: "Thép", category: "congnghiep", image: "🏗️" },
-    { id: "48", name: "Xi măng", category: "congnghiep", image: "🧱" },
-    { id: "49", name: "Máy công nghiệp", category: "congnghiep", image: "🔧" },
-    { id: "50", name: "Thiết bị nặng", category: "congnghiep", image: "🏭" },
+    { id: "76", name: "Than đá", category: "congnghiep", image: "⛏️" },
+    { id: "77", name: "Thép", category: "congnghiep", image: "🏗️" },
+    { id: "78", name: "Xi măng", category: "congnghiep", image: "🧱" },
+    { id: "79", name: "Máy công nghiệp", category: "congnghiep", image: "🔧" },
+    { id: "80", name: "Thiết bị nặng", category: "congnghiep", image: "🏭" },
+    { id: "81", name: "Sắt thô", category: "congnghiep", image: "⚒️" },
+    { id: "82", name: "Máy xúc", category: "congnghiep", image: "🚜" },
   ];
 
   const totalCorrectItems = allItems.filter(
@@ -734,7 +796,7 @@ const StrategyGame: React.FC = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="space-y-4">
+      <div className="space-y-4 relative">
         {/* Compact Stats Bar */}
         <div className="bg-white/80 backdrop-blur-sm p-3 rounded-lg border-2 border-yellow-300 sticky top-0 z-10">
           <div className="flex justify-center items-center gap-2 md:gap-4 flex-wrap">
@@ -777,13 +839,13 @@ const StrategyGame: React.FC = () => {
         <AnimatePresence>
           {showFeedback.show && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="fixed top-20 left-1/2 transform -translate-x-1/2 z-20"
+              initial={{ opacity: 0, y: -20, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50"
             >
               <div
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg shadow-lg text-sm font-bold ${
+                className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl shadow-2xl text-base font-bold ${
                   showFeedback.isCorrect
                     ? "bg-green-500 text-white"
                     : "bg-red-500 text-white"
@@ -794,16 +856,6 @@ const StrategyGame: React.FC = () => {
             </motion.div>
           )}
         </AnimatePresence>
-
-        {/* Compact Tip */}
-        {!gameOver && (
-          <div className="bg-gradient-to-r from-yellow-50 to-red-50 border-l-4 border-yellow-600 p-3 mx-4 mt-3 rounded-lg">
-            <p className="text-xs text-gray-700">
-              <strong>💡</strong> Phân loại 21 item đúng vào 3 giỏ. Tránh Công
-              nghiệp nặng!
-            </p>
-          </div>
-        )}
 
         {/* Game Over Screen */}
         <AnimatePresence>
@@ -872,35 +924,45 @@ const StrategyGame: React.FC = () => {
           )}
         </AnimatePresence>
 
-        {/* Baskets - Compact Grid */}
-        <div className="grid grid-cols-3 gap-2 md:gap-4 p-3 md:p-4">
-          <Basket
-            category="Lương thực"
-            onDrop={(item) => handleDrop("luongthuc", item)}
-          />
-          <Basket
-            category="Hàng tiêu dùng"
-            onDrop={(item) => handleDrop("tieudung", item)}
-          />
-          <Basket
-            category="Hàng xuất khẩu"
-            onDrop={(item) => handleDrop("xuatkhau", item)}
-          />
-        </div>
+        {/* Layout 2 cột: Items bên trái, Baskets bên phải (sticky) */}
+        <div className="grid lg:grid-cols-[1fr,320px] gap-4">
+          {/* Items Grid - Scrollable bên trái */}
+          <div className="bg-white/80 p-3 md:p-4 rounded-xl shadow-inner border border-gray-200 max-h-[600px] overflow-y-auto">
+            <h4 className="text-sm font-bold text-gray-700 mb-3 text-center sticky top-0 bg-white/95 py-2 z-10 rounded">
+              📦 Kéo thả các item vào giỏ bên phải
+            </h4>
+            <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2">
+              {allItems.map((item) => (
+                <DraggableItem
+                  key={item.id}
+                  item={item}
+                  isPlaced={placedItemIds.includes(item.id)}
+                />
+              ))}
+            </div>
+          </div>
 
-        {/* Items Grid - Compact */}
-        <div className="bg-white/80 p-3 md:p-4 rounded-xl shadow-inner border border-gray-200">
-          <h4 className="text-sm font-bold text-gray-700 mb-3 text-center">
-            📦 Kéo thả các item vào giỏ phù hợp
-          </h4>
-          <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
-            {allItems.map((item) => (
-              <DraggableItem
-                key={item.id}
-                item={item}
-                isPlaced={placedItemIds.includes(item.id)}
-              />
-            ))}
+          {/* Baskets - Sticky bên phải */}
+          <div className="lg:sticky lg:top-4 h-fit">
+            <div className="bg-gradient-to-br from-yellow-50 to-red-50 p-4 rounded-xl border-2 border-yellow-300 shadow-lg">
+              <h4 className="text-center font-bold text-gray-800 mb-4 text-lg">
+                🎯 3 Chương Trình Kinh Tế
+              </h4>
+              <div className="space-y-3">
+                <Basket
+                  category="Lương thực"
+                  onDrop={(item) => handleDrop("luongthuc", item)}
+                />
+                <Basket
+                  category="Hàng tiêu dùng"
+                  onDrop={(item) => handleDrop("tieudung", item)}
+                />
+                <Basket
+                  category="Hàng xuất khẩu"
+                  onDrop={(item) => handleDrop("xuatkhau", item)}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1047,7 +1109,7 @@ const MiniGamePage: React.FC = () => {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
                 transition={{ type: "spring", damping: 25 }}
-                className="h-full w-full overflow-hidden flex flex-col"
+                className="h-full w-full flex flex-col"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Fixed Header with Close Button */}
@@ -1067,10 +1129,10 @@ const MiniGamePage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Scrollable Content */}
+                {/* Game Content - Scrollable */}
                 <div
                   ref={scrollContainerRef}
-                  className="flex-1 overflow-y-auto bg-white"
+                  className="flex-1 bg-white overflow-y-auto"
                 >
                   <div className="container mx-auto p-4 md:p-6">
                     {selectedGame === "game1" && <SurvivalGame />}
