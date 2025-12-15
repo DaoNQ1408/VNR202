@@ -174,23 +174,35 @@ export class QuizService {
 
   /**
    * Get top high scores (leaderboard)
+   * Sorted by: score DESC, then timeSpent ASC (faster completion time wins)
    */
   static async getHighScores(limit: number = 15): Promise<HighScore[]> {
     try {
+      // Get more records to ensure we have enough after sorting
       const q = query(
         collection(db, HIGHSCORES_COLLECTION),
         orderBy('score', 'desc'),
-        orderBy('timeSpent', 'asc'),
-        firestoreLimit(limit)
+        firestoreLimit(limit * 3) // Get 3x to have enough for secondary sort
       );
 
       const snapshot = await getDocs(q);
 
-      return snapshot.docs.map((doc) => ({
+      const scores = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
         createdAt: doc.data().createdAt?.toDate() || new Date(),
       })) as HighScore[];
+
+      // Sort by score DESC, then by timeSpent ASC (faster time wins for same score)
+      scores.sort((a, b) => {
+        if (b.score !== a.score) {
+          return b.score - a.score; // Higher score first
+        }
+        return a.timeSpent - b.timeSpent; // Faster time first
+      });
+
+      // Return only requested limit
+      return scores.slice(0, limit);
     } catch (error) {
       console.error('Error getting high scores:', error);
       throw error;
