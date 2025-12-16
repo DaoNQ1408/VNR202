@@ -98,11 +98,7 @@ export class QuizService {
       const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
       const selected = shuffled.slice(0, count);
 
-      // Shuffle options for each question
-      return selected.map((question) => ({
-        ...question,
-        options: this.shuffleArray(question.options),
-      }));
+      return selected;
     } catch (error) {
       console.error('Error getting random questions:', error);
       throw error;
