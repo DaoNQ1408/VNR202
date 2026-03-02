@@ -26,262 +26,167 @@ const HistoricalStoryTimeline: React.FC = () => {
   const periods: Period[] = [
     {
       id: 1,
-      year: "Kì 1 - 1991",
-      title: "Bước Khởi Đầu: Mở Cửa Nền Kinh Tế",
+      year: "Kì 1 - 1945",
+      title: "Cách Mạng Tháng Tám & Lễ Độc Lập",
       originalImage: "/img/tieptucthuchiendoimoi_1991-1996/Ki1.jpg",
       coloredImage: "/img/tieptucthuchiendoimoi_1991-1996/Ki1_color.png",
       content:
-        "Sau Đại hội VI (1986), Việt Nam bước vào giai đoạn đổi mới toàn diện. Năm 1991 đánh dấu bước ngoặt quan trọng khi Đảng Cộng sản Việt Nam khẳng định tiếp tục con đường đổi mới, phát triển kinh tế thị trường định hướng xã hội chủ nghĩa. Đây là thời kỳ chuyển đổi từ nền kinh tế kế hoạch hóa tập trung sang cơ chế thị trường, mở ra nhiều cơ hội mới cho đất nước.",
+        "Ngày 2/9/1945, tại Quảng trường Ba Đình lịch sử, Chủ tịch Hồ Chí Minh đọc bản Tuyên ngôn Độc lập khai sinh ra nước Việt Nam Dân chủ Cộng hòa, đưa dân tộc ta bước vào kỷ nguyên mới: Kỷ nguyên độc lập tự do và chủ nghĩa xã hội.",
       highlights: [
-        "Chính sách mở cửa và hội nhập kinh tế quốc tế",
-        "Chuyển đổi từ kinh tế kế hoạch hóa sang thị trường",
-        "Khuyến khích phát triển kinh tế tư nhân",
+        "Lật đổ chế độ quân chủ và thực dân",
+        "Thành lập nước Việt Nam Dân chủ Cộng hòa",
+        "Mở ra kỷ nguyên độc lập tự do",
       ],
     },
     {
       id: 2,
-      year: "Kì 2 - 1991",
-      title: "Cải Cách Nông Nghiệp",
+      year: "Kì 2 - 1945",
+      title: "Kháng Chiến Kiến Quốc",
       originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki2.jpg",
       coloredImage: "/img/tieptucthuchiendoimoi_1991-1996/ki2_color.jpg",
       content:
-        "Cải cách nông nghiệp là một trong những trọng tâm của giai đoạn đầu đổi mới. Chính sách khoán 10 và sau đó là giao đất cho nông dân đã tạo ra bước đột phá trong sản xuất nông nghiệp. Người nông dân được quyền chủ động trong sản xuất, được hưởng phần lớn thành quả lao động, tạo động lực mạnh mẽ cho phát triển.",
+        "Đối mặt với muôn vàn khó khăn: giặc đói, giặc dốt và giặc ngoại xâm. Chính phủ đã phát động Tuần lễ Vàng, Quỹ Độc lập, phong trào Bình dân học vụ để giải quyết nạn mù chữ và tăng gia sản xuất giải quyết nạn đói.",
       highlights: [
-        "Thực hiện chính sách khoán 10 hiệu quả",
-        "Giao quyền sử dụng đất lâu dài cho nông dân",
-        "Tăng năng suất và sản lượng lương thực",
+        "Diệt giặc đói, giặc dốt",
+        "Tổ chức Tuần lễ Vàng",
+        "Phát động Bình dân học vụ",
       ],
     },
     {
       id: 3,
-      year: "Kì 3 - 1992",
-      title: "Hiến Pháp 1992: Nền Tảng Pháp Lý",
+      year: "Kì 3 - 1946",
+      title: "Tổng Tuyển Cử Đầu Tiên",
       originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki3.jpg",
       coloredImage: "/img/tieptucthuchiendoimoi_1991-1996/ki3_color.png",
       content:
-        "Hiến pháp năm 1992 ra đời đánh dấu bước phát triển quan trọng trong việc xây dựng nhà nước pháp quyền. Hiến pháp này khẳng định vai trò lãnh đạo của Đảng, đồng thời công nhận và bảo vệ các thành phần kinh tế khác nhau, tạo hành lang pháp lý vững chắc cho sự nghiệp đổi mới.",
+        "Ngày 6/1/1946, bất chấp sự phá hoại của kẻ thù, cuộc Tổng tuyển cử bầu Quốc hội khóa I đã thành công tốt đẹp. Sự kiện này mang ý nghĩa chính trị to lớn, khẳng định tính hợp pháp của chính phủ mới.",
       highlights: [
-        "Xây dựng nhà nước pháp quyền xã hội chủ nghĩa",
-        "Công nhận đa dạng các thành phần kinh tế",
-        "Bảo vệ quyền con người và quyền công dân",
+        "Lần đầu tiên nhân dân được bỏ phiếu",
+        "Bầu ra Quốc hội khóa I",
+        "Hiến pháp đầu tiên được thông qua",
       ],
     },
     {
       id: 4,
-      year: "Kì 4 - 1992",
-      title: "Phát Triển Công Nghiệp",
+      year: "Kì 4 - 1946",
+      title: "Ngoại Giao Cương Nhu Kết Hợp",
       originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki4.jpg",
       coloredImage: "/img/tieptucthuchiendoimoi_1991-1996/ki4_color.png",
       content:
-        "Giai đoạn này chứng kiến sự chuyển dịch cơ cấu kinh tế từ nông nghiệp sang công nghiệp và dịch vụ. Các khu công nghiệp được xây dựng, thu hút đầu tư nước ngoài. Việt Nam bắt đầu hình thành các ngành công nghiệp chế biến, xuất khẩu, tạo tiền đề cho công nghiệp hóa, hiện đại hóa.",
+        "Ký Hiệp định Sơ bộ (6/3) và Tạm ước (14/9), thực hiện sách lược 'Hòa để tiến'. Đây là nước cờ thiên tài giúp loại bỏ quân Tưởng, tranh thủ thời gian xây dựng lực lượng vũ trang.",
       highlights: [
-        "Xây dựng các khu công nghiệp tập trung",
-        "Thu hút đầu tư trực tiếp nước ngoài (FDI)",
-        "Phát triển công nghiệp chế biến xuất khẩu",
+        "Ký Hiệp định Sơ bộ 6/3/1946",
+        "Đuổi 20 vạn quân Tưởng về nước",
+        "Tranh thủ thời gian chuẩn bị lực lượng",
       ],
     },
     {
       id: 5,
-      year: "Kì 5 - 1993",
-      title: "Quan Hệ Quốc Tế Mở Rộng",
+      year: "Kì 5 - 1946",
+      title: "Toàn Quốc Kháng Chiến Bùng Nổ",
       originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki5.jpg",
       coloredImage: "/img/tieptucthuchiendoimoi_1991-1996/ki5_color.jpg",
       content:
-        "Việt Nam tích cực mở rộng quan hệ đối ngoại, bình thường hóa quan hệ với nhiều nước. Chính sách đối ngoại 'Việt Nam muốn làm bạn với tất cả các nước' được triển khai mạnh mẽ. Việc gia nhập ASEAN (1995) và cải thiện quan hệ với các nước lớn mở ra cơ hội hội nhập kinh tế quốc tế.",
+        "Ngày 19/12/1946, Chủ tịch Hồ Chí Minh ra Lời kêu gọi toàn quốc kháng chiến. Cuộc kháng chiến chính nghĩa của dân tộc Việt Nam chính thức bắt đầu với tinh thần 'Quyết tử để Tổ quốc quyết sinh'.",
       highlights: [
-        "Chuẩn bị gia nhập ASEAN",
-        "Cải thiện quan hệ với các nước láng giềng",
-        "Mở rộng hợp tác kinh tế quốc tế",
+        "Lời kêu gọi toàn quốc kháng chiến (19/12/1946)",
+        "Đường lối kháng chiến: toàn dân, toàn diện",
+        "Chiến đấu giam chân địch trong thành phố",
       ],
     },
     {
       id: 6,
-      year: "Kì 6 - 1993",
-      title: "Cải Cách Ngân Hàng và Tài Chính",
+      year: "Kì 6 - 1947",
+      title: "Chiến Dịch Việt Bắc Thu-Đông",
       originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki6.jpg",
       coloredImage: "/img/tieptucthuchiendoimoi_1991-1996/ki6_color.jpg",
       content:
-        "Hệ thống ngân hàng được tái cơ cấu với mô hình hai cấp: Ngân hàng Nhà nước và các ngân hàng thương mại. Thị trường chứng khoán được thai nghén. Các chính sách tài chính - tiền tệ được hoàn thiện để phục vụ nền kinh tế thị trường, kiểm soát lạm phát và ổn định kinh tế vĩ mô.",
+        "Quân và dân ta đánh bại cuộc tấn công quy mô lớn của thực dân Pháp lên căn cứ địa Việt Bắc, bảo vệ an toàn cơ quan đầu não kháng chiến, làm phá sản hoàn toàn chiến lược 'đánh nhanh thắng nhanh'.",
       highlights: [
-        "Xây dựng hệ thống ngân hàng hai cấp",
-        "Cải cách chính sách tài chính - tiền tệ",
-        "Kiểm soát lạm phát hiệu quả",
+        "Bảo vệ an toàn cơ quan Trung ương Đảng",
+        "Phá sản chiến lược đánh nhanh thắng nhanh",
+        "Buộc Pháp chuyển sang đánh lâu dài",
       ],
     },
     {
       id: 7,
-      year: "Kì 7 - 1994",
-      title: "Giáo Dục và Đào Tạo",
+      year: "Kì 7 - 1950",
+      title: "Chiến Dịch Biên Giới Thu-Đông",
       originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki7.jpg",
       content:
-        "Đầu tư cho giáo dục được đặc biệt chú trọng nhằm nâng cao chất lượng nguồn nhân lực. Chương trình giáo dục được đổi mới, chuyển từ 'truyền thụ' sang 'phát triển năng lực'. Các trường đại học mở rộng, chất lượng đào tạo được cải thiện để đáp ứng yêu cầu phát triển kinh tế - xã hội.",
+        "Mở chiến dịch Biên giới nhằm khai thông biên giới Việt-Trung, mở rộng căn cứ địa. Đây là chiến dịch tiến công lớn đầu tiên của ta, giành được quyền chủ động về chiến lược trên chiến trường chính Bắc Bộ.",
       highlights: [
-        "Đổi mới chương trình và phương pháp giáo dục",
-        "Mở rộng quy mô và nâng cao chất lượng đào tạo",
-        "Phát triển nguồn nhân lực chất lượng cao",
+        "Khai thông biên giới Việt-Trung",
+        "Tiêu diệt một bộ phận quan trọng sinh lực địch",
+        "Giành quyền chủ động chiến lược",
       ],
     },
     {
       id: 8,
-      year: "Kì 8 - 1994",
-      title: "Xóa Đói Giảm Nghèo",
+      year: "Kì 8 - 1951",
+      title: "Đại Hội Đảng Lần II",
       originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki8.jpg",
       coloredImage: "/img/tieptucthuchiendoimoi_1991-1996/ki8_color.png",
       content:
-        "Chương trình xóa đói giảm nghèo được triển khai đồng bộ trên cả nước. Nhờ tăng trưởng kinh tế và các chính sách xã hội phù hợp, tỷ lệ hộ nghèo giảm mạnh. Đời sống nhân dân được cải thiện đáng kể, an sinh xã hội được chú trọng, thể hiện bản chất nhân văn của chế độ.",
+        "Đại hội ĐBTQ lần II (2/1951) tại Tuyên Quang. Đảng ra hoạt động công khai lấy tên là Đảng Lao động Việt Nam, vạch ra cương lĩnh mới để đưa cuộc kháng chiến đến thắng lợi hoàn toàn.",
       highlights: [
-        "Triển khai chương trình xóa đói giảm nghèo",
-        "Tỷ lệ hộ nghèo giảm mạnh",
-        "Cải thiện đời sống nhân dân",
+        "Đảng ra hoạt động công khai",
+        "Đổi tên thành Đảng Lao động Việt Nam",
+        "Hoàn thiện đường lối kháng chiến",
       ],
     },
     {
       id: 9,
-      year: "Kì 9 - 1995",
-      title: "Gia Nhập ASEAN",
+      year: "Kì 9 - 1953",
+      title: "Cải Cách Ruộng Đất",
       originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki9.jpg",
       coloredImage: "/img/tieptucthuchiendoimoi_1991-1996/ki9_color.png",
       content:
-        "Ngày 28/7/1995, Việt Nam chính thức trở thành thành viên thứ 7 của ASEAN, đánh dấu bước ngoặt lịch sử trong chính sách đối ngoại. Việc gia nhập ASEAN mở ra cơ hội hội nhập kinh tế khu vực, tăng cường hợp tác chính trị, an ninh và văn hóa, nâng cao vị thế Việt Nam trên trường quốc tế.",
+        "Năm 1953, Đảng và Nhà nước quyết định phát động quần chúng triệt để giảm tô và tiến hành cải cách ruộng đất, hiện thực hóa khẩu hiệu 'Người cày có ruộng', bồi dưỡng sức dân phục vụ kháng chiến.",
       highlights: [
-        "Chính thức gia nhập ASEAN (28/7/1995)",
-        "Hội nhập kinh tế khu vực",
-        "Nâng cao vị thế quốc tế của Việt Nam",
+        "Hiện thực hóa khẩu hiệu 'Người cày có ruộng'",
+        "Động viên sức người sức của cho tiền tuyến",
+        "Giải phóng sức sản xuất nông nghiệp",
       ],
     },
     {
       id: 10,
-      year: "Kì 10 - 1995",
-      title: "Bình Thường Hóa Quan Hệ Việt - Mỹ",
+      year: "Kì 10 - 1953",
+      title: "Cuộc Trấn Áp Kế Hoạch Nava",
       originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki10.jpg",
       content:
-        "Việc bình thường hóa quan hệ Việt Nam - Hoa Kỳ mở ra trang mới trong quan hệ đối ngoại. Dù còn nhiều khác biệt, hai nước cam kết phát triển quan hệ trên cơ sở tôn trọng độc lập, chủ quyền và lợi ích của nhau. Điều này tạo môi trường thuận lợi cho hợp tác kinh tế, thương mại.",
+        "Pháp Mỹ đề ra kế hoạch Nava nhằm tìm kiếm 'lối thoát danh dự'. Đảng ta mở cuộc tiến công chiến lược Đông-Xuân 1953-1954, phân tán lực lượng địch thành 5 hướng khác nhau, phá sản bước đầu kế hoạch Nava.",
       highlights: [
-        "Bình thường hóa quan hệ ngoại giao Việt - Mỹ",
-        "Mở rộng hợp tác kinh tế, thương mại",
-        "Tạo môi trường quốc tế thuận lợi",
+        "Mở cuộc tiến công Đông-Xuân 1953-1954",
+        "Phân tán lực lượng cơ động của địch",
+        "Chuẩn bị mọi mặt cho trận quyết chiến chiến lược",
       ],
     },
     {
       id: 11,
-      year: "Kì 11 - 1995",
-      title: "Phát Triển Hạ Tầng",
+      year: "Kì 11 - 1954",
+      title: "Đại Thắng Điện Biên Phủ",
       originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki11.jpg",
       coloredImage: "/img/tieptucthuchiendoimoi_1991-1996/ki11_color.png",
       content:
-        "Đầu tư phát triển hạ tầng kinh tế - xã hội được đẩy mạnh. Các tuyến đường giao thông, cầu cống, hệ thống điện, nước được nâng cấp và xây dựng mới. Hạ tầng viễn thông bắt đầu hiện đại hóa. Việc cải thiện hạ tầng tạo điều kiện thuận lợi cho phát triển kinh tế và nâng cao đời sống người dân.",
+        "Sau 56 ngày đêm khoét núi ngủ hầm, mưa dầm cơm vắt, chiến dịch Điện Biên Phủ toàn thắng (7/5/1954). Đây là đòn quyết định đập tan ý chí xâm lược của thực dân Pháp.",
       highlights: [
-        "Đầu tư xây dựng hạ tầng giao thông",
-        "Nâng cấp hệ thống điện, nước",
-        "Hiện đại hóa hạ tầng viễn thông",
+        "Chiến thắng lẫy lừng năm châu, chấn động địa cầu",
+        "Tiêu diệt tập đoàn cứ điểm mạnh nhất Đông Dương",
+        "Đánh đổ chủ nghĩa thực dân cũ",
       ],
     },
     {
       id: 12,
-      year: "Kì 12 - 1996",
-      title: "Xuất Khẩu Gạo",
+      year: "Kì 12 - 1954",
+      title: "Hiệp Định Giơnevơ & Hòa Bình",
       originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki12.jpg",
       content:
-        "Từ một nước nhập khẩu lương thực, Việt Nam trở thành nước xuất khẩu gạo lớn thứ 2 thế giới. Thành công này là kết quả của cải cách nông nghiệp, chính sách khuyến khích sản xuất và cải thiện kỹ thuật canh tác. Đây là minh chứng sinh động cho sự thành công của chính sách đổi mới.",
+        "Ngày 21/7/1954, Hiệp định Giơnevơ được ký kết, Pháp và các nước phải công nhận độc lập, chủ quyền, thống nhất và toàn vẹn lãnh thổ của Việt Nam, miền Bắc được hoàn toàn giải phóng.",
       highlights: [
-        "Trở thành nước xuất khẩu gạo lớn thứ 2 thế giới",
-        "Đảm bảo an ninh lương thực quốc gia",
-        "Tăng thu nhập cho nông dân",
-      ],
-    },
-    {
-      id: 13,
-      year: "Kì 13 - 1996",
-      title: "Công Nghệ Thông Tin Khởi Đầu",
-      originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki13.jpg",
-      coloredImage: "/img/tieptucthuchiendoimoi_1991-1996/ki13_color.png",
-      content:
-        "Internet bắt đầu du nhập vào Việt Nam, mở ra kỷ nguyên số. Các doanh nghiệp công nghệ thông tin đầu tiên được thành lập. Chính phủ nhận thức được tầm quan trọng của công nghệ thông tin trong phát triển kinh tế - xã hội và bắt đầu xây dựng chiến lược phát triển ngành này.",
-      highlights: [
-        "Internet du nhập vào Việt Nam",
-        "Thành lập các doanh nghiệp CNTT đầu tiên",
-        "Xây dựng chiến lược phát triển CNTT",
-      ],
-    },
-    {
-      id: 14,
-      year: "Kì 14 - 1996",
-      title: "Du Lịch Phát Triển",
-      originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki14.jpg",
-      coloredImage: "/img/tieptucthuchiendoimoi_1991-1996/ki14_color.png",
-      content:
-        "Ngành du lịch được xác định là ngành kinh tế mũi nhọn. Các di sản văn hóa, thiên nhiên được bảo tồn và khai thác. Hạ tầng du lịch được đầu tư, dịch vụ du lịch được nâng cao. Việt Nam bắt đầu thu hút du khách quốc tế, mở ra nguồn thu ngoại tệ quan trọng và giới thiệu đất nước với bạn bè thế giới.",
-      highlights: [
-        "Phát triển du lịch thành ngành kinh tế mũi nhọn",
-        "Bảo tồn và khai thác di sản văn hóa",
-        "Thu hút du khách quốc tế",
-      ],
-    },
-    {
-      id: 15,
-      year: "Kì 15 - 1996",
-      title: "Y Tế và Chăm Sóc Sức Khỏe",
-      originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki15.jpg",
-      coloredImage: "/img/tieptucthuchiendoimoi_1991-1996/ki15_color.png",
-      content:
-        "Hệ thống y tế được củng cố và mở rộng, đặc biệt ở vùng nông thôn, miền núi. Chương trình y tế cơ sở được tăng cường. Các chỉ số sức khỏe cộng đồng được cải thiện: tuổi thọ trung bình tăng, tỷ lệ tử vong trẻ em giảm. Đây là thành tựu quan trọng về bảo vệ và chăm sóc sức khỏe nhân dân.",
-      highlights: [
-        "Củng cố hệ thống y tế cơ sở",
-        "Cải thiện các chỉ số sức khỏe cộng đồng",
-        "Mở rộng phủ sóng y tế đến vùng sâu, vùng xa",
-      ],
-    },
-    {
-      id: 16,
-      year: "Kì 16 - 1996",
-      title: "Văn Hóa và Thể Thao",
-      originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki16.jpg",
-      content:
-        "Hoạt động văn hóa, văn nghệ được đổi mới, phong phú hơn. Các giá trị văn hóa truyền thống được bảo tồn và phát huy. Thể thao quần chúng và thể thao thành tích đều được chú trọng. Việt Nam đạt nhiều thành tích cao tại các giải thể thao khu vực và quốc tế, nâng cao tinh thần dân tộc.",
-      highlights: [
-        "Đổi mới và phát triển văn hóa, văn nghệ",
-        "Bảo tồn giá trị văn hóa truyền thống",
-        "Phát triển thể thao quần chúng và thành tích",
-      ],
-    },
-    {
-      id: 17,
-      year: "Kì 17 - 1996",
-      title: "Môi Trường và Phát Triển Bền Vững",
-      originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki17.jpg",
-      content:
-        "Ý thức bảo vệ môi trường bắt đầu được nâng cao. Các chính sách về môi trường được ban hành. Mô hình phát triển bền vững được quan tâm, cân bằng giữa phát triển kinh tế và bảo vệ môi trường. Các khu bảo tồn thiên nhiên được thành lập, tài nguyên rừng được quản lý tốt hơn.",
-      highlights: [
-        "Nâng cao ý thức bảo vệ môi trường",
-        "Ban hành chính sách về môi trường",
-        "Phát triển theo hướng bền vững",
-      ],
-    },
-    {
-      id: 18,
-      year: "Kì 18 - 1996",
-      title: "Chính Sách Dân Số",
-      originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki18.jpg",
-      content:
-        "Chính sách dân số - kế hoạch hóa gia đình được triển khai mạnh mẽ nhằm kiểm soát tốc độ tăng dân số, nâng cao chất lượng cuộc sống. Chương trình 'Một hoặc hai con là đủ' được tuyên truyền sâu rộng. Việc kiểm soát dân số góp phần quan trọng vào phát triển kinh tế - xã hội bền vững.",
-      highlights: [
-        "Triển khai chính sách dân số hiệu quả",
-        "Kiểm soát tốc độ tăng dân số",
-        "Nâng cao chất lượng cuộc sống",
-      ],
-    },
-    {
-      id: 19,
-      year: "Kì 19 - 1996",
-      title: "Tổng Kết và Triển Vọng",
-      originalImage: "/img/tieptucthuchiendoimoi_1991-1996/ki19.jpg",
-      coloredImage: "/img/tieptucthuchiendoimoi_1991-1996/ki19_color.png",
-      content:
-        "Giai đoạn 1991-1996 đánh dấu thành công ban đầu của sự nghiệp đổi mới. Kinh tế tăng trưởng ổn định, đời sống nhân dân được cải thiện. Việt Nam hội nhập sâu rộng vào khu vực và thế giới. Những thành tựu này là nền tảng vững chắc cho sự phát triển trong những giai đoạn tiếp theo, khẳng định đường lối đổi mới là đúng đắn.",
-      highlights: [
-        "Kinh tế tăng trưởng ổn định và bền vững",
-        "Hội nhập quốc tế thành công",
-        "Tạo nền tảng cho phát triển lâu dài",
+        "Pháp công nhận độc lập, chủ quyền Việt Nam",
+        "Giải phóng hoàn toàn miền Bắc",
+        "Kết thúc 9 năm kháng chiến trường kỳ",
       ],
     },
   ];
@@ -379,14 +284,15 @@ const HistoricalStoryTimeline: React.FC = () => {
             </motion.div>
 
             <h1 className="story-title text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-700 via-yellow-600 to-red-700 bg-clip-text text-transparent">
-              Tiếp Tục Thực Hiện Đổi Mới Toàn Diện
+              9 Năm Kháng Chiến Chống Pháp
             </h1>
             <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto mb-4">
-              Kinh Tế - Xã Hội (1991-1996)
+              Từ Cách Mạng Tháng Tám đến Chiến Thắng Điện Biên Phủ (1945-1954)
             </p>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Khám phá 19 giai đoạn lịch sử quan trọng của Việt Nam trong thời
-              kỳ đổi mới. Nhấp vào nút Play để bắt đầu hành trình khám phá!
+              Khám phá 12 sự kiện lịch sử quan trọng của quy trình đấu tranh và
+              xây dựng chủ nghĩa xã hội. Nhấp vào nút Play để bắt đầu hành trình
+              khám phá!
             </p>
           </div>
 
@@ -428,7 +334,7 @@ const HistoricalStoryTimeline: React.FC = () => {
                     Bắt Đầu Khám Phá
                   </p>
                   <p className="text-gray-600 mt-2">
-                    19 giai đoạn lịch sử đang chờ bạn
+                    12 sự kiện lịch sử đang chờ bạn
                   </p>
                 </div>
               </button>
@@ -600,7 +506,7 @@ const HistoricalStoryTimeline: React.FC = () => {
                               {highlight}
                             </span>
                           </li>
-                        )
+                        ),
                       )}
                     </ul>
                   </div>
@@ -617,8 +523,9 @@ const HistoricalStoryTimeline: React.FC = () => {
                       <div
                         className="bg-gradient-to-r from-red-600 to-yellow-600 h-2 rounded-full transition-all duration-300"
                         style={{
-                          width: `${((currentPeriod + 1) / periods.length) * 100
-                            }%`,
+                          width: `${
+                            ((currentPeriod + 1) / periods.length) * 100
+                          }%`,
                         }}
                       />
                     </div>

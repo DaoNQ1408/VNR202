@@ -7,7 +7,7 @@ const footerLinks = [
     links: [
       { name: "Trang Chủ", href: "/" },
       { name: "Phân Tích Đổi Mới", href: "/#reform-analysis" },
-      { name: "Thành Tựu 1986-1996", href: "/#achievements" },
+      { name: "Thành Tựu 1945-1954", href: "/#achievements" },
     ],
   },
   {
@@ -15,7 +15,7 @@ const footerLinks = [
     links: [
       { name: "Thư Viện Hình Ảnh 3D", href: "/thu-vien" },
       { name: "Ý Nghĩa Lịch Sử", href: "/y-nghia" },
-      { name: "Video Giải Thích", href: "/video-giai-thich" },
+      // { name: "Video Giải Thích", href: "/video-giai-thich" },
       { name: "Quiz Kiến Thức", href: "/quiz" },
     ],
   },
@@ -95,7 +95,7 @@ export default function Footer() {
               </div>
               <div>
                 <span className="font-bold text-lg text-[#FFD700]">
-                  Đổi Mới 1986-1996
+                  Đổi Mới 1945-1954
                 </span>
                 <span className="text-white text-xs block tracking-widest">
                   LỊCH SỬ ĐẢNG CSVN
@@ -154,7 +154,7 @@ export default function Footer() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-white/70 text-sm text-center md:text-left">
-              © 2025 Đổi Mới Toàn Diện 1986-1996 - Lịch Sử Đảng CSVN. Dự án học
+              © 2025 Đổi Mới Toàn Diện 1945-1954 - Lịch Sử Đảng CSVN. Dự án học
               tập.
             </p>
             <div className="flex items-center gap-2">

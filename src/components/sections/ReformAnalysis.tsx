@@ -15,54 +15,54 @@ const ReformAnalysis: React.FC = () => {
   const tabs: TabContent[] = [
     {
       id: "context",
-      title: "Bối Cảnh Trước 1986",
+      title: "Bối Cảnh Sau 1945",
       icon: "📊",
       image: null,
       content: [
-        "🔴 Lạm phát tăng cao (453% năm 1986)",
-        "🔴 Sản xuất đình trệ, thiếu hụt hàng hóa trầm trọng",
-        "🔴 Thâm hụt ngân sách, nợ công gia tăng",
-        "🔴 Đời sống nhân dân khó khăn, tiền lương mất giá",
-        "🔴 Cải cách giá-lương-tiền 1985 thất bại",
+        "🔴 Chính quyền non trẻ đối mặt 'ngàn cân treo sợi tóc'",
+        "🔴 Giặc đói, giặc dốt đe dọa sinh mệnh dân tộc",
+        "🔴 Hơn 20 vạn quân Tưởng kéo vào miền Bắc",
+        "🔴 Thực dân Pháp âm mưu quay lại xâm lược",
+        "🔴 Ngân khố trống rỗng, nền kinh tế kiệt quệ",
       ],
     },
     {
       id: "reform",
-      title: "Đại Hội VI - 1986",
+      title: "Toàn Quốc Kháng Chiến",
       icon: "🚀",
-      image: "/img/daihoiVI_color.jpg",
+      image: "/img/daihoiVI_color.jpg", // Tạm dùng ảnh cũ, có thể thay đổi sau
       content: [
-        "✨ Đổi mới tư duy kinh tế: Từ kế hoạch hóa sang thị trường",
-        "✨ Công nhận nhiều thành phần kinh tế",
-        "✨ Đổi mới cơ chế quản lý kinh tế",
-        "✨ Mở cửa, hội nhập kinh tế quốc tế",
-        "✨ Đổi mới chính trị, xã hội, văn hóa",
+        "✨ Quyết định: Lời kêu gọi toàn quốc kháng chiến (12/1946)",
+        "✨ Đường lối: Kháng chiến toàn dân, toàn diện",
+        "✨ Phương châm: Lâu dài, tự lực cánh sinh",
+        "✨ Xây dựng lực lượng vũ trang 3 thứ quân",
+        "✨ Kết hợp đấu tranh quân sự, chính trị, ngoại giao",
       ],
     },
     {
       id: "impact",
-      title: "Thành Tựu 1986-1996",
+      title: "Đại Thắng 1954",
       icon: "⚡",
-      image: "/img/chutruongdoimoi.png",
+      image: "/img/chutruongdoimoi.png", // Tạm dùng ảnh cũ
       content: [
-        "✅ GDP tăng trưởng bình quân 7-8%/năm",
-        "✅ Lạm phát giảm xuống dưới 10%",
-        "✅ Xuất khẩu tăng nhanh, đặc biệt gạo và dầu khí",
-        "✅ Đời sống nhân dân cải thiện rõ rệt",
-        "✅ Đất nước thoát khỏi khủng hoảng kinh tế - xã hội",
+        "✅ Đập tan âm mưu 'đánh nhanh thắng nhanh' của Pháp",
+        "✅ Chiến thắng Việt Bắc 1947, Biên giới 1950",
+        "✅ Đại thắng Điện Biên Phủ 'lừng lẫy năm châu'",
+        "✅ Ký Hiệp định Giơnevơ (1954)",
+        "✅ Bảo vệ thành công quyền độc lập thiêng liêng",
       ],
     },
     {
       id: "lesson",
-      title: "Bài Học Kinh Nghiệm",
+      title: "Bài Học Lịch Sử",
       icon: "📚",
       image: null,
       content: [
-        "💡 Đổi mới tư duy: Từ kế hoạch hóa sang kinh tế thị trường",
-        "💡 Đồng bộ hóa: Cải cách kinh tế - chính trị - xã hội",
-        "💡 Kiên trì: Không ngừng đổi mới, hoàn thiện chính sách",
-        "💡 Mở cửa: Hội nhập kinh tế quốc tế là tất yếu",
-        "💡 Lấy dân làm gốc: Nâng cao đời sống nhân dân",
+        "💡 Đường lối kháng chiến đúng đắn, sáng tạo",
+        "💡 Phát huy sức mạnh khối đại đoàn kết toàn dân tộc",
+        "💡 Xây dựng lực lượng vũ trang nhân dân vững mạnh",
+        "💡 Kết hợp sức mạnh dân tộc với sức mạnh thời đại",
+        "💡 Ngoại giao mềm dẻo, có cương có nhu",
       ],
     },
   ];
@@ -111,16 +111,16 @@ const ReformAnalysis: React.FC = () => {
             style={{ color: "var(--ink-black)" }}
           >
             <span style={{ color: "var(--vietnam-red)" }}>
-              Đổi Mới Toàn Diện 1986 - 1996
+              Kháng Chiến Chống Pháp 1945 - 1954
             </span>
           </h2>
           <p
             className="text-xl max-w-3xl mx-auto leading-relaxed"
             style={{ color: "var(--ancient-stone)" }}
           >
-            Đưa đất nước ra khỏi <strong>khủng hoảng kinh tế - xã hội</strong>,
-            đẩy mạnh <strong>công nghiệp hóa, hiện đại hóa</strong> và{" "}
-            <strong>hội nhập quốc tế</strong>
+            Bảo vệ quyền <strong>độc lập</strong> tự do thiêng liêng, đập tan âm
+            mưu <strong>xâm lược</strong> của thực dân Pháp và kết thúc bằng
+            chiến thắng <strong>Điện Biên Phủ</strong>
           </p>
         </motion.div>
 
@@ -136,8 +136,9 @@ const ReformAnalysis: React.FC = () => {
             <motion.button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-6 py-3 font-semibold transition-all border-2 ${activeTab === tab.id ? "shadow-xl" : "shadow-md"
-                }`}
+              className={`px-6 py-3 font-semibold transition-all border-2 ${
+                activeTab === tab.id ? "shadow-xl" : "shadow-md"
+              }`}
               style={{
                 backgroundColor:
                   activeTab === tab.id
@@ -199,7 +200,8 @@ const ReformAnalysis: React.FC = () => {
                     className="relative rounded-xl overflow-hidden shadow-2xl"
                     style={{
                       border: "4px solid var(--vietnam-gold)",
-                      boxShadow: "0 0 0 2px var(--vietnam-red), 0 0 0 6px var(--vietnam-gold), 0 20px 40px rgba(0,0,0,0.3)",
+                      boxShadow:
+                        "0 0 0 2px var(--vietnam-red), 0 0 0 6px var(--vietnam-gold), 0 20px 40px rgba(0,0,0,0.3)",
                     }}
                   >
                     <motion.img
@@ -220,15 +222,16 @@ const ReformAnalysis: React.FC = () => {
                   <div
                     className="mt-3 py-3 px-6 text-center font-semibold rounded-lg shadow-lg"
                     style={{
-                      background: "linear-gradient(135deg, var(--vietnam-red) 0%, #8b1a1a 100%)",
+                      background:
+                        "linear-gradient(135deg, var(--vietnam-red) 0%, #8b1a1a 100%)",
                       color: "var(--vietnam-white)",
                       borderLeft: "4px solid var(--vietnam-gold)",
                       borderRight: "4px solid var(--vietnam-gold)",
                     }}
                   >
                     {currentTab.id === "reform"
-                      ? "Đại hội VI của Đảng Cộng sản Việt Nam - Tháng 12/1986"
-                      : "Chủ trương đường lối Đổi mới toàn diện đất nước"}
+                      ? "Phát động toàn quốc kháng chiến - Tháng 12/1946"
+                      : "Chủ trương đường lối Kháng chiến toàn quốc"}
                   </div>
                 </motion.div>
               )}
@@ -306,12 +309,13 @@ const ReformAnalysis: React.FC = () => {
               <span className="text-3xl">🎯</span>Ý Nghĩa Lịch Sử
             </h3>
             <p className="text-lg leading-relaxed">
-              Giai đoạn 1986-1996 đánh dấu <strong>bước ngoặt lịch sử</strong>{" "}
-              của đất nước, khi Đảng dũng cảm đổi mới tư duy, từ bỏ cơ chế kế
-              hoạch hóa tập trung sang
-              <strong> kinh tế thị trường định hướng xã hội chủ nghĩa</strong>.
-              10 năm đổi mới đã đưa Việt Nam thoát khỏi khủng hoảng, mở đường
-              cho sự phát triển bền vững và hội nhập quốc tế sau này.
+              Giai đoạn 1945-1954 đánh dấu <strong>bản lĩnh kiên cường</strong>{" "}
+              của dân tộc, khi Đảng lãnh đạo nhân dân từ thế bị bao vây cô lập
+              đến
+              <strong> chiến thắng Điện Biên Phủ chấn động địa cầu</strong>. 9
+              năm kháng chiến trường kỳ đã bảo vệ vững chắc thành quả của Cách
+              mạng Tháng Tám, mang lại hòa bình và làm sụp đổ chủ nghĩa thực dân
+              cũ trên toàn thế giới.
             </p>
           </div>
         </motion.div>

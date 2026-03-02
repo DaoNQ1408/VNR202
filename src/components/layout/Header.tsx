@@ -88,7 +88,7 @@ export default function Header() {
                   className="text-[#FFD700] text-xs tracking-[0.2em] font-medium"
                   style={{ color: "#FFD700" }}
                 >
-                  1986 — 1996
+                  1945 — 1954
                 </span>
                 <div className="w-4 h-px bg-[#FFD700]/50"></div>
               </div>

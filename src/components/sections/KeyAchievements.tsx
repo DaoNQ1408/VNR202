@@ -19,56 +19,56 @@ const KeyAchievements: React.FC = () => {
   const achievements: Achievement[] = [
     {
       id: 1,
-      icon: "📈",
-      title: "Tăng Trưởng GDP",
-      value: 7.5,
-      suffix: "%",
-      description: "Tốc độ tăng trưởng bình quân/năm (1986-1996)",
+      icon: "💡",
+      title: "Diệt Giặc Dốt",
+      value: 2.5,
+      suffix: " triệu",
+      description: "Người dân thoát nạn mù chữ trong năm đầu tiên",
       color: "from-blue-500 to-blue-700",
     },
     {
       id: 2,
       icon: "🌾",
-      title: "Xuất Khẩu Gạo",
-      value: 3,
-      suffix: " triệu tấn",
-      description: "Từ thiếu lương thực thành nước xuất khẩu gạo",
+      title: "Diệt Giặc Đói",
+      value: 1946,
+      suffix: "",
+      description: "Đẩy lùi nạn đói lịch sử nhờ tăng gia sản xuất",
       color: "from-green-500 to-green-700",
     },
     {
       id: 3,
-      icon: "💰",
-      title: "Kiểm Soát Lạm Phát",
-      value: 10,
-      suffix: "%",
-      description: "Giảm từ 453% (1986) xuống dưới 10% (1996)",
+      icon: "🤝",
+      title: "Ngoại Giao",
+      value: 1950,
+      suffix: "",
+      description: "Thiết lập quan hệ ngoại giao với các nước XHCN",
       color: "from-red-500 to-red-700",
     },
     {
       id: 4,
-      icon: "💰",
-      title: "Thu Hút FDI",
-      value: 8.5,
-      suffix: " tỷ USD",
-      description: "Vốn đầu tư nước ngoài giai đoạn 1988-1996",
+      icon: "⚔️",
+      title: "Quân Sự",
+      value: 56,
+      suffix: " ngày",
+      description: "Chiến dịch Điện Biên Phủ chấn động địa cầu",
       color: "from-yellow-500 to-yellow-700",
     },
     {
       id: 5,
-      icon: "🌍",
-      title: "Bình Thường Hóa",
-      value: 1995,
+      icon: "📜",
+      title: "Pháp Lý",
+      value: 1946,
       suffix: "",
-      description: "Gia nhập ASEAN - Mở rộng quan hệ quốc tế",
+      description: "Quốc hội khóa I và Hiến pháp đầu tiên",
       color: "from-purple-500 to-purple-700",
     },
     {
       id: 6,
-      icon: "👥",
-      title: "Cải Thiện Đời Sống",
-      value: 70,
-      suffix: "%",
-      description: "Tỷ lệ hộ nghèo giảm đáng kể",
+      icon: "🌍",
+      title: "Hòa Bình",
+      value: 1954,
+      suffix: "",
+      description: "Ký kết Hiệp định Giơnevơ, giải phóng miền Bắc",
       color: "from-pink-500 to-pink-700",
     },
   ];
@@ -114,15 +114,16 @@ const KeyAchievements: React.FC = () => {
             className="text-4xl md:text-5xl font-bold mb-4"
             style={{ color: "var(--ink-black)" }}
           >
-            10 Năm <span style={{ color: "var(--vietnam-red)" }}>Đổi Mới</span>{" "}
-            (1986-1996)
+            9 Năm{" "}
+            <span style={{ color: "var(--vietnam-red)" }}>Kháng Chiến</span>{" "}
+            (1945-1954)
           </h2>
           <p
             className="text-xl max-w-3xl mx-auto"
             style={{ color: "var(--ancient-stone)" }}
           >
-            Những bước chuyển mình đáng tự hào đưa đất nước thoát khỏi khủng
-            hoảng
+            Bảo vệ chính quyền cách mạng và giành lại độc lập hoàn toàn cho dân
+            tộc
           </p>
         </motion.div>
 
@@ -194,7 +195,7 @@ const KeyAchievements: React.FC = () => {
                         end={achievement.value}
                         duration={2.5}
                         suffix={achievement.suffix}
-                        separator=","
+                        separator=""
                       />
                     )}
                   </motion.div>
@@ -250,15 +251,14 @@ const KeyAchievements: React.FC = () => {
                   className="text-2xl italic mb-4 leading-relaxed"
                   style={{ color: "var(--sepia)" }}
                 >
-                  "Đổi mới là con đường duy nhất để cứu đất nước khỏi nguy cơ
-                  tụt hậu. Không đổi mới thì đất nước sẽ tiếp tục đói nghèo, lạc
-                  hậu."
+                  "Chúng ta thà hy sinh tất cả, chứ nhất định không chịu mất
+                  nước, nhất định không chịu làm nô lệ."
                 </p>
                 <p
                   className="text-lg font-semibold"
                   style={{ color: "var(--ink-black)" }}
                 >
-                  - Tổng Bí thư Nguyễn Văn Linh (1986)
+                  - Lời kêu gọi toàn quốc kháng chiến, Hồ Chí Minh (1946)
                 </p>
               </div>
             </div>

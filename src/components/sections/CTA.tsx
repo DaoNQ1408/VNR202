@@ -45,7 +45,7 @@ const CTA: React.FC = () => {
             className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed"
             style={{ color: "var(--vietnam-white)" }}
           >
-            Từ bài học lịch sử 1986-1996 đến hành động ngày nay - Dám nghĩ, dám
+            Từ bài học lịch sử 1945-1954 đến hành động ngày nay - Dám nghĩ, dám
             làm để xây dựng Việt Nam giàu mạnh, văn minh, hạnh phúc!
           </p>
 
@@ -117,7 +117,7 @@ const CTA: React.FC = () => {
               >
                 {icon}
               </motion.div>
-            )
+            ),
           )}
         </div>
       </div>

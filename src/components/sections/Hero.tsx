@@ -35,7 +35,7 @@ export const Hero: React.FC = () => {
               duration: 1,
               stagger: 0.1,
             },
-            0.3
+            0.3,
           );
         }
       }
@@ -46,7 +46,7 @@ export const Hero: React.FC = () => {
           textRef.current,
           { opacity: 0, y: 30 },
           { opacity: 1, y: 0, duration: 0.8 },
-          0.6
+          0.6,
         );
       }
 
@@ -65,7 +65,7 @@ export const Hero: React.FC = () => {
               stagger: 0.1,
               ease: "back.out(1.7)",
             },
-            0.9
+            0.9,
           );
         }
       }
@@ -81,7 +81,7 @@ export const Hero: React.FC = () => {
             duration: 0.6,
             stagger: 0.1,
           },
-          1.2
+          1.2,
         );
       }
 
@@ -197,7 +197,7 @@ export const Hero: React.FC = () => {
           backgroundImage: "url('/img/bannner.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundRepeat: "no-repeat"
+          backgroundRepeat: "no-repeat",
         }}
       />
 
@@ -238,8 +238,8 @@ export const Hero: React.FC = () => {
                   borderColor: "var(--vietnam-gold)",
                 }}
               >
-                🇻🇳 Chương 3: Đảng lãnh đạo cả nước quá độ lên CNXH và tiến hành
-                công cuộc đổi mới
+                🇻🇳 Chương 2: Đảng lãnh đạo xây dựng, bảo vệ chính quyền cách
+                mạng và kháng chiến chống Pháp
               </div>
 
               <h1
@@ -247,15 +247,15 @@ export const Hero: React.FC = () => {
                 className="text-5xl md:text-7xl font-bold mb-6 leading-tight drop-shadow-lg"
                 style={{ color: "var(--vietnam-white)" }}
               >
-                <span className="word inline-block">Đổi</span>{" "}
-                <span className="word inline-block">Mới</span>{" "}
-                <span className="word inline-block">Toàn</span>{" "}
-                <span className="word inline-block">Diện</span>{" "}
+                <span className="word inline-block">Kháng</span>{" "}
+                <span className="word inline-block">Chiến</span>{" "}
+                <span className="word inline-block">Chống</span>{" "}
+                <span className="word inline-block">Pháp</span>{" "}
                 <span
                   className="word inline-block"
                   style={{ color: "var(--vietnam-gold)" }}
                 >
-                  1986 - 1996
+                  1945 - 1954
                 </span>
               </h1>
 
@@ -268,10 +268,10 @@ export const Hero: React.FC = () => {
                   className="font-bold"
                   style={{ color: "var(--vietnam-gold)" }}
                 >
-                  3.2.1.
+                  2.3.
                 </span>{" "}
-                Đưa đất nước ra khỏi khủng hoảng kinh tế - xã hội, đẩy mạnh công
-                nghiệp hóa, hiện đại hóa và hội nhập quốc tế
+                Đẩy mạnh cuộc kháng chiến đến thắng lợi, mang lại hòa bình và
+                độc lập thực sự cho dân tộc
               </p>
 
               <div ref={buttonsRef} className="flex flex-wrap gap-4">
@@ -284,7 +284,7 @@ export const Hero: React.FC = () => {
                     borderColor: "var(--vietnam-gold)",
                   }}
                 >
-                  Tìm Hiểu Đổi Mới →
+                  Tìm Hiểu Kháng Chiến →
                 </a>
                 <a
                   href="#achievements"
@@ -306,13 +306,13 @@ export const Hero: React.FC = () => {
                     className="text-3xl font-bold drop-shadow-lg"
                     style={{ color: "var(--vietnam-gold)" }}
                   >
-                    1986
+                    1945
                   </div>
                   <div
                     className="text-sm font-medium"
                     style={{ color: "var(--vietnam-white)" }}
                   >
-                    Đại Hội VI - Khởi Đầu Đổi Mới
+                    Kháng Chiến Kiến Quốc
                   </div>
                 </div>
                 <div className="text-center animate-item bg-black/30 backdrop-blur-sm rounded-lg p-4">
@@ -320,13 +320,13 @@ export const Hero: React.FC = () => {
                     className="text-3xl font-bold drop-shadow-lg"
                     style={{ color: "var(--vietnam-gold)" }}
                   >
-                    1996
+                    1954
                   </div>
                   <div
                     className="text-sm font-medium"
                     style={{ color: "var(--vietnam-white)" }}
                   >
-                    Ra Khỏi Khủng Hoảng
+                    Chiến Thắng Điện Biên Phủ
                   </div>
                 </div>
                 <div className="text-center animate-item bg-black/30 backdrop-blur-sm rounded-lg p-4">
@@ -334,13 +334,13 @@ export const Hero: React.FC = () => {
                     className="text-3xl font-bold drop-shadow-lg"
                     style={{ color: "var(--vietnam-gold)" }}
                   >
-                    10 Năm
+                    9 Năm
                   </div>
                   <div
                     className="text-sm font-medium"
                     style={{ color: "var(--vietnam-white)" }}
                   >
-                    Đổi Mới Toàn Diện
+                    Kháng Chiến Trường Kỳ
                   </div>
                 </div>
               </div>
@@ -399,13 +399,13 @@ export const Hero: React.FC = () => {
                       className="text-xs font-semibold"
                       style={{ color: "var(--sepia)" }}
                     >
-                      Đại Hội VI
+                      Đại Hội II
                     </div>
                     <div
                       className="text-xs"
                       style={{ color: "var(--ancient-stone)" }}
                     >
-                      1986
+                      1951
                     </div>
                   </div>
                 </div>
