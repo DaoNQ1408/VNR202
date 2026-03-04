@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,92 +22,92 @@ const CaseStudyPage: React.FC = () => {
   const caseStudies: CaseStudy[] = [
     {
       id: 1,
-      title: 'Khủng Hoảng Kinh Tế 1975-1985',
-      period: '1975 - 1985',
+      title: "Toàn Quốc Kháng Chiến",
+      period: "12/1946",
       challenge:
-        'Sau thống nhất, nền kinh tế Việt Nam rơi vào khủng hoảng nghiêm trọng với lạm phát cao, thiếu hụt lương thực, và cơ chế kế hoạch hóa tập trung bộc lộ nhiều bất cập.',
+        "Thực dân Pháp bội ước, liên tiếp khiêu khích và gửi tối hậu thư đòi tước vũ khí lực lượng tự vệ của ta. Lực lượng ta khi đó còn non trẻ, vũ khí thô sơ.",
       solution:
-        'Đảng quyết định thực hiện cải cách giá-lương-tiền (1985) và chuẩn bị cho đổi mới toàn diện. Điều chỉnh chính sách kinh tế, cho phép thành phần kinh tế tư nhân phát triển.',
+        'Đảng phát động Toàn quốc kháng chiến với đường lối: "Toàn dân, toàn diện, trường kỳ, tự lực cánh sinh". Áp dụng chiến thuật tiêu hao sinh lực địch, kìm chân địch.',
       result:
-        'Lạm phát giảm dần, sản xuất hàng hóa tăng, đời sống người dân cải thiện. Tạo nền tảng cho Đổi Mới 1986.',
+        "Kìm chân địch thành công ở các đô thị lớn, bảo toàn lực lượng, di chuyển an toàn cơ quan đầu não yếu nhân lên chiến khu Việt Bắc.",
       lessons: [
-        'Cần linh hoạt trong chính sách kinh tế',
-        'Kế hoạch hóa tập trung cứng nhắc không phù hợp',
-        'Phải tôn trọng quy luật thị trường',
-        'Cải cách phải mạnh dạn và quyết liệt',
+        "Chủ động nắm bắt thời cơ, không để bị động",
+        "Xây dựng thế trận lòng dân, phát huy sức mạnh toàn dân",
+        "Tự lực tự cường là nền tảng",
+        "Phát huy nghệ thuật chiến tranh du kích",
       ],
-      icon: '💰',
-      color: 'from-red-500 to-orange-500',
+      icon: "⚔️",
+      color: "from-orange-500 to-red-600",
     },
     {
       id: 2,
-      title: 'Đổi Mới 1986 - Bước Ngoặt Lịch Sử',
-      period: '1986 - 1990',
+      title: "Chiến Dịch Việt Bắc Thu - Đông",
+      period: "1947",
       challenge:
-        'Nền kinh tế trì trệ, bao cấp lạc hậu, người dân thiếu đói, đất nước tụt hậu so với khu vực. Nguy cơ khủng hoảng toàn diện.',
+        'Pháp mở cuộc tấn công quy mô lớn lên căn cứ địa Việt Bắc nhằm tiêu diệt cơ quan đầu não kháng chiến và bộ đội chủ lực của ta, hòng tóm gọn quân ta "đánh nhanh thắng nhanh".',
       solution:
-        'Đại hội VI (1986) quyết định đổi mới toàn diện: chuyển sang kinh tế thị trường định hướng XHCN, phát triển nhiều thành phần kinh tế, mở cửa hội nhập.',
+        'Ban Thường vụ Trung ương Đảng ra chỉ thị "Phải phá tan cuộc tấn công mùa đông của giặc Pháp". Ta dùng chiến thuật du kích, phục kích, đánh vận động, chia cắt lực lượng địch.',
       result:
-        'GDP tăng trưởng trung bình 6-7%/năm. Xuất khẩu gạo tăng mạnh. Thu hút FDI. Đời sống người dân cải thiện rõ rệt.',
+        'Ta bẻ gãy gọng kìm của Pháp, bảo vệ an toàn tuyệt đối căn cứ địa Việt Bắc. Làm phá sản hoàn toàn chiến lược "đánh nhanh thắng nhanh".',
       lessons: [
-        'Đổi mới tư duy là then chốt',
-        'Kinh tế thị trường có thể kết hợp với XHCN',
-        'Hội nhập quốc tế là tất yếu',
-        'Cải cách phải đồng bộ và toàn diện',
+        "Đánh giá đúng âm mưu của kẻ thù",
+        "Tận dụng triệt để địa hình hiểm trở để tác chiến",
+        "Phòng ngự kết hợp phản công linh hoạt",
+        "Bảo toàn và phát triển vững chắc lực lượng",
       ],
-      icon: '🚀',
-      color: 'from-yellow-500 to-red-600',
+      icon: "⛰️",
+      color: "from-green-600 to-emerald-800",
     },
     {
       id: 3,
-      title: 'Hội Nhập WTO 2006',
-      period: '2001 - 2007',
+      title: "Chiến Dịch Biên Giới Thu - Đông",
+      period: "1950",
       challenge:
-        'Để gia nhập WTO, Việt Nam phải đáp ứng hàng trăm cam kết, cải cách thể chế, mở cửa thị trường - nhiều lo ngại về tác động tiêu cực.',
+        "Pháp thực hiện Kế hoạch Rơ-ve, tăng cường hệ thống phòng ngự đường số 4, bao vây và cô lập hoàn toàn căn cứ địa Việt Bắc với quốc tế.",
       solution:
-        'Đảng lãnh đạo cải cách pháp luật, hiện đại hóa hệ thống quản lý, đào tạo nguồn nhân lực, đàm phán khéo léo để bảo vệ lợi ích quốc gia.',
+        'Mở chiến dịch Biên giới, chọn điểm đột phá là cụm cứ điểm Đông Khê (yếu huyệt của địch), áp dụng sáng tạo chiến thuật "đánh điểm diệt viện".',
       result:
-        'Chính thức gia nhập WTO (2007). Kim ngạch xuất khẩu tăng gấp 3 lần sau 10 năm. FDI tăng mạnh. Vị thế quốc tế nâng cao.',
+        "Giải phóng dải biên giới Việt - Trung (750km). Đánh bại Kế hoạch Rơ-ve. Quân ta giành quyền chủ động chiến lược trên chiến trường chính Bắc Bộ.",
       lessons: [
-        'Hội nhập là cơ hội không phải thách thức',
-        'Cần chuẩn bị kỹ lưỡng trước khi mở cửa',
-        'Phải biết kết hợp lợi ích quốc gia và quốc tế',
-        'Thể chế tốt thu hút đầu tư',
+        "Chọn đúng điểm đột phá quyết định",
+        "Sáng tạo trong nghệ thuật tác chiến (đánh điểm diệt viện)",
+        "Chủ động tấn công, làm chủ chiến trường",
+        "Tranh thủ sự ủng hộ, viện trợ của quốc tế",
       ],
-      icon: '🌐',
-      color: 'from-blue-500 to-green-500',
+      icon: "🗺️",
+      color: "from-blue-600 to-cyan-600",
     },
     {
       id: 4,
-      title: 'Khủng Hoảng Tài Chính Toàn Cầu 2008',
-      period: '2008 - 2010',
+      title: "Chiến Dịch Điện Biên Phủ",
+      period: "1954",
       challenge:
-        'Khủng hoảng tài chính toàn cầu làm xuất khẩu giảm, FDI sụt giảm, nhiều doanh nghiệp phá sản, thất nghiệp tăng cao.',
+        'Pháp tập trung quân lực, được Mỹ hậu thuẫn xây dựng Điện Biên Phủ thành "pháo đài bất khả xâm phạm" - tập đoàn cứ điểm mạnh nhất Đông Dương với hỏa lực áp đảo.',
       solution:
-        'Chính phủ nhanh chóng triển khai gói kích cầu 120.000 tỷ đồng, hỗ trợ DN, đẩy mạnh đầu tư công, ổn định kinh tế vĩ mô.',
+        'Đại tướng Võ Nguyên Giáp chuyển phương châm tác chiến từ "đánh nhanh, thắng nhanh" sang "đánh chắc, tiến chắc", kiên trì xây dựng hệ thống giao thông hào.',
       result:
-        'Việt Nam là một trong số ít quốc gia duy trì tăng trưởng dương trong khủng hoảng (5.3% năm 2009). Nhanh chóng phục hồi.',
+        "Tiêu diệt hoàn toàn tập đoàn cứ điểm Điện Biên Phủ sau 56 ngày đêm chiến đấu. Buộc Pháp ký hiệp định Giơ-ne-vơ, chấm dứt hoàn toàn chiến tranh Đông Dương.",
       lessons: [
-        'Phản ứng nhanh là then chốt',
-        'Vai trò của Nhà nước trong khủng hoảng',
-        'Nền kinh tế đa dạng giúp chống chịu tốt',
-        'Hợp tác quốc tế rất quan trọng',
+        "Linh hoạt thay đổi chiến thuật sát với thực tiễn",
+        "Phát huy tối đa sức mạnh hậu cần nhân dân (xe đạp thồ)",
+        "Quyết tâm sắt đá, hy sinh quên mình vì độc lập",
+        "Kết hợp tài tình giữa tác chiến quân sự và đấu tranh ngoại giao",
       ],
-      icon: '📈',
-      color: 'from-purple-500 to-pink-500',
+      icon: "�",
+      color: "from-red-600 to-yellow-500",
     },
   ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.case-header', {
+      gsap.from(".case-header", {
         opacity: 0,
         y: -50,
         duration: 0.8,
-        ease: 'power3.out',
+        ease: "power3.out",
       });
 
-      const cards = gsap.utils.toArray<HTMLElement>('.case-card');
+      const cards = gsap.utils.toArray<HTMLElement>(".case-card");
       cards.forEach((card, index) => {
         gsap.from(card, {
           opacity: 0,
@@ -116,8 +116,8 @@ const CaseStudyPage: React.FC = () => {
           delay: index * 0.1,
           scrollTrigger: {
             trigger: card,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
+            start: "top 85%",
+            toggleActions: "play none none reverse",
           },
         });
       });
@@ -132,13 +132,14 @@ const CaseStudyPage: React.FC = () => {
         {/* Header */}
         <div className="case-header text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
-            Case Study{' '}
+            Case Study{" "}
             <span className="bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">
               Lịch Sử
             </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Phân tích chuyên sâu các thời điểm then chốt trong quá trình đổi mới của Đảng và đất nước
+            Phân tích chuyên sâu các chiến dịch và sự kiện then chốt trong cuộc
+            Kháng chiến chống Pháp (1945 - 1954)
           </p>
         </div>
 
@@ -151,7 +152,9 @@ const CaseStudyPage: React.FC = () => {
             >
               <div className="grid md:grid-cols-3 gap-8">
                 {/* Left - Icon & Info */}
-                <div className={`bg-gradient-to-br ${study.color} p-8 text-white`}>
+                <div
+                  className={`bg-gradient-to-br ${study.color} p-8 text-white`}
+                >
                   <div className="text-6xl mb-4">{study.icon}</div>
                   <h2 className="text-3xl font-bold mb-2">{study.title}</h2>
                   <div className="text-lg opacity-90">{study.period}</div>
@@ -161,25 +164,33 @@ const CaseStudyPage: React.FC = () => {
                 <div className="md:col-span-2 p-8">
                   {/* Challenge */}
                   <div className="mb-6">
-                    <h3 className="text-xl font-bold text-red-600 mb-2">⚠️ Thách Thức</h3>
+                    <h3 className="text-xl font-bold text-red-600 mb-2">
+                      ⚠️ Thách Thức
+                    </h3>
                     <p className="text-gray-700">{study.challenge}</p>
                   </div>
 
                   {/* Solution */}
                   <div className="mb-6">
-                    <h3 className="text-xl font-bold text-yellow-600 mb-2">💡 Giải Pháp</h3>
+                    <h3 className="text-xl font-bold text-yellow-600 mb-2">
+                      💡 Giải Pháp
+                    </h3>
                     <p className="text-gray-700">{study.solution}</p>
                   </div>
 
                   {/* Result */}
                   <div className="mb-6">
-                    <h3 className="text-xl font-bold text-green-600 mb-2">✅ Kết Quả</h3>
+                    <h3 className="text-xl font-bold text-green-600 mb-2">
+                      ✅ Kết Quả
+                    </h3>
                     <p className="text-gray-700">{study.result}</p>
                   </div>
 
                   {/* Lessons */}
                   <div>
-                    <h3 className="text-xl font-bold text-blue-600 mb-3">📚 Bài Học Rút Ra</h3>
+                    <h3 className="text-xl font-bold text-blue-600 mb-3">
+                      📚 Bài Học Rút Ra
+                    </h3>
                     <ul className="space-y-2">
                       {study.lessons.map((lesson, idx) => (
                         <li key={idx} className="flex items-start">
@@ -198,28 +209,32 @@ const CaseStudyPage: React.FC = () => {
         {/* Summary */}
         <div className="mt-16 bg-gradient-to-br from-red-50 to-yellow-50 rounded-2xl p-8 md:p-12">
           <h2 className="text-3xl font-bold text-center mb-8">
-            Tổng Kết{' '}
+            Tổng Kết{" "}
             <span className="bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">
-              Kinh Nghiệm Lãnh Đạo
+              Kinh Nghiệm Kháng Chiến
             </span>
           </h2>
           <div className="grid md:grid-cols-2 gap-6 text-gray-700">
             <div className="bg-white p-6 rounded-xl shadow-md">
-              <h3 className="font-bold text-lg mb-3 text-red-600">🎯 Điểm Chung</h3>
+              <h3 className="font-bold text-lg mb-3 text-red-600">
+                🎯 Điểm Chung
+              </h3>
               <ul className="space-y-2">
-                <li>• Dám đổi mới, dám nghĩ, dám làm</li>
-                <li>• Lấy dân làm gốc, vì lợi ích nhân dân</li>
-                <li>• Kết hợp sức mạnh dân tộc với thời đại</li>
-                <li>• Kiên định mục tiêu, linh hoạt phương pháp</li>
+                <li>• Đường lối kháng chiến đúng đắn, sáng tạo</li>
+                <li>• Thế trận "chiến tranh nhân dân" vững chắc</li>
+                <li>• Trí tuệ và bản lĩnh của Đảng, Bác Hồ</li>
+                <li>• Tinh thần "Quyết tử để Tổ quốc quyết sinh"</li>
               </ul>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-md">
-              <h3 className="font-bold text-lg mb-3 text-yellow-600">💪 Yếu Tố Thành Công</h3>
+              <h3 className="font-bold text-lg mb-3 text-yellow-600">
+                💪 Yếu Tố Thành Công
+              </h3>
               <ul className="space-y-2">
-                <li>• Lãnh đạo sáng suốt của Đảng</li>
-                <li>• Đồng lòng của toàn dân tộc</li>
-                <li>• Hội nhập và học hỏi quốc tế</li>
-                <li>• Cải cách đồng bộ, toàn diện</li>
+                <li>• Xây dựng lực lượng vũ trang 3 thứ quân</li>
+                <li>• Phát huy sức mạnh vĩ đại của hậu phương</li>
+                <li>• Kết hợp chặt chẽ quân sự với ngoại giao</li>
+                <li>• Nghệ thuật quân sự độc đáo, linh hoạt</li>
               </ul>
             </div>
           </div>
