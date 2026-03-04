@@ -1,7 +1,7 @@
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY as string;
 const GEMINI_MODEL =
   (import.meta.env.VITE_GEMINI_MODEL as string) ||
-  "gemini-2.5-flash-native-audio-dialog";
+  "gemini-2.5-flash";
 const GEMINI_API_URL =
   "https://generativelanguage.googleapis.com/v1beta/models";
 
