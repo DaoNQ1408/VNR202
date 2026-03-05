@@ -5,19 +5,32 @@ interface TabContent {
   id: string;
   title: string;
   icon: string;
-  image: string | null;
+  imageList: string[];
   content: string[];
 }
 
 const ReformAnalysis: React.FC = () => {
   const [activeTab, setActiveTab] = useState("context");
 
+  // Track image index for each tab independently, or reset when tab changes
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // When tab changes, we should reset the index
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+    setCurrentImageIndex(0);
+  };
+
   const tabs: TabContent[] = [
     {
       id: "context",
       title: "Bối Cảnh Sau 1945",
       icon: "📊",
-      image: null,
+      imageList: [
+        "/img/nandoi_1954.jpg",
+        "/img/binhdanhocvu.png",
+        "/img/cgido.png",
+      ],
       content: [
         "🔴 Chính quyền non trẻ đối mặt 'ngàn cân treo sợi tóc'",
         "🔴 Giặc đói, giặc dốt đe dọa sinh mệnh dân tộc",
@@ -30,7 +43,7 @@ const ReformAnalysis: React.FC = () => {
       id: "reform",
       title: "Lựa chọn chiến lược:  “Lùi một bước để tiến hai bước”",
       icon: "🚀",
-      image: "/img/hcmnixon.png", // Tạm dùng ảnh cũ, có thể thay đổi sau
+      imageList: ["/img/hcmnixon.png"], // Tạm dùng ảnh cũ, có thể thay đổi sau
       content: [
         "✨ Hiệp định Sơ bộ (6/3/1946) và Tạm ước (14/9/1946) - Nước cờ ngoại giao Xuất sắc của Đảng và Chủ tịch Hồ Chí Minh",
         "✨ Mặc dù Hiệp định Sơ bộ 6/3/1946 và Tạm ước 14/9/1946 chỉ mang tính tạm thời, nhưng chúng thể hiện rõ chủ trương nhất quán của Việt Nam: kiên trì hòa bình, tránh chiến tranh trong mọi hoàn cảnh, song đó phải là nền hòa bình gắn với độc lập và tự do thực sự",
@@ -41,7 +54,7 @@ const ReformAnalysis: React.FC = () => {
       id: "impact",
       title: "Giới hạn cuối cùng: Lời kêu gọi Toàn quốc kháng chiến",
       icon: "⚡",
-      image: "/img/loikeugoi.jpg", // Tạm dùng ảnh cũ
+      imageList: ["/img/loikeugoi.jpg"], // Tạm dùng ảnh cũ
       content: [
         "✅ Hỡi đồng bào toàn quốc! Chúng ta muốn hòa bình, chúng ta đã nhân nhượng. Nhưng chúng ta càng nhân nhượng, thực dân Pháp càng lấn tới, vì chúng quyết tâm cướp nước ta lần nữa.( Trích “Lời kêu gọi Toàn quốc kháng chiến- 19/12/1946)",
       ],
@@ -50,7 +63,7 @@ const ReformAnalysis: React.FC = () => {
       id: "lesson",
       title: "Bài Học Lịch Sử",
       icon: "📚",
-      image: null,
+      imageList: [],
       content: [
         "💡 Luôn tỉnh táo trong quan hệ quốc tế",
         "💡 Không mơ hồ về bản chất của các hành động xâm phạm lợi ích dân tộc",
@@ -128,7 +141,7 @@ const ReformAnalysis: React.FC = () => {
           {tabs.map((tab) => (
             <motion.button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => handleTabChange(tab.id)}
               className={`px-6 py-3 font-semibold transition-all border-2 ${
                 activeTab === tab.id ? "shadow-xl" : "shadow-md"
               }`}
@@ -172,10 +185,10 @@ const ReformAnalysis: React.FC = () => {
                 borderColor: "var(--vietnam-gold)",
               }}
             >
-              {/* Image Display - Show when tab has image */}
-              {currentTab.image && (
+              {/* Image Display - Show when tab has images */}
+              {currentTab.imageList && currentTab.imageList.length > 0 && (
                 <motion.div
-                  className="mb-8 relative"
+                  className="mb-8 relative max-w-3xl mx-auto"
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
@@ -188,7 +201,45 @@ const ReformAnalysis: React.FC = () => {
                     }}
                   />
 
-                  {/* Double gold frame */}
+                  {/* Navigation Buttons (only show if multiple images) */}
+                  {currentTab.imageList.length > 1 && (
+                    <>
+                      <button
+                        onClick={() =>
+                          setCurrentImageIndex((prev) =>
+                            prev === 0
+                              ? currentTab.imageList.length - 1
+                              : prev - 1,
+                          )
+                        }
+                        className="absolute left-[-20px] md:left-[-40px] top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-lg border-2 hover:scale-110 transition-transform bg-white text-xl"
+                        style={{
+                          color: "var(--vietnam-red)",
+                          borderColor: "var(--vietnam-gold)",
+                        }}
+                      >
+                        &#10094;
+                      </button>
+                      <button
+                        onClick={() =>
+                          setCurrentImageIndex((prev) =>
+                            prev === currentTab.imageList.length - 1
+                              ? 0
+                              : prev + 1,
+                          )
+                        }
+                        className="absolute right-[-20px] md:right-[-40px] top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-lg border-2 hover:scale-110 transition-transform bg-white text-xl"
+                        style={{
+                          color: "var(--vietnam-red)",
+                          borderColor: "var(--vietnam-gold)",
+                        }}
+                      >
+                        &#10095;
+                      </button>
+                    </>
+                  )}
+
+                  {/* Double gold frame - wrapping single image */}
                   <div
                     className="relative rounded-xl overflow-hidden shadow-2xl"
                     style={{
@@ -197,18 +248,38 @@ const ReformAnalysis: React.FC = () => {
                         "0 0 0 2px var(--vietnam-red), 0 0 0 6px var(--vietnam-gold), 0 20px 40px rgba(0,0,0,0.3)",
                     }}
                   >
-                    <motion.img
-                      src={currentTab.image}
-                      alt={currentTab.title}
-                      className="w-full h-72 md:h-96 object-cover object-center"
-                      initial={{ scale: 1.1 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 1, ease: "easeOut" }}
-                      whileHover={{ scale: 1.02 }}
-                    />
+                    <AnimatePresence mode="wait">
+                      <motion.img
+                        key={currentImageIndex} // re-animate when index changes
+                        src={currentTab.imageList[currentImageIndex]}
+                        alt={`${currentTab.title} - ${currentImageIndex + 1}`}
+                        className="w-full h-72 md:h-96 object-cover object-center"
+                        initial={{ opacity: 0, scale: 1.05 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        whileHover={{ scale: 1.02 }}
+                      />
+                    </AnimatePresence>
 
                     {/* Subtle overlay gradient */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+
+                    {/* Image indicator dots (only show if multiple images) */}
+                    {currentTab.imageList.length > 1 && (
+                      <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
+                        {currentTab.imageList.map((_, idx) => (
+                          <div
+                            key={idx}
+                            className={`w-2 h-2 rounded-full transition-all ${
+                              idx === currentImageIndex
+                                ? "bg-white scale-125"
+                                : "bg-white/50"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   {/* Image caption with gold accent */}
@@ -302,9 +373,11 @@ const ReformAnalysis: React.FC = () => {
               <span className="text-3xl">🎯</span>Ý Nghĩa Lịch Sử
             </h3>
             <p className="text-lg leading-relaxed">
-              Nếu ví đất nước sau CMT8 như một con thuyền vừa rời bến độc lập, thì bốn phía đều là bão tố. <p/>
-              <strong>Phía Nam</strong>, thực dân Pháp âm mưu quay trở lại. <p/>
-              <strong>Phía Bắc</strong>, hơn 20 vạn quân Tưởng tràn vào. <p/>
+              Nếu ví đất nước sau CMT8 như một con thuyền vừa rời bến độc lập,
+              thì bốn phía đều là bão tố. <p />
+              <strong>Phía Nam</strong>, thực dân Pháp âm mưu quay trở lại.{" "}
+              <p />
+              <strong>Phía Bắc</strong>, hơn 20 vạn quân Tưởng tràn vào. <p />
               <strong>Bên trong</strong>, nạn đói, nạn dốt hoành hành.
             </p>
           </div>
