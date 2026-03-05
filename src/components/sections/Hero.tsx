@@ -247,15 +247,15 @@ export const Hero: React.FC = () => {
                 className="text-5xl md:text-7xl font-bold mb-6 leading-tight drop-shadow-lg"
                 style={{ color: "var(--vietnam-white)" }}
               >
-                <span className="word inline-block">Kháng</span>{" "}
-                <span className="word inline-block">Chiến</span>{" "}
-                <span className="word inline-block">Chống</span>{" "}
-                <span className="word inline-block">Pháp</span>{" "}
+                <span className="word inline-block">Nhượng bộ để sinh tồn</span>
+                <span className="word inline-block">
+                  Kháng chiến để Độc lập
+                </span>
                 <span
                   className="word inline-block"
                   style={{ color: "var(--vietnam-gold)" }}
                 >
-                  1945 - 1954
+                  12/1946
                 </span>
               </h1>
 
@@ -268,10 +268,10 @@ export const Hero: React.FC = () => {
                   className="font-bold"
                   style={{ color: "var(--vietnam-gold)" }}
                 >
-                  2.3.
+                  CQ.
                 </span>{" "}
-                Đẩy mạnh cuộc kháng chiến đến thắng lợi, mang lại hòa bình và
-                độc lập thực sự cho dân tộc
+                Nếu Chính phủ Việt Nam Dân chủ Cộng hòa nhượng bộ thêm một chút
+                nữa, có thể đã tránh được cuộc chiến tranh với Pháp?
               </p>
 
               <div ref={buttonsRef} className="flex flex-wrap gap-4">

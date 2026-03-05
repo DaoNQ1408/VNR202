@@ -154,15 +154,15 @@ export default function Footer() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-white/70 text-sm text-center md:text-left">
-              © 2025 Đổi Mới Toàn Diện 1945-1954 - Lịch Sử Đảng CSVN. Dự án học
+              © 2026 Đổi Mới Toàn Diện 1945-1954 - Lịch Sử Đảng CSVN. Dự án học
               tập.
             </p>
             <div className="flex items-center gap-2">
               <span className="text-white/70 text-xs">
-                Được xây dựng bởi Nhóm 9
+                Được xây dựng bởi Nhóm 5
               </span>
               <span className="text-[#FFD700]">❤</span>
-              <span className="text-white/70 text-xs">VNR_3W_06</span>
+              <span className="text-white/70 text-xs">VNR_202</span>
             </div>
           </div>
         </div>

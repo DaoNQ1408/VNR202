@@ -13,16 +13,7 @@ type NavItem = {
 const navigation: NavItem[] = [
   { name: "Trang Chủ", href: "/" },
   { name: "Thư Viện 3D", href: "/thu-vien" },
-  {
-    name: "Ý Nghĩa",
-    href: "/y-nghia",
-    children: [
-      { name: "📜 Timeline Lịch Sử", href: "/y-nghia" },
-      { name: "🎥 Video Giải Thích", href: "/video-giai-thich" },
-    ],
-  },
   { name: "Quiz", href: "/quiz" },
-  { name: "Mini Game", href: "/minigame" },
   { name: "AI Hỗ Trợ", href: "/ai-ho-tro" },
   { name: "Case Study", href: "/case-study" },
 ];

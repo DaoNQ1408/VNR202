@@ -17,36 +17,41 @@ export default function LibraryPage() {
   // Historical images from DomeGallery with additional ones
   const domeImages = [
     {
-      src: "https://media.vietnamplus.vn/images/ed1918d4cf848798286fdbd286ae25b49193a1c5d1fb33e969ef22f27d52ae3d4fa848ce7d2b15dcfa2646bd42731b69a74f6b1bfe70b3203772c7979020cefa/ttxvn-nguyen-ai-quoc.jpg",
-      alt: "Nguyễn Ái Quốc với nhân dân Moskva (Nga) trên đồi Chim Sẻ, trong thời gian tham dự Đại hội lần thứ V Quốc tế cộng sản (17-6/8-7-1924). Ảnh: Tư liệu/TTXVN - Thể hiện tinh thần quốc tế vô sản.",
+      src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698949/khai_mac_ky_hop1_sjx7nu.jpg",
+      alt: "Khai mạc kỳ họp thứ nhất của Quốc Hội khóa 1",
     },
     {
-      src: "https://file.qdnd.vn/data/images/0/2021/05/29/phucthang/06-hcm01.jpg?dpi=150&quality=100&w=575",
-      alt: "Hình ảnh trong chuyến hành trình tìm đường cứu nước của Bác từ ngày 25 đến 30-12-1920, chàng thanh niên yêu nước Nguyễn Ái Quốc (tên của Chủ tịch Hồ Chí Minh trong thời gian hoạt động cách mạng ở Pháp) tham dự Đại hội lần thứ 18 Đảng Xã hội Pháp ở thành phố Tours với tư cách đại biểu Đông Dương.",
+      src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698948/viet_bac_thu_dong_1947_bb4ymh.jpg",
+      alt: "Bác Hồ cùng các chiến sĩ trại căn cứ địa Việt Bắc",
     },
     {
-      src: "https://media-cdn-v2.laodong.vn/storage/newsportal/2024/3/24/1318919/002.jpg",
-      alt: "Chiến thắng Điện Biên Phủ năm 1954 - Biểu tượng cho sức mạnh của ý chí và tinh thần đoàn kết toàn dân tộc.",
+      src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698949/tong_tuyen_cu_1_o5keyj.jpg",
+      alt: "Kỳ họp thứ nhất, Quốc hội khóa I-Quốc hội đầu tiên của nước Việt Nam Dân chủ Cộng hòa sau Tổng tuyển cử ngày 6-1-1946, tại Nhà hát lớn Hà Nội",
     },
     {
-      src: "https://inkythuatso.com/uploads/thumbnails/800/2023/03/2-hinh-anh-bac-ho-o-chien-khu-inkythuatso-06-09-42-16.jpg",
-      alt: "Hồ Chí Minh với cán bộ, chiến sĩ tại chiến khu Việt Bắc năm 1947 - Thể hiện sự gần gũi với bộ đội và nhân dân.",
+      src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698949/hiep_dinh_so_bo_1946_c7xlqo.jpg",
+      alt: "Chủ tịch Hồ Chí Minh và đại diện nước Pháp ký Hiệp định sơ bộ 6/3/1946",
+    },
+    ///==============================================
+    {
+      src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698949/cac_dai_bieu_QH2_tfr6yi.jpg",
+      alt: "Các đại biểu dự Đại hội Đảng toàn quốc lần thứ II. Hàng ngồi từ trái: các đồng chí Tố Hữu, Tôn Đức Thắng, Hà Huy Giáp, Hồ Viết Thắng, Chủ tịch Hồ Chí Minh. Hàng đứng từ trái: các đồng chí Ung Văn Khiêm, Chu Văn Tấn, Lê Văn Lương, Trần Quốc Hoàn, Lê Thanh Nghị, Hoàng Quốc Việt, Hồ Tùng Mậu, Nguyễn Khang, Nguyễn Lương Bằng, Tổng Bí thư Trường Chinh",
     },
     {
-      src: "https://tapchigiaothong.qltns.mediacdn.vn/tapchigiaothong.vn/files/Tapchigiay/2021/01/26/bac-ho-0957.jpg",
-      alt: "Đại hội Đại biểu toàn quốc lần thứ III của Đảng (1960) - Đánh dấu bước chuyển sang thời kỳ xây dựng chủ nghĩa xã hội.",
+      src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698948/vao_nam_chong_phap_qnwj0o.jpg",
+      alt: "Biểu tình chống Pháp năm 1945",
     },
     {
-      src: "https://imgnvsk.vnanet.vn/MediaUpload/Medium/2023/07/21/capture21-15-55-29.png",
-      alt: "Đại hội Đại biểu toàn quốc lần thứ V của Đảng Cộng sản Việt Nam năm 1982 – Đề ra nhiệm vụ ổn định kinh tế - xã hội và mở ra các bước đột phá cải cách 1982–1986.",
+      src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772699623/tay_bac_sjpdix.jpg",
+      alt: "Lớp học của học sinh đồng bào dân tộc Tây Bắc được tổ chức sau Cách mạng tháng Tám.",
     },
     {
-      src: "https://th.bing.com/th/id/R.c89bc199a377256fe56dcaf53874b742?rik=XtuJd6brDcL4mA&pid=ImgRaw&r=0",
-      alt: "Tiền Việt Nam năm 1985 – Hình ảnh gắn liền với cải cách giá - lương - tiền, nguyên nhân trực tiếp dẫn tới quyết định đổi mới toàn diện tại Đại hội VI năm 1986.",
+      src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698949/nandoi_1954_nybwos.jpg",
+      alt: "2 triệu người Việt Nam chết đói năm 1945: Nỗi đau lịch sử",
     },
     {
-      src: "https://file3.qdnd.vn/data/images/0/2022/07/20/tranhuyen/01botruongngoaigiaonguyenmanhcam.jpg?dpi=150&quality=100&w=870",
-      alt: "Việt Nam gia nhập ASEAN năm 1995 – Thành tựu quan trọng của tiến trình đổi mới, mở rộng quan hệ đối ngoại và hội nhập khu vực.",
+      src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698950/tqb_ky_geneve_r6c2tj.jpg",
+      alt: "Thứ trưởng Quốc phòng Việt Nam dân chủ cộng hòa Tạ Quang Bửu (phải) ký hiệp định ngừng bắn tại Hội nghị Geneva. Người ngậm điếu thuốc lá ngồi bên trái là Bộ trưởng Ngoại giao Campuchia Nhiek Tioulong",
     },
 
     // ========================================================================

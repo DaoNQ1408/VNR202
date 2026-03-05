@@ -326,10 +326,10 @@ const AIUsage: React.FC = () => {
               whileHover={{ scale: 1.02 }}
             >
               <p className="text-xl font-bold mb-2">
-                Nhóm 9 Hoàng Minh Khang, Hoàng Quốc An, Nguyễn Việt
+                Nhóm 5 Bá Linh, Duy Anh, Hồng Ngọc, Quang Đạo
               </p>
               <p className="text-sm text-gray-600 mt-4">
-                Ngày cam kết: 11/12/2025
+                Ngày cam kết: 26/02/2026
               </p>
             </motion.div>
           </div>

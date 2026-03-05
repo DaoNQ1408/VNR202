@@ -37,30 +37,42 @@ type ItemDef = {
 
 const DEFAULT_IMAGES: ImageItem[] = [
   {
-    src: "https://nghiencuulichsu.com/wp-content/uploads/2015/11/nguyen-ai-quoc.jpg?w=640",
-    alt: "Hình ảnh lưu niệm Nguyễn Ái Quốc và những người bạn Pháp tại Paris vào năm 1921",
+    src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698949/khai_mac_ky_hop1_sjx7nu.jpg",
+    alt: "Khai mạc kỳ họp thứ nhất của Quốc Hội khóa 1",
   },
   {
-    src: "https://hungyen.dcs.vn/ckfinder/userfiles/images/son-8571(1).jpg",
-    alt: "Nguyễn Ái Quốc với nhân dân Moskva (Nga) trên đồi Chim Sẻ, trong thời gian tham dự Đại hội lần thứ V Quốc tế cộng sản (17-6/8-7-1924). Ảnh: Tư liệu/TTXVN",
+    src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698948/viet_bac_thu_dong_1947_bb4ymh.jpg",
+    alt: "Bác Hồ cùng các chiến sĩ trại căn cứ địa Việt Bắc",
   },
   {
-    src: "https://tuongnangtien.wordpress.com/wp-content/uploads/2021/04/1-thauchin.png",
-    alt: "Bác Hồ (Thầu Chín) và các đồng chí tại Thái Lan năm 1928. Thầu Chín là bí danh của lãnh tụ Nguyễn Ái Quốc hoạt động ở Xiêm, nay là Vương quốc Thái Lan, trong thời gian 1928-1929. Thầu là tiếng Thái-Lào, để gọi người nhiều tuổi và biểu thị sự tôn kính. Ảnh: Tư liệu/TTXVN ",
+    src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698949/tong_tuyen_cu_1_o5keyj.jpg",
+    alt: "Kỳ họp thứ nhất, Quốc hội khóa I-Quốc hội đầu tiên của nước Việt Nam Dân chủ Cộng hòa sau Tổng tuyển cử ngày 6-1-1946, tại Nhà hát lớn Hà Nội",
   },
   {
-    src: "https://file.qdnd.vn/data/images/0/2021/05/29/phucthang/06-hcm01.jpg?dpi=150&quality=100&w=575",
-    alt: "Hình ảnh trong chuyến hành trình tìm đường cứu nước của Bác từ ngày 25 đến 30-12-1920, chàng thanh niên yêu nước Nguyễn Ái Quốc (tên của Chủ tịch Hồ Chí Minh trong thời gian hoạt động cách mạng ở Pháp) tham dự Đại hội lần thứ 18 Đảng Xã hội Pháp ở thành phố Tours với tư cách đại biểu Đông Dương",
+    src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698949/hiep_dinh_so_bo_1946_c7xlqo.jpg",
+    alt: "Chủ tịch Hồ Chí Minh và đại diện nước Pháp ký Hiệp định sơ bộ 6/3/1946",
   },
   ///==============================================
   {
-    src: "https://i.pinimg.com/1200x/c6/72/43/c67243a0af267b0ab918ba7834f28a53.jpg",
-    alt: "Hình ảnh lưu niệm Nguyễn Ái Quốc và những người bạn Pháp tại Paris vào năm 1921",
+    src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698949/cac_dai_bieu_QH2_tfr6yi.jpg",
+    alt: "Các đại biểu dự Đại hội Đảng toàn quốc lần thứ II. Hàng ngồi từ trái: các đồng chí Tố Hữu, Tôn Đức Thắng, Hà Huy Giáp, Hồ Viết Thắng, Chủ tịch Hồ Chí Minh. Hàng đứng từ trái: các đồng chí Ung Văn Khiêm, Chu Văn Tấn, Lê Văn Lương, Trần Quốc Hoàn, Lê Thanh Nghị, Hoàng Quốc Việt, Hồ Tùng Mậu, Nguyễn Khang, Nguyễn Lương Bằng, Tổng Bí thư Trường Chinh",
   },
   {
-    src: "https://i.pinimg.com/1200x/e6/7c/2d/e67c2d4aef707306d987d8920988b0a3.jpg",
-    alt: "Nguyễn Ái Quốc với nhân dân Moskva (Nga) trên đồi Chim Sẻ, trong thời gian tham dự Đại hội lần thứ V Quốc tế cộng sản (17-6/8-7-1924). Ảnh: Tư liệu/TTXVN",
-  }
+    src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698948/vao_nam_chong_phap_qnwj0o.jpg",
+    alt: "Biểu tình chống Pháp năm 1945",
+  },
+  {
+    src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772699623/tay_bac_sjpdix.jpg",
+    alt: "Lớp học của học sinh đồng bào dân tộc Tây Bắc được tổ chức sau Cách mạng tháng Tám.",
+  },
+  {
+    src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698949/nandoi_1954_nybwos.jpg",
+    alt: "2 triệu người Việt Nam chết đói năm 1945: Nỗi đau lịch sử",
+  },
+  {
+    src: "https://res.cloudinary.com/dt3uzyfcg/image/upload/v1772698950/tqb_ky_geneve_r6c2tj.jpg",
+    alt: "Thứ trưởng Quốc phòng Việt Nam dân chủ cộng hòa Tạ Quang Bửu (phải) ký hiệp định ngừng bắn tại Hội nghị Geneva. Người ngậm điếu thuốc lá ngồi bên trái là Bộ trưởng Ngoại giao Campuchia Nhiek Tioulong",
+  },
 ];
 
 const DEFAULTS = {
@@ -99,7 +111,7 @@ function buildItems(pool: ImageItem[], seg: number): ItemDef[] {
   }
   if (pool.length > totalSlots) {
     console.warn(
-      `[DomeGallery] Provided image count (${pool.length}) exceeds available tiles (${totalSlots}). Some images will not be shown.`
+      `[DomeGallery] Provided image count (${pool.length}) exceeds available tiles (${totalSlots}). Some images will not be shown.`,
     );
   }
 
@@ -112,7 +124,7 @@ function buildItems(pool: ImageItem[], seg: number): ItemDef[] {
 
   const usedImages = Array.from(
     { length: totalSlots },
-    (_, i) => normalizedImages[i % normalizedImages.length]
+    (_, i) => normalizedImages[i % normalizedImages.length],
   );
 
   for (let i = 1; i < usedImages.length; i++) {
@@ -140,7 +152,7 @@ function computeItemBaseRotation(
   offsetY: number,
   sizeX: number,
   sizeY: number,
-  segments: number
+  segments: number,
 ) {
   const unit = 360 / segments / 2;
   const rotateY = unit * (offsetX + (sizeX - 1) / 2);
@@ -193,7 +205,10 @@ export default function DomeGallery({
   const lastDragEndAt = useRef(0);
 
   // State cho custom card
-  const [selectedCard, setSelectedCard] = useState<{ src: string; alt: string } | null>(null);
+  const [selectedCard, setSelectedCard] = useState<{
+    src: string;
+    alt: string;
+  } | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const imageBoxRef = useRef<HTMLDivElement>(null);
@@ -203,9 +218,16 @@ export default function DomeGallery({
   // Animate modal opening
   useEffect(() => {
     if (selectedCard && modalRef.current && !isExpanded) {
-      gsap.fromTo(modalRef.current,
+      gsap.fromTo(
+        modalRef.current,
         { scale: 0.3, opacity: 0, rotateY: -20 },
-        { scale: 1, opacity: 1, rotateY: 0, duration: 0.6, ease: 'back.out(1.4)' }
+        {
+          scale: 1,
+          opacity: 1,
+          rotateY: 0,
+          duration: 0.6,
+          ease: "back.out(1.4)",
+        },
       );
     }
   }, [selectedCard, isExpanded]);
@@ -214,12 +236,20 @@ export default function DomeGallery({
   const addHoverEffect = (ref: React.RefObject<HTMLDivElement>) => {
     if (!ref.current) return;
 
-    ref.current.addEventListener('mouseenter', () => {
-      gsap.to(ref.current, { boxShadow: '0 20px 80px rgba(139,26,26,0.6)', scale: 1.02, duration: 0.3 });
+    ref.current.addEventListener("mouseenter", () => {
+      gsap.to(ref.current, {
+        boxShadow: "0 20px 80px rgba(139,26,26,0.6)",
+        scale: 1.02,
+        duration: 0.3,
+      });
     });
 
-    ref.current.addEventListener('mouseleave', () => {
-      gsap.to(ref.current, { boxShadow: '0 20px 60px rgba(139,26,26,0.4)', scale: 1, duration: 0.3 });
+    ref.current.addEventListener("mouseleave", () => {
+      gsap.to(ref.current, {
+        boxShadow: "0 20px 60px rgba(139,26,26,0.4)",
+        scale: 1,
+        duration: 0.3,
+      });
     });
   };
 
@@ -295,12 +325,12 @@ export default function DomeGallery({
       root.style.setProperty("--enlarge-radius", openedImageBorderRadius);
       root.style.setProperty(
         "--image-filter",
-        grayscale ? "grayscale(1)" : "none"
+        grayscale ? "grayscale(1)" : "none",
       );
       applyTransform(rotationRef.current.x, rotationRef.current.y);
 
       const enlargedOverlay = viewerRef.current?.querySelector(
-        ".enlarge"
+        ".enlarge",
       ) as HTMLElement;
       if (enlargedOverlay && frameRef.current && mainRef.current) {
         const frameR = frameRef.current.getBoundingClientRect();
@@ -382,7 +412,7 @@ export default function DomeGallery({
         const nextX = clamp(
           rotationRef.current.x - vY / 200,
           -maxVerticalRotationDeg,
-          maxVerticalRotationDeg
+          maxVerticalRotationDeg,
         );
         const nextY = wrapAngleSigned(rotationRef.current.y + vX / 200);
         rotationRef.current = { x: nextX, y: nextY };
@@ -392,7 +422,7 @@ export default function DomeGallery({
       stopInertia();
       inertiaRAF.current = requestAnimationFrame(step);
     },
-    [dragDampening, maxVerticalRotationDeg, stopInertia]
+    [dragDampening, maxVerticalRotationDeg, stopInertia],
   );
 
   useGesture(
@@ -454,10 +484,10 @@ export default function DomeGallery({
         const nextX = clamp(
           startRotRef.current.x - dyTotal / dragSensitivity,
           -maxVerticalRotationDeg,
-          maxVerticalRotationDeg
+          maxVerticalRotationDeg,
         );
         const nextY = wrapAngleSigned(
-          startRotRef.current.y + dxTotal / dragSensitivity
+          startRotRef.current.y + dxTotal / dragSensitivity,
         );
 
         if (
@@ -496,7 +526,7 @@ export default function DomeGallery({
         }
       },
     },
-    { target: mainRef, eventOptions: { passive: true } }
+    { target: mainRef, eventOptions: { passive: true } },
   );
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -520,7 +550,7 @@ export default function DomeGallery({
       offsetY,
       sizeX,
       sizeY,
-      segments
+      segments,
     );
     const parentY = normalizeAngle(parentRot.rotateY);
     const globalY = normalizeAngle(rotationRef.current.y);
@@ -620,21 +650,24 @@ export default function DomeGallery({
     }
   };
 
-  const onTileClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (draggingRef.current) return;
-    if (performance.now() - lastDragEndAt.current < 80) return;
-    if (openingRef.current) return;
+  const onTileClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (draggingRef.current) return;
+      if (performance.now() - lastDragEndAt.current < 80) return;
+      if (openingRef.current) return;
 
-    // Get image info from parent
-    const parent = e.currentTarget.parentElement as HTMLElement;
-    const rawSrc = parent?.dataset.src || "";
-    const rawAlt = parent?.dataset.alt || "";
+      // Get image info from parent
+      const parent = e.currentTarget.parentElement as HTMLElement;
+      const rawSrc = parent?.dataset.src || "";
+      const rawAlt = parent?.dataset.alt || "";
 
-    // Open modal with image centered
-    setSelectedCard({ src: rawSrc, alt: rawAlt });
-    setIsExpanded(false);
-    lockScroll();
-  }, [lockScroll]);
+      // Open modal with image centered
+      setSelectedCard({ src: rawSrc, alt: rawAlt });
+      setIsExpanded(false);
+      lockScroll();
+    },
+    [lockScroll],
+  );
 
   const onTilePointerUp = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
@@ -651,22 +684,25 @@ export default function DomeGallery({
       setIsExpanded(false);
       lockScroll();
     },
-    [lockScroll]
+    [lockScroll],
   );
 
-  const onTileTouchEnd = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
-    if (draggingRef.current) return;
-    if (performance.now() - lastDragEndAt.current < 80) return;
-    if (openingRef.current) return;
+  const onTileTouchEnd = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      if (draggingRef.current) return;
+      if (performance.now() - lastDragEndAt.current < 80) return;
+      if (openingRef.current) return;
 
-    const parent = e.currentTarget.parentElement as HTMLElement;
-    const rawSrc = parent?.dataset.src || "";
-    const rawAlt = parent?.dataset.alt || "";
+      const parent = e.currentTarget.parentElement as HTMLElement;
+      const rawSrc = parent?.dataset.src || "";
+      const rawAlt = parent?.dataset.alt || "";
 
-    setSelectedCard({ src: rawSrc, alt: rawAlt });
-    setIsExpanded(false);
-    lockScroll();
-  }, [lockScroll]);
+      setSelectedCard({ src: rawSrc, alt: rawAlt });
+      setIsExpanded(false);
+      lockScroll();
+    },
+    [lockScroll],
+  );
 
   useEffect(() => {
     const scrim = scrimRef.current;
@@ -679,12 +715,12 @@ export default function DomeGallery({
       if (!el) return;
       const parent = el.parentElement as HTMLElement;
       const overlay = viewerRef.current?.querySelector(
-        ".enlarge"
+        ".enlarge",
       ) as HTMLElement | null;
       if (!overlay) return;
 
       const refDiv = parent.querySelector(
-        ".item__image--reference"
+        ".item__image--reference",
       ) as HTMLElement | null;
 
       const originalPos = originalTilePositionRef.current;
@@ -893,9 +929,8 @@ export default function DomeGallery({
                     />
                   </div>
                 </div>
-              )
-            }
-            )}
+              );
+            })}
           </div>
         </div>
 
@@ -914,7 +949,7 @@ export default function DomeGallery({
       {selectedCard && (
         <div
           className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 backdrop-blur-sm"
-          style={{ position: 'fixed', perspective: '2000px' }}
+          style={{ position: "fixed", perspective: "2000px" }}
           onClick={() => {
             setSelectedCard(null);
             setIsExpanded(false);
@@ -925,11 +960,11 @@ export default function DomeGallery({
             ref={modalRef}
             className="relative"
             style={{
-              width: isExpanded ? '95vw' : '800px',
-              maxWidth: isExpanded ? '1600px' : '90vw',
-              height: '80vh',
-              maxHeight: '900px',
-              transformStyle: 'preserve-3d',
+              width: isExpanded ? "95vw" : "800px",
+              maxWidth: isExpanded ? "1600px" : "90vw",
+              height: "80vh",
+              maxHeight: "900px",
+              transformStyle: "preserve-3d",
             }}
             onClick={(e) => {
               e.stopPropagation();
@@ -940,20 +975,25 @@ export default function DomeGallery({
                 const tl = gsap.timeline();
 
                 // Image rotates 360° Y-axis while moving to Grid 2 position
-                tl.to(imageBoxRef.current, {
-                  rotateY: 360,
-                  duration: 1.2,
-                  ease: 'power2.inOut',
-                  transformOrigin: 'center center'
-                }, 0)
+                tl.to(
+                  imageBoxRef.current,
+                  {
+                    rotateY: 360,
+                    duration: 1.2,
+                    ease: "power2.inOut",
+                    transformOrigin: "center center",
+                  },
+                  0,
+                )
 
                   // Arrow appears & rotates during spin (lively effect)
-                  .fromTo(arrowRef.current,
+                  .fromTo(
+                    arrowRef.current,
                     {
                       opacity: 0,
                       scale: 0.2,
                       rotateZ: -90,
-                      rotateY: -180
+                      rotateY: -180,
                     },
                     {
                       opacity: 1,
@@ -961,18 +1001,19 @@ export default function DomeGallery({
                       rotateZ: 0,
                       rotateY: 0,
                       duration: 0.7,
-                      ease: 'back.out(2.2)'
+                      ease: "back.out(2.2)",
                     },
-                    '+=0.4'
+                    "+=0.4",
                   )
 
                   // Text pops in after image rotation completes
-                  .fromTo(textBoxRef.current,
+                  .fromTo(
+                    textBoxRef.current,
                     {
                       opacity: 0,
                       scale: 0.4,
                       x: 60,
-                      rotateY: 90
+                      rotateY: 90,
                     },
                     {
                       opacity: 1,
@@ -980,9 +1021,9 @@ export default function DomeGallery({
                       x: 0,
                       rotateY: 0,
                       duration: 0.7,
-                      ease: 'back.out(1.6)'
+                      ease: "back.out(1.6)",
                     },
-                    '-=0.3'
+                    "-=0.3",
                   );
               } else {
                 // Toggle back - collapse the grid
@@ -1018,7 +1059,7 @@ export default function DomeGallery({
               /* Grid Layout: Grid 2 (Image) | Arrow | Grid 3 (Text) */
               <div
                 className="w-full h-full grid grid-cols-12 gap-6 p-6"
-                style={{ perspective: '2000px' }}
+                style={{ perspective: "2000px" }}
               >
                 {/* Grid 1: Empty space */}
                 <div className="col-span-3"></div>
@@ -1027,7 +1068,7 @@ export default function DomeGallery({
                 <div
                   ref={imageBoxRef}
                   className="col-span-3 bg-gradient-to-br from-white to-red-50 rounded-3xl shadow-[0_20px_60px_rgba(139,26,26,0.4)] overflow-hidden flex flex-col transition-all duration-300 hover:cursor-pointer"
-                  style={{ transformStyle: 'preserve-3d' }}
+                  style={{ transformStyle: "preserve-3d" }}
                 >
                   <div className="bg-gradient-to-r from-[#8B1A1A] to-[#AC0705] px-4 py-3 border-b-4 border-[#FFD700]">
                     <h3 className="text-white font-bold text-lg text-center tracking-wide">
@@ -1048,27 +1089,28 @@ export default function DomeGallery({
                   ref={arrowRef}
                   className="col-span-1 flex items-center justify-center"
                   style={{
-                    transformStyle: 'preserve-3d',
-                    perspective: '1200px'
+                    transformStyle: "preserve-3d",
+                    perspective: "1200px",
                   }}
                 >
                   <div
                     className="relative"
                     style={{
-                      width: '90px',
-                      height: '90px',
-                      transformStyle: 'preserve-3d',
-                      animation: 'float 4s ease-in-out infinite'
+                      width: "90px",
+                      height: "90px",
+                      transformStyle: "preserve-3d",
+                      animation: "float 4s ease-in-out infinite",
                     }}
                   >
                     {/* Arrow Shaft with gradient */}
                     <div
                       className="absolute top-1/2 left-0 bg-gradient-to-r from-[#8B1A1A] via-[#C71C1C] to-[#AC0705] rounded-l-lg shadow-lg"
                       style={{
-                        width: '50px',
-                        height: '12px',
-                        transform: 'translateY(-50%) translateZ(12px)',
-                        boxShadow: '0 8px 20px rgba(139, 26, 26, 0.7), inset 0 2px 4px rgba(255, 255, 255, 0.2)',
+                        width: "50px",
+                        height: "12px",
+                        transform: "translateY(-50%) translateZ(12px)",
+                        boxShadow:
+                          "0 8px 20px rgba(139, 26, 26, 0.7), inset 0 2px 4px rgba(255, 255, 255, 0.2)",
                       }}
                     />
 
@@ -1076,13 +1118,14 @@ export default function DomeGallery({
                     <div
                       className="absolute top-1/2 right-0"
                       style={{
-                        transform: 'translateY(-50%) translateZ(15px)',
+                        transform: "translateY(-50%) translateZ(15px)",
                         width: 0,
                         height: 0,
-                        borderTop: '22px solid transparent',
-                        borderBottom: '22px solid transparent',
-                        borderLeft: '35px solid #AC0705',
-                        filter: 'drop-shadow(0 8px 16px rgba(139, 26, 26, 0.8))',
+                        borderTop: "22px solid transparent",
+                        borderBottom: "22px solid transparent",
+                        borderLeft: "35px solid #AC0705",
+                        filter:
+                          "drop-shadow(0 8px 16px rgba(139, 26, 26, 0.8))",
                       }}
                     />
 
@@ -1090,19 +1133,19 @@ export default function DomeGallery({
                     <div
                       className="absolute top-1/2 left-0 bg-[#6B0F0F] rounded-l-lg"
                       style={{
-                        width: '50px',
-                        height: '12px',
-                        transform: 'translateY(-50%) translateZ(6px)',
-                        opacity: 0.8
+                        width: "50px",
+                        height: "12px",
+                        transform: "translateY(-50%) translateZ(6px)",
+                        opacity: 0.8,
                       }}
                     />
                     <div
                       className="absolute top-1/2 left-0 bg-[#4B0909] rounded-l-lg"
                       style={{
-                        width: '50px',
-                        height: '12px',
-                        transform: 'translateY(-50%) translateZ(0px)',
-                        opacity: 0.6
+                        width: "50px",
+                        height: "12px",
+                        transform: "translateY(-50%) translateZ(0px)",
+                        opacity: 0.6,
                       }}
                     />
 
@@ -1110,7 +1153,7 @@ export default function DomeGallery({
                     <div
                       className="absolute top-1/2 left-1/2 w-32 h-32 bg-[#FFD700] rounded-full blur-2xl opacity-40"
                       style={{
-                        transform: 'translate(-50%, -50%) translateZ(-15px)',
+                        transform: "translate(-50%, -50%) translateZ(-15px)",
                       }}
                     />
 
@@ -1118,7 +1161,7 @@ export default function DomeGallery({
                     <div
                       className="absolute top-1/4 left-1/4 w-20 h-20 bg-white rounded-full blur-xl opacity-30"
                       style={{
-                        transform: 'translateZ(20px)',
+                        transform: "translateZ(20px)",
                       }}
                     />
                   </div>
@@ -1128,7 +1171,7 @@ export default function DomeGallery({
                 <div
                   ref={textBoxRef}
                   className="col-span-5 bg-gradient-to-br from-amber-100 via-amber-50 to-yellow-50 rounded-3xl shadow-[0_20px_60px_rgba(180,100,0,0.3)] overflow-hidden flex flex-col transition-all duration-300 hover:cursor-pointer"
-                  style={{ transformStyle: 'preserve-3d' }}
+                  style={{ transformStyle: "preserve-3d" }}
                 >
                   <div className="bg-gradient-to-r from-amber-900 to-amber-800 px-6 py-4 border-b-4 border-amber-600">
                     <h3 className="text-white font-bold text-xl text-center tracking-wide">

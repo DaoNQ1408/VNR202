@@ -28,28 +28,22 @@ const ReformAnalysis: React.FC = () => {
     },
     {
       id: "reform",
-      title: "Toàn Quốc Kháng Chiến",
+      title: "Lựa chọn chiến lược:  “Lùi một bước để tiến hai bước”",
       icon: "🚀",
-      image: "/img/daihoiVI_color.jpg", // Tạm dùng ảnh cũ, có thể thay đổi sau
+      image: "/img/hcmnixon.png", // Tạm dùng ảnh cũ, có thể thay đổi sau
       content: [
-        "✨ Quyết định: Lời kêu gọi toàn quốc kháng chiến (12/1946)",
-        "✨ Đường lối: Kháng chiến toàn dân, toàn diện",
-        "✨ Phương châm: Lâu dài, tự lực cánh sinh",
-        "✨ Xây dựng lực lượng vũ trang 3 thứ quân",
-        "✨ Kết hợp đấu tranh quân sự, chính trị, ngoại giao",
+        "✨ Hiệp định Sơ bộ (6/3/1946) và Tạm ước (14/9/1946) - Nước cờ ngoại giao Xuất sắc của Đảng và Chủ tịch Hồ Chí Minh",
+        "✨ Mặc dù Hiệp định Sơ bộ 6/3/1946 và Tạm ước 14/9/1946 chỉ mang tính tạm thời, nhưng chúng thể hiện rõ chủ trương nhất quán của Việt Nam: kiên trì hòa bình, tránh chiến tranh trong mọi hoàn cảnh, song đó phải là nền hòa bình gắn với độc lập và tự do thực sự",
+        "✨ Dù các hiệp định không ngăn được chiến tranh, trong tình thế đất nước “ngàn cân treo sợi tóc”, đây là nước cờ ngoại giao linh hoạt và sáng suốt của Đảng và Chủ tịch Hồ Chí Minh — tạm hòa hoãn với bên này để xử lý bên kia, tranh thủ thời gian củng cố lực lượng và chuẩn bị cho kháng chiến lâu dài",
       ],
     },
     {
       id: "impact",
-      title: "Đại Thắng 1954",
+      title: "Giới hạn cuối cùng: Lời kêu gọi Toàn quốc kháng chiến",
       icon: "⚡",
-      image: "/img/chutruongdoimoi.png", // Tạm dùng ảnh cũ
+      image: "/img/loikeugoi.jpg", // Tạm dùng ảnh cũ
       content: [
-        "✅ Đập tan âm mưu 'đánh nhanh thắng nhanh' của Pháp",
-        "✅ Chiến thắng Việt Bắc 1947, Biên giới 1950",
-        "✅ Đại thắng Điện Biên Phủ 'lừng lẫy năm châu'",
-        "✅ Ký Hiệp định Giơnevơ (1954)",
-        "✅ Bảo vệ thành công quyền độc lập thiêng liêng",
+        "✅ Hỡi đồng bào toàn quốc! Chúng ta muốn hòa bình, chúng ta đã nhân nhượng. Nhưng chúng ta càng nhân nhượng, thực dân Pháp càng lấn tới, vì chúng quyết tâm cướp nước ta lần nữa.( Trích “Lời kêu gọi Toàn quốc kháng chiến- 19/12/1946)",
       ],
     },
     {
@@ -58,11 +52,10 @@ const ReformAnalysis: React.FC = () => {
       icon: "📚",
       image: null,
       content: [
-        "💡 Đường lối kháng chiến đúng đắn, sáng tạo",
-        "💡 Phát huy sức mạnh khối đại đoàn kết toàn dân tộc",
-        "💡 Xây dựng lực lượng vũ trang nhân dân vững mạnh",
-        "💡 Kết hợp sức mạnh dân tộc với sức mạnh thời đại",
-        "💡 Ngoại giao mềm dẻo, có cương có nhu",
+        "💡 Luôn tỉnh táo trong quan hệ quốc tế",
+        "💡 Không mơ hồ về bản chất của các hành động xâm phạm lợi ích dân tộc",
+        "💡 Kiên định nguyên tắc độc lập, chủ quyền nhưng linh hoạt trong phương pháp – mềm dẻo như “cây tre Việt Nam”",
+        "💡 Vững vàng trước mọi thử thách",
       ],
     },
   ];
@@ -230,7 +223,7 @@ const ReformAnalysis: React.FC = () => {
                     }}
                   >
                     {currentTab.id === "reform"
-                      ? "Phát động toàn quốc kháng chiến - Tháng 12/1946"
+                      ? "Nước cờ ngoại giao xuất sắc"
                       : "Chủ trương đường lối Kháng chiến toàn quốc"}
                   </div>
                 </motion.div>
@@ -309,13 +302,10 @@ const ReformAnalysis: React.FC = () => {
               <span className="text-3xl">🎯</span>Ý Nghĩa Lịch Sử
             </h3>
             <p className="text-lg leading-relaxed">
-              Giai đoạn 1945-1954 đánh dấu <strong>bản lĩnh kiên cường</strong>{" "}
-              của dân tộc, khi Đảng lãnh đạo nhân dân từ thế bị bao vây cô lập
-              đến
-              <strong> chiến thắng Điện Biên Phủ chấn động địa cầu</strong>. 9
-              năm kháng chiến trường kỳ đã bảo vệ vững chắc thành quả của Cách
-              mạng Tháng Tám, mang lại hòa bình và làm sụp đổ chủ nghĩa thực dân
-              cũ trên toàn thế giới.
+              Nếu ví đất nước sau CMT8 như một con thuyền vừa rời bến độc lập, thì bốn phía đều là bão tố. <p/>
+              <strong>Phía Nam</strong>, thực dân Pháp âm mưu quay trở lại. <p/>
+              <strong>Phía Bắc</strong>, hơn 20 vạn quân Tưởng tràn vào. <p/>
+              <strong>Bên trong</strong>, nạn đói, nạn dốt hoành hành.
             </p>
           </div>
         </motion.div>

@@ -8,10 +8,6 @@ const introQuotes = [
     line2: "Mà để tiếp lửa – dựng xây ngày mai.",
   },
   {
-    line1: "1986–1996: Hai miền – Một ý chí",
-    line2: "Dưới ngọn cờ Đảng – dân tộc kiên cường đi tới.",
-  },
-  {
     line1: "Một dân tộc – một dòng máu Việt",
     line2: "Có Đảng – có đường đi trong bão lửa.",
   },
@@ -26,7 +22,7 @@ export default function IntroLoader({
     "loading" | "text1" | "text2" | "fadeOut" | "flag" | "complete"
   >("loading");
   const [currentQuote] = useState(
-    () => introQuotes[Math.floor(Math.random() * introQuotes.length)]
+    () => introQuotes[Math.floor(Math.random() * introQuotes.length)],
   );
   const [text1, setText1] = useState("");
   const [text2, setText2] = useState("");

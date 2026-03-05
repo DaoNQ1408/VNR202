@@ -126,10 +126,7 @@ const App: React.FC = () => {
                       <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/quiz" element={<FirebaseQuizPage />} />
-                        <Route path="/quiz-admin" element={<QuizAdminPage />} />
                         <Route path="/case-study" element={<CaseStudyPage />} />
-                        {/* <Route path="/minigame" element={<MiniGamePage />} /> */}
-                        {/* <Route path="/y-nghia" element={<YNghiaPage />} /> */}
                         <Route
                           path="/video-giai-thich"
                           element={<VideoExplanationPage />}
