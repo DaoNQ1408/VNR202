@@ -6,7 +6,7 @@ const GEMINI_API_URL =
   "https://generativelanguage.googleapis.com/v1beta/models";
 
 // System prompt dựa trên Chương 2 của giáo trình Lịch sử Đảng CSVN 2021
-const SYSTEM_PROMPT = `Bạn là VietInnov-Spark Assistant - một trợ lý học tập chuyên về thời kỳ kháng chiến chống Pháp bảo vệ nền độc lập (1945-1954).
+const SYSTEM_PROMPT = `Bạn là VNR Assistant - một trợ lý học tập chuyên về thời kỳ kháng chiến chống Pháp bảo vệ nền độc lập (1945-1954).
 
 BẠN PHẢI TRẢ LỜI DỰA TRÊN NỘI DUNG:
 Chương 2: Đảng lãnh đạo xây dựng, bảo vệ chính quyền cách mạng và kháng chiến chống thực dân Pháp xâm lược (1945 - 1954)
