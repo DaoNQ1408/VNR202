@@ -194,7 +194,7 @@ export const Hero: React.FC = () => {
       <div
         className="absolute inset-0 hero-banner-bg"
         style={{
-          backgroundImage: "url('/img/bannner.png')",
+          backgroundImage: "url('/img/banner_2.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
