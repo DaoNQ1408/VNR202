@@ -10,6 +10,7 @@ import {
   limit as firestoreLimit,
   Timestamp,
   writeBatch,
+  onSnapshot,
 } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import type {
@@ -203,6 +204,46 @@ export class QuizService {
       console.error('Error getting high scores:', error);
       throw error;
     }
+  }
+
+  /**
+   * Subscribe to top high scores in real-time (uses onSnapshot)
+   * Returns an unsubscribe function to stop listening
+   */
+  static subscribeToHighScores(
+    callback: (scores: HighScore[]) => void,
+    limit: number = 5
+  ): () => void {
+    // Fetch more than needed to allow secondary sort by timeSpent
+    const q = query(
+      collection(db, HIGHSCORES_COLLECTION),
+      orderBy('score', 'desc'),
+      firestoreLimit(limit * 3)
+    );
+
+    const unsubscribe = onSnapshot(
+      q,
+      (snapshot) => {
+        const scores = snapshot.docs.map((d) => ({
+          id: d.id,
+          ...d.data(),
+          createdAt: d.data().createdAt?.toDate() || new Date(),
+        })) as HighScore[];
+
+        // Secondary sort: higher score first, then faster time
+        scores.sort((a, b) => {
+          if (b.score !== a.score) return b.score - a.score;
+          return a.timeSpent - b.timeSpent;
+        });
+
+        callback(scores.slice(0, limit));
+      },
+      (error) => {
+        console.error('Error in highscores snapshot:', error);
+      }
+    );
+
+    return unsubscribe;
   }
 
   /**

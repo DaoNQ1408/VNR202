@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import QuizStart from '../components/Quiz/QuizStart';
 import QuizQuestion from '../components/Quiz/QuizQuestion';
 import QuizResult from '../components/Quiz/QuizResult';
+import QuizLeaderboard from '../components/Quiz/QuizLeaderboard';
 import { QuizService } from '../services/quizService';
 import type { Quiz, QuizQuestion as QuizQuestionType, QuizAnswer, QuizState } from '../types/quiz';
 
@@ -253,6 +254,9 @@ const FirebaseQuizPage: React.FC = () => {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Real-time Leaderboard — always visible */}
+      <QuizLeaderboard />
     </div>
   );
 };
