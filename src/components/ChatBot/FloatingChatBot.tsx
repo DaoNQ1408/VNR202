@@ -25,7 +25,7 @@ const FloatingChatBot: React.FC = () => {
       id: "0",
       role: "model",
       content:
-        'Xin chào! 👋 Tôi là **VietInnov-Spark Assistant** - trợ lý học tập chuyên về thời kỳ kháng chiến chống Pháp (1945-1954).\n\n📚 Tôi sẽ trả lời dựa trên **Chương 2** của giáo trình Lịch sử Đảng CSVN 2021.\n\n💡 Hãy hỏi tôi về:\n- Tình thế "ngàn cân treo sợi tóc" sau Cách mạng Tháng Tám\n- Đường lối kháng chiến chống Pháp của Đảng\n- Ý nghĩa của Chiến dịch Điện Biên Phủ 1954\n- Các quyết định chiến lược của Đảng trong kháng chiến',
+        'Xin chào! 👋 Tôi là **VNR Assistant** - trợ lý học tập chuyên về thời kỳ kháng chiến chống Pháp (1945-1954).\n\n📚 Tôi sẽ trả lời dựa trên **Chương 2** của giáo trình Lịch sử Đảng CSVN 2021.\n\n💡 Hãy hỏi tôi về:\n- Tình thế "ngàn cân treo sợi tóc" sau Cách mạng Tháng Tám\n- Đường lối kháng chiến chống Pháp của Đảng\n- Ý nghĩa của Chiến dịch Điện Biên Phủ 1954\n- Các quyết định chiến lược của Đảng trong kháng chiến',
       timestamp: new Date(),
     },
   ]);
@@ -110,7 +110,7 @@ const FloatingChatBot: React.FC = () => {
           >
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT04EX6fn9FNc0mSlFroeMEEgG5IqVRC9yDWQ&s"
-              alt="VietInnov Spark"
+              alt="VNR Assistant"
               className="w-12 h-12 rounded-full object-cover"
             />
           </motion.button>
@@ -132,7 +132,7 @@ const FloatingChatBot: React.FC = () => {
               <div className="flex items-center gap-3">
                 <MessageCircle size={24} />
                 <div>
-                  <h3 className="font-bold text-lg">VietInnov-Spark</h3>
+                  <h3 className="font-bold text-lg">VNR Assistant</h3>
                   <p className="text-xs opacity-90">
                     Trợ lý Lịch sử Kháng chiến
                   </p>
